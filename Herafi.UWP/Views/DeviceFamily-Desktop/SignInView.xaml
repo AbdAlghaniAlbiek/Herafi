@@ -1,0 +1,1384 @@
+﻿<Page
+    x:Class="Herafi.UWP.Views.DeviceFamily_Desktop.SignInView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Views.DeviceFamily_Desktop"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    Background="{ThemeResource SurfaceBrush}"
+    xmlns:vm="using:Herafi.Core.ViewModels" 
+    xmlns:mat="using:MaterialLibs.Controls"
+    xmlns:ext="using:Microsoft.Toolkit.Uwp.UI">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/SignInIcons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:SignInViewModel x:Name="signInViewModel"/>
+    </Page.DataContext>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--#region Decoration SignInView-->
+
+        <Image HorizontalAlignment="Left" VerticalAlignment="Top"
+               Stretch="None"
+               Source="{StaticResource Drill}"/>
+
+        <Image HorizontalAlignment="Left" VerticalAlignment="Top"
+               Stretch="None"
+                Margin="70 224 0 0"
+               Source="{StaticResource Hammar}"/>
+
+        <Image HorizontalAlignment="Left" VerticalAlignment="Top"
+               Stretch="None"
+               Margin="224 75 0 0"
+               Source="{StaticResource Screwdriver}"/>
+
+        <Image  HorizontalAlignment="Right" VerticalAlignment="Bottom"
+               Stretch="None"
+               Margin="0 0 72 50"
+               Source="{StaticResource Triangles}"/>
+
+        <!--#endregion-->
+
+        <!--Titlebar-->
+        <Grid x:Name="AppTitleBar" Background="Transparent">
+            <!-- Width of the padding columns is set in LayoutMetricsChanged handler. -->
+            <!-- Using padding columns instead of Margin ensures that the background
+                 paints the area under the caption control buttons (for transparent buttons). -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0"/>
+                <ColumnDefinition/>
+                <ColumnDefinition x:Name="RightPaddingColumn" Width="0"/>
+            </Grid.ColumnDefinitions>
+
+        </Grid>
+
+        <!--Main Panel-->
+        <Grid x:Name="MainCard"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Width="422"
+               Height="584">
+            
+            <!--Background layer and shadow-->
+            <cont:DropShadowPanel
+                              Style="{StaticResource SignInShadow}"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+
+                <Rectangle Style="{StaticResource SignInCard}"
+                          Width="{Binding ElementName=MainCard, Path=Width}"
+                           Height="{Binding ElementName=MainCard, Path=Height}"/>
+            </cont:DropShadowPanel>
+
+            <!--Content-->
+            <Grid HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Width="{Binding ElementName=MainCard, Path=Width}"
+                  Height="{Binding ElementName=MainCard, Path=Height}">
+
+                <!--Processing progressbar-->
+                <ProgressBar x:Name="progBarProcess"
+                             HorizontalAlignment="Stretch"
+                             Width="400"
+                             Margin="0 4 0 0"
+                             VerticalAlignment="Top"
+                             IsIndeterminate="False"
+                             Background="Transparent">
+                    <ProgressBar.Foreground>
+                        <SolidColorBrush Color="{ThemeResource SystemAccentColor}"/>
+                    </ProgressBar.Foreground>
+                </ProgressBar>
+
+                <!--Main pivot that contains all pivot items-->
+                <Pivot x:Name="mainPivot">
+
+                    <!--region Sign in pivot-->
+                    <PivotItem Margin="0 -48 0 0">
+                        <Grid>
+
+                            <!--Sign in title-->
+                            <TextBlock x:Name="txtSignInTitle" 
+                                       Text="Sign in"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="0 24 0 0"/>
+
+                            <!--contains on rest of elements of this pivot-->
+                            <StackPanel Orientation="Vertical"
+                                        Margin="0 86 0 0"
+                                        Padding="24 0">
+
+                                <!--Sign in description-->
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Image Stretch="None" 
+                                           Source="{StaticResource Information}"
+                                           VerticalAlignment="Top"/>
+
+                                    <StackPanel Orientation="Vertical"
+                                                Margin="12 0 0 0">
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Style="{StaticResource BodyTextBlockStyle}"
+                                                   TextWrapping="Wrap"
+                                                   Width="338">
+                                            <Run x:Name="txtSignInDesc"
+                                                 Text="Enter your information to access to Herafi system"/>
+                                            
+                                            <LineBreak/>
+                                            
+                                             <Hyperlink x:Name="HypLinSignInForgPass" UnderlineStyle="None">
+                                                 <Hyperlink.Inlines>
+                                                     <Run x:Name="txtSignInDescForgPass" 
+                                                          Text="Do you forget your password?" Foreground="{ThemeResource SystemAccentColor}"/>
+                                                 </Hyperlink.Inlines>
+                                            </Hyperlink>
+                                        </TextBlock>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <!--Email textbox-->
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0 18 0 0">
+
+                                    <StackPanel Orientation="Horizontal" Margin="12 0 0 2">
+                                        <TextBlock x:Name="txtSignInEmailErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                              Visibility="Collapsed"
+                                               Text="Incorrect Email format (eg: example@gmail.com)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 0" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+
+                                    <TextBox  x:Name="txtBoxSignInEmail"
+                                         Width="369"
+                                         Height="40"
+                                         Text="abdalghanialbiek@gmail.com"
+                                         BorderThickness="2"
+                                         CornerRadius="8"
+                                         InputScope="Text"
+                                         PlaceholderText="Email" 
+                                         IsColorFontEnabled="False"
+                                         Background="Transparent"
+                                         Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--Password textbox-->
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0 14 0 0">
+
+                                    <StackPanel Orientation="Horizontal" Margin="12 0 0 2">
+                                        <TextBlock x:Name="txtBoxSignInPasswordErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Text="You have an error in you password"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Visibility="Collapsed"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 0" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+
+
+                                    <PasswordBox  x:Name="txtBoxSignInPassword"
+                                         Width="369"
+                                         Height="40"
+                                         Password="helloworld"
+                                         Background="Transparent"
+                                         BorderThickness="2"
+                                         CornerRadius="8"
+                                         InputScope="Password"
+                                         PlaceholderText="Password" 
+                                         Padding="12 8 0 0"/>
+                                </StackPanel>
+
+                                <!--Keep me sign in Checkbox-->
+                                <CheckBox x:Name="chBoxSignInKeepMeSig" Margin="0 16 0 0">
+                                    <CheckBox.Content>
+                                        <TextBlock x:Name="txtSignInKeepMeSig"
+                                                   Style="{StaticResource BodyTextBlockStyle}"
+                                                   Text="Keep me sign in"/>
+                                    </CheckBox.Content>
+                                </CheckBox>
+
+                                <!--Submit button-->
+                                <Button x:Name="btnSignInSubm"
+                                        HorizontalAlignment="Right"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="0 24 5 0"
+                                        Style="{StaticResource NormalButton}">
+
+                                    <Button.Content>
+                                        <TextBlock x:Name="txtSignInSubmCont" Text="Submit"
+                                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                                    </Button.Content>
+                                </Button>
+
+                                <!--Charge to Sign up pivot description-->
+                                <TextBlock Margin="0 50 0 0" Style="{StaticResource BodyTextBlockStyle}">
+                                    <Run x:Name="txtSignInChargeToSignUpDesc" 
+                                         Text="If you don't have an account you can here"/>
+                                    
+                                    <Hyperlink x:Name="HypLinSignInChargeToSignUp" UnderlineStyle="None">
+                                        <Hyperlink.Inlines>
+                                            <Run x:Name="txtSignInChargeToSignUpDescrLink" 
+                                                 Text="Sign up" Foreground="{ThemeResource SystemAccentColor}">
+                                            </Run>
+                                        </Hyperlink.Inlines>
+                                    </Hyperlink>
+                                    
+                                    <LineBreak/>
+                                    
+                                    <Run x:Name="txtSignInChargeToMicFbDesc2"
+                                         Text="OR you can use your Facebook or Microsoft accounts"/>
+
+                                </TextBlock>
+
+                                <!--Microsoft and Facebook buttons-->
+                                <StackPanel Margin="0 32 0 0" 
+                                            Orientation="Horizontal" 
+                                            Padding="44 0">
+
+                                    <!--Facebook button-->
+                                    <Button x:Name="btnSignInFb"
+                                                Width="123"
+                                                Height="48"
+                                                Style="{StaticResource MicrosoftFacebookButton}">
+
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Stretch="Fill" 
+                                                       Source="{StaticResource Facebook}"
+                                                       Width="32"
+                                                       Height="32"/>
+                                                <TextBlock x:Name="txtSignInFbCont" 
+                                                               Text="Facebook"
+                                                               VerticalAlignment="Center"
+                                                               Margin="8 0 0 0"
+                                                               Style="{StaticResource BodyTextBlockStyle}"/>
+                                            </StackPanel>
+
+                                        </Button.Content>
+                                    </Button>
+
+                                    <!--Microsoft button-->
+                                    <Button x:Name="btnSignInMic"
+                                                Width="123"
+                                                Height="48"
+                                                Style="{StaticResource MicrosoftFacebookButton}"
+                                                Margin="40 0 0 0">
+
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Stretch="Fill" 
+                                                       Source="{StaticResource Microsoft}"
+                                                       Width="32"
+                                                       Height="32"/>
+                                                <TextBlock x:Name="txtSignInMicCont" 
+                                                               Text="Microsoft"
+                                                               VerticalAlignment="Center"
+                                                               Margin="8 0 0 0"
+                                                               Style="{StaticResource BodyTextBlockStyle}"/>
+                                            </StackPanel>
+
+                                        </Button.Content>
+                                    </Button>
+                                    
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </PivotItem>
+                    <!--endregion-->
+
+                    <!--region Check your identity pivot-->
+                    <PivotItem Margin="0 -48 0 0">
+                        <Grid>
+
+                            <!--back button-->
+                            <Button x:Name="btnCheYourIdGoBack"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource NormalButton}"
+                                    Margin="8"
+                                    Width="50"
+                                    Height="50">
+
+                                <Button.Content>
+                                    <PathIcon  Margin="-6 -3.5 0 0" 
+                                              Data="{StaticResource GoBack}"
+                                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                              Style="{StaticResource GoBackButtonPathIcon}"/>
+                                </Button.Content>
+                            </Button>
+
+                            <!--Check your identity title-->
+                            <TextBlock x:Name="txtCheYourIdTitle" 
+                                       Text="Check Your Identity"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="0 24 0 0"/>
+
+                            <!--contains on rest of elements of this pivot-->
+                            <StackPanel Orientation="Vertical"
+                                        Margin="0 86 0 0"
+                                        Padding="24 0">
+
+                                <!--Check your identity description-->
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Image Stretch="None" 
+                                           Source="{StaticResource Information}"
+                                           VerticalAlignment="Top"/>
+
+                                    <StackPanel Orientation="Vertical"
+                                                Margin="12 0 0 0">
+                                        <TextBlock VerticalAlignment="Center"
+                                                   x:Name="txtCheYourIdDesc"
+                                                   Style="{StaticResource BodyTextBlockStyle}"
+                                                   TextWrapping="Wrap"
+                                                   Text="Enter your email or phone number to insure that you was signing in to Herafi system before"
+                                                   Width="338"/>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <!--Email & phone number textbox-->
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0 56 0 0">
+
+                                    <StackPanel Orientation="Horizontal" Margin="12 0 0 2">
+                                        <TextBlock x:Name="txtCheYourIdTextErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Visibility="Collapsed"
+                                               Text="Incorrect Email format (eg: example@gmail.com)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 0" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+
+                                    <TextBox x:Name="txtBoxCheYourIdText"
+                                         Width="369"
+                                         Height="40"
+                                         BorderThickness="2"
+                                         CornerRadius="8"
+                                         InputScope="Text"
+                                         PlaceholderText="Email 'OR' phone number" 
+                                         IsColorFontEnabled="False"
+                                         Background="Transparent"
+                                         Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--Send button-->
+                                <Button x:Name="btnCheYourIdSend"
+                                        HorizontalAlignment="Center"
+                                        Width="100"
+                                        Height="40"
+                                        Style="{StaticResource NormalButton}"
+                                        Margin="0 86 0 0">
+
+                                    <Button.Content>
+                                        <TextBlock x:Name="txtDoNotWorrySendCont" Text="Send"
+                                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                                    </Button.Content>
+                                </Button>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </PivotItem>
+                    <!--endregion-->
+
+                    <!--region verification identity pivot-->
+                    <PivotItem Margin="0 -48 0 0">
+                        <Grid>
+
+                            <!--Verification identity title-->
+                            <TextBlock x:Name="txtVeriIdTitle" 
+                                       Text="Verification Identity"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="0 24 0 0"/>
+
+                            <!--contains on rest of elements of this pivot-->
+                            <StackPanel Orientation="Vertical"
+                                        Margin="0 86 0 0"
+                                        Padding="24 0">
+
+                                <!--Verification identity description-->
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Image Stretch="None" 
+                                           Source="{StaticResource Information}"
+                                           VerticalAlignment="Top"/>
+
+                                    <StackPanel Orientation="Vertical"
+                                                Margin="12 0 0 0">
+                                        <TextBlock VerticalAlignment="Center"
+                                                   x:Name="txtVeriIdDesc"
+                                                   Style="{StaticResource BodyTextBlockStyle}"
+                                                   TextWrapping="Wrap"
+                                                   Text="We sended a verificaiton code to your email, please enter this code into this text box"
+                                                   Width="338"/>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <!--Code textbox verification-->
+                                <TextBox x:Name="txtBoxVeriIdCode"
+                                             Margin="0 56 0 0"
+                                             Width="369"
+                                             Height="40"
+                                             BorderThickness="2"
+                                             CornerRadius="8"
+                                             InputScope="Text"
+                                             PlaceholderText="Code" 
+                                             IsColorFontEnabled="False"
+                                             Background="Transparent"
+                                             Padding="12 8 0 0"/>
+
+                                <!--Send button-->
+                                <Button x:Name="btnVeriIdSend"
+                                        HorizontalAlignment="Center"
+                                        Width="100"
+                                        Height="40"
+                                        Style="{StaticResource NormalButton}"
+                                        Margin="0 86 0 0">
+
+                                    <Button.Content>
+                                        <TextBlock x:Name="txtVeriIdSendCont" Text="Send"
+                                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                                    </Button.Content>
+                                </Button>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </PivotItem>
+                    <!--endregion-->
+
+                    <!--region Reset password pivot-->
+                    <PivotItem Margin="0 -48 0 0">
+                        <Grid>
+
+                            <!--Reset password title-->
+                            <TextBlock x:Name="txtResetPasswordTitle" 
+                                       Text="Reset password"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Margin="0 24 0 0"/>
+
+                            <!--contains on rest of elements of this pivot-->
+                            <StackPanel Orientation="Vertical"
+                                        Margin="0 86 0 0"
+                                        Padding="24 0">
+
+                                <!--Reset password description-->
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Image Stretch="None" 
+                                           Source="{StaticResource Information}"
+                                           VerticalAlignment="Top"/>
+
+                                    <StackPanel Orientation="Vertical"
+                                                Margin="12 0 0 0">
+                                        <TextBlock VerticalAlignment="Center"
+                                                   x:Name="txtResetPasswordDesc"
+                                                   Style="{StaticResource BodyTextBlockStyle}"
+                                                   TextWrapping="Wrap"
+                                                   Text="Please enter your new password then continue to main view"
+                                                   Width="338"/>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <!--New Password PasswordBox-->
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0 56 0 0">
+
+                                    <StackPanel Orientation="Horizontal" Margin="12 0 0 2">
+                                        <TextBlock x:Name="txtResetPasswordTextErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Visibility="Collapsed"
+                                               Text="Incorrect Email format (eg: example@gmail.com)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 0" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+
+                                    <TextBox x:Name="txtBoxResetPassword"
+                                         Width="369"
+                                         Height="40"
+                                         BorderThickness="2"
+                                         CornerRadius="8"
+                                         InputScope="Text"
+                                         PlaceholderText="New password" 
+                                         IsColorFontEnabled="False"
+                                         Background="Transparent"
+                                         Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--Continue button-->
+                                <Button x:Name="btnResetPasswordContinue"
+                                        HorizontalAlignment="Center"
+                                        Width="100"
+                                        Height="40"
+                                        Style="{StaticResource NormalButton}"
+                                        Margin="0 86 0 0">
+
+                                    <Button.Content>
+                                        <TextBlock x:Name="txtResetPasswordContinueCont" Text="Continue"
+                                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                                    </Button.Content>
+                                </Button>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </PivotItem>
+                    <!--endregion-->
+
+                    <!--#region Sign up pivot-->
+                    <PivotItem Margin="0 -48 0 0">
+                        <Grid>
+                            <!--Sign up title-->
+                            <TextBlock x:Name="txtSignUpTitle"
+                                       Text="Sign up"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       HorizontalAlignment="Center"
+                                       Margin="0 24 0 0"/>
+
+                            <!--back button-->
+                            <Button x:Name="btnGoBack"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource NormalButton}"
+                                    Margin="8"
+                                    Width="50"
+                                    Height="50">
+
+                                <Button.Content>
+                                    <PathIcon  Margin="-6 -3.5 0 0" 
+                                              Data="{StaticResource GoBack}"
+                                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                              Style="{StaticResource GoBackButtonPathIcon}"/>
+                                </Button.Content>
+                            </Button>
+
+                            <!--Name, email, password, phone number, national number textboxes, submit button-->
+                            <StackPanel HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Margin="0 86 0 0"
+                                        Orientation="Vertical"
+                                        Padding="24 0">
+
+                                <!--Sign up description-->
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Stretch="None" 
+                                           Source="{StaticResource Information}"
+                                           VerticalAlignment="Top"/>
+                                    <TextBlock x:Name="txtSignUpDesc" 
+                                               Margin="12 0 0 0"
+                                               TextWrapping="Wrap"
+                                               Text="You don't have an account! please submit your account to access to Herafi system"
+                                               Width="338"
+                                               Height="40"/>
+                                </StackPanel>
+
+                                <!--Name textbox-->
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0 18 0 0">
+
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="12 0 0 2">
+                                        <TextBlock x:Name="txtSignUpNameErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Text="Incorrect Name format (Only Characters eg: Abd Alghani)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Visibility="Collapsed"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 0" Style="{StaticResource CaptionTextBlockStyle}"  Opacity="0"/>
+                                    </StackPanel>
+
+
+                                    <TextBox x:Name="txtBoxSignUpName"
+                                         Width="369"
+                                         Height="40"
+                                             Text="abd alghani albiek"
+                                             Background="Transparent"
+                                         BorderThickness="2"
+                                         CornerRadius="8"
+                                         InputScope="Text"
+                                         PlaceholderText="Name" 
+                                         IsColorFontEnabled="False"
+                                         Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--Email textbox-->
+                                <StackPanel Orientation="Vertical" Margin="0 14 0 0">
+
+                                    <StackPanel Orientation="Horizontal" Margin="12 0 0 2">
+                                        <TextBlock x:Name="txtSignUpEmailErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Visibility="Collapsed"
+                                               Text="Incorrect Email format (eg: example@gmail.com)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Opacity="0"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 0" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+                                   
+                                    
+                                    <TextBox x:Name="txtBoxSignUpEmail"
+                                         Width="369"
+                                         Height="40"
+                                             Background="Transparent"
+                                         BorderThickness="2"
+                                         CornerRadius="8"
+                                         InputScope="Text"
+                                             Text="abdalghanialbiek@gmail.com"
+                                         IsSpellCheckEnabled="False"
+                                         PlaceholderText="Email" 
+                                         IsColorFontEnabled="False"
+                                         Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--Password textbox-->
+                                <StackPanel Orientation="Vertical" Margin="0 14 0 0">
+
+                                    <StackPanel Orientation="Horizontal"  Margin="12 0 0 2">
+                                        <TextBlock x:Name="txtSignUpPasswordErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                              Visibility="Collapsed"
+                                               Text="You have an error in you password"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Opacity="0"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 0" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+                                    
+                                    <PasswordBox x:Name="txtBoxSignUpPassword"
+                                                 Width="369"
+                                                 Height="40"
+                                                 BorderThickness="2"
+                                                 CornerRadius="8"
+                                                 InputScope="Password"
+                                                 Background="Transparent"
+                                                 PlaceholderText="Password" 
+                                                 Password="helloworld2"
+                                                 Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--Phone number textbox-->
+                                <StackPanel Orientation="Vertical" Margin="0 14 0 0">
+
+                                    <StackPanel Orientation="Horizontal" Margin="12 0 0 2">
+                                        <TextBlock x:Name="txtSignUpPhonNumErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Visibility="Collapsed"
+                                               Text="Incorrect Phone Number format (eg: +945 0996563512)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Opacity="0"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 0" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+
+                                   
+
+                                    <TextBox x:Name="txtBoxSignUpPhonNum"
+                                         Width="369"
+                                         Height="40"
+                                         BorderThickness="2"
+                                         CornerRadius="8"
+                                         Background="Transparent"
+                                         InputScope="Text"
+                                         Text="0998865425"
+                                         PlaceholderText="Phone number" 
+                                         IsColorFontEnabled="False"
+                                         IsSpellCheckEnabled="False"
+                                         Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--National number textbox-->
+                                <StackPanel Orientation="Vertical" Margin="0 14 0 0">
+
+                                    <StackPanel Orientation="Horizontal" Margin="12 0 0 2">
+                                        <TextBlock x:Name="txtSignUpNatNumErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Visibility="Collapsed"
+                                               Text="Incorrect National number format (only numbers eg: 02060589756)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Opacity="0"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 0" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+
+                                   
+
+                                    <TextBox x:Name="txtBoxSignUpNatNum"
+                                         Width="369"
+                                         Height="40"
+                                         BorderThickness="2"
+                                         CornerRadius="8"
+                                         InputScope="Text"
+                                             Background="Transparent"
+                                         Text="02050878936"
+                                         PlaceholderText="National number" 
+                                         IsColorFontEnabled="False"
+                                         IsSpellCheckEnabled="False"
+                                         Padding="12 8 0 0"/>
+                                </StackPanel>
+
+                                <!--Submit button and cities combo box-->
+                                <Grid Margin="0 34 0 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--Submit button-->
+                                    <Button x:Name="btnSignUpSubm"
+                                        HorizontalAlignment="Right"
+                                        Grid.Column="1"
+                                        Style="{StaticResource NormalButton}"
+                                        Width="100"
+                                        Height="40"
+                                        Margin="0 0 5 29">
+
+                                        <Button.Content>
+                                            <TextBlock x:Name="txtSignUpSubmCont" Text="Submit"
+                                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                                        </Button.Content>
+                                    </Button>
+
+                                    <!--Cities Combo box-->
+                                    <ComboBox x:Name="comBoxSignUpCities"
+                                              Width="160"
+                                              Height="40"
+                                              BorderThickness="2"
+                                              Background="Transparent"
+                                              CornerRadius="8"
+                                              Margin="4 0 0 0"
+                                              Padding="12 0 0 0"
+                                              SelectedIndex="0"
+                                              DisplayMemberPath="Name"
+                                              ItemsSource="{Binding Cities}">
+
+                                    </ComboBox>
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </PivotItem>
+                    <!--#endregion-->
+
+                    <!--region Auth Facebook, Microsoft, Google...etc pivot-->
+                    <PivotItem Margin="0 -48 0 0">
+                        <Grid>
+                            <!--Facebook image-->
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Top"
+                                   x:Name="imgAuthProvider"
+                                  Stretch="None" Source="{StaticResource Facebook}"
+                                  Margin="0 8 0 0"/>
+
+                            <!--Name, email, password, phone number, national number textboxes, submit button-->
+                            <StackPanel HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Margin="0 90 0 0"
+                                        Orientation="Vertical"
+                                        Padding="24 0">
+
+                                <!--Facebook registeration description-->
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Stretch="None" 
+                                           Source="{StaticResource Information}"
+                                           VerticalAlignment="Top"/>
+                                    <TextBlock x:Name="txtFbDescription" 
+                                               Margin="12 0 0 0"
+                                               TextWrapping="Wrap"
+                                               Text="We have got only your Facebook's Identifier, please fill all these text boxes to get into Herafi system"
+                                               Width="338"
+                                               Height="40"/>
+                                </StackPanel>
+
+                                <!--Name textbox-->
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0 18 0 0">
+
+                                    <StackPanel Orientation="Horizontal">
+
+
+                                        <TextBlock x:Name="txtFbNameErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Margin="12 0 0 2"
+                                               Text="Incorrect Name format (Only Characters eg: Abd Alghani)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Visibility="Collapsed"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 2" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+
+
+                                    <TextBox x:Name="txtBoxFbName"
+                                             Text="abd alghani albiek"
+                                             Background="Transparent"
+                                             Width="369"
+                                             Height="40"
+                                             BorderThickness="2"
+                                             CornerRadius="8"
+                                             InputScope="Text"
+                                             PlaceholderText="Name" 
+                                             IsColorFontEnabled="False"
+                                             Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--Email textbox-->
+                                <StackPanel Orientation="Vertical" Margin="0 14 0 0">
+
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock x:Name="txtFbEmailErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Margin="12 0 0 2"
+                                               Text="Incorrect Email format (eg: example@gmail.com)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Visibility="Collapsed"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 2" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+
+
+                                    <TextBox x:Name="txtBoxFbEmail"
+                                             Text="abdalghanialbiek@gmail.com"
+                                             Background="Transparent"
+                                             Width="369"
+                                             Height="40"
+                                             BorderThickness="2"
+                                             CornerRadius="8"
+                                             InputScope="Text"
+                                             PlaceholderText="Email" 
+                                             IsColorFontEnabled="False"
+                                             Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--Password textbox-->
+                                <StackPanel Orientation="Vertical" Margin="0 14 0 0">
+
+                                    <TextBlock x:Name="txtFbPasswordErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Margin="12 0 0 2"
+                                               Text="You have an error in you password"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Opacity="0"/>
+
+                                    <PasswordBox x:Name="txtBoxFbPassword"
+                                                 Password="helloworld2"
+                                                 Background="Transparent"
+                                                 Width="369"
+                                                 Height="40"
+                                                 BorderThickness="2"
+                                                 CornerRadius="8"
+                                                 InputScope="Text"
+                                                 PlaceholderText="Password" 
+                                                 Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--Phone number textbox-->
+                                <StackPanel Orientation="Vertical" Margin="0 14 0 0">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock x:Name="txtFbPhonNumErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Margin="12 0 0 2"
+                                               Text="Incorrect Phone Number format (eg: +945 0996563512)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Visibility="Collapsed"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 2" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+
+
+
+                                    <TextBox x:Name="txtBoxFbPhonNum"
+                                             Text="0998865425"
+                                             Background="Transparent"
+                                             Width="369"
+                                             Height="40"
+                                             BorderThickness="2"
+                                             CornerRadius="8"
+                                             InputScope="Text"
+                                             PlaceholderText="Phone number" 
+                                             IsColorFontEnabled="False"
+                                             Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--National number textbox-->
+                                <StackPanel Orientation="Vertical" Margin="0 14 0 0">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock x:Name="txtFbNatNumErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Margin="12 0 0 2"
+                                               Text="Incorrect National number format (only numbers eg: 02060589756)"
+                                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                                               Visibility="Collapsed"/>
+
+                                        <TextBlock Text="Hello" Margin="4 0 0 2" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0"/>
+                                    </StackPanel>
+                                    
+                                   
+
+                                    <TextBox x:Name="txtBoxFbNatNum"
+                                             Text="02050878936"
+                                             Background="Transparent"
+                                         Width="369"
+                                         Height="40"
+                                         BorderThickness="2"
+                                         CornerRadius="8"
+                                         InputScope="Text"
+                                         PlaceholderText="National number" 
+                                         IsColorFontEnabled="False"
+                                         Padding="12 8 0 0"/>
+                                </StackPanel>
+
+                                <!--Submit button and cities combo box-->
+                                <Grid Margin="0 34 0 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--Submit button-->
+                                    <Button x:Name="btnFbSubm"
+                                            Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        Width="100"
+                                        Height="40"
+                                            Style="{StaticResource NormalButton}"
+                                        Margin="0 0 5 29">
+                                        <Button.Background>
+                                            <SolidColorBrush Color="{StaticResource SystemAccentColor}"/>
+                                        </Button.Background>
+
+                                        <Button.Content>
+                                            <TextBlock x:Name="txtFbSubmCont" Text="Submit"
+                                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                                        </Button.Content>
+                                    </Button>
+
+                                    <!--Cities Combo box-->
+                                    <ComboBox x:Name="comBoxFBCities"
+                                              SelectedIndex="0"
+                                              Background="Transparent"
+                                              Width="160"
+                                              DisplayMemberPath="Name"
+                                              Height="40"
+                                              BorderThickness="2"
+                                              CornerRadius="8"
+                                              ItemsSource="{Binding Cities}">
+
+                                    </ComboBox>
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </PivotItem>
+                    <!--endregion-->
+
+                    <!--#region Verify Account-->
+                    <PivotItem Margin="0 -48 0 0">
+                        <Grid>
+                            <!--Verification title-->
+                            <TextBlock x:Name="txtVerifyTitle"
+                                       Text="Verification Account"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       HorizontalAlignment="Center"
+                                       Margin="0 24 0 0"/>
+
+                            <!--code textbox and send button-->
+                            <StackPanel HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Margin="0 102 0 0"
+                                        Orientation="Vertical"
+                                        Padding="24 0">
+
+                                <!--Verify process description-->
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Stretch="None" 
+                                           Source="{StaticResource Information}"
+                                           VerticalAlignment="Top"/>
+                                    <TextBlock x:Name="txtVerifyDesc" 
+                                               Margin="12 0 0 0"
+                                               TextWrapping="Wrap"
+                                               Text="We send an email to you it has a code, please enter it inside text box"
+                                               Width="338"
+                                               Height="40"/>
+                                </StackPanel>
+
+                                <!--Code textbox-->
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0 56 0 0">
+
+                                    <TextBlock x:Name="txtBoxVerifyNameErr"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
+                                               Margin="12 0 0 2"
+                                               Text="You have an error in your code"
+                                               Foreground="{ThemeResource ErrorInAppNotificationBorderBrush}"
+                                               Opacity="0"/>
+
+                                    <TextBox x:Name="txtBoxVerifyCode"
+                                         Width="369"
+                                         Height="40"
+                                         Background="Transparent"
+                                         BorderThickness="2"
+                                         CornerRadius="8"
+                                         InputScope="Text"
+                                         PlaceholderText="Code" 
+                                         IsColorFontEnabled="False"
+                                         Padding="12 8 0 0"/>
+
+                                </StackPanel>
+
+                                <!--Send button-->
+                                <Button x:Name="btnVerifySend"
+                                        HorizontalAlignment="Center"
+                                        Width="100"
+                                        Height="40"
+                                        Style="{StaticResource NormalButton}"
+                                        Margin="0 86 0 0">
+
+                                    <Button.Content>
+                                        <TextBlock x:Name="txtVerifySendCont" Text="Send"
+                                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+                            
+                        </Grid>
+                    </PivotItem>
+                    <!--endregion-->
+
+                    <!--#region Choose Your Photos pivot-->
+                    <PivotItem Margin="0 -48 0 0">
+                        <Grid>
+                            <TextBlock x:Name="txtChoPicTitle"
+                                       Text="Choose Your Photos"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       HorizontalAlignment="Center"
+                                       Margin="0 24 0 0"/>
+
+                            <!--Contains on imageEx for Personal Photo and identity photo-->
+                            <StackPanel HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Margin="0 86 0 0"
+                                        Orientation="Vertical"
+                                        Padding="24 0">
+
+                                <!--Choosing peronsal picture and personal identity description-->
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Stretch="None" 
+                                           Source="{StaticResource Information}"
+                                           VerticalAlignment="Top"/>
+                                    <TextBlock x:Name="txtChoPicDesc" 
+                                               Margin="12 0 0 0"
+                                               TextWrapping="Wrap"
+                                               Text="Choose a picture for you and a picture for your personal identity"
+                                               Height="40"
+                                               Width="338"/>
+                                </StackPanel>
+
+                                <!--ImageEx Personal picture-->
+                                <Grid Width="140"
+                                      Height="140"
+                                      Margin="0 12 0 0">
+                                    <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                                        <Ellipse Width="140"
+                                                 Height="140"
+                                                 Style="{StaticResource NormalRoundedCard}">
+
+                                        </Ellipse>
+                                    </cont:DropShadowPanel>
+
+                                    <Image HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource Admin}"
+                                           Stretch="Fill"
+                                           Width="100"
+                                           Height="100"/>
+
+                                    <cont:ImageEx x:Name="imgExProfile"
+                                                  Stretch="Fill"
+                                                  CornerRadius="200"
+                                           Width="140"
+                                           Height="140"/>
+
+                                    <Grid x:Name="btnChoPicProfile"
+                                            Width="40"
+                                            Height="40"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Bottom"
+                                            Margin="94 0 0 0"
+                                            CornerRadius="24"
+                                          ext:FrameworkElementExtensions.Cursor="Hand">
+                                        <Grid.Background>
+                                            <SolidColorBrush Color="Gray" Opacity="0.2"/>
+                                        </Grid.Background>
+
+                                        <PathIcon Style="{StaticResource NormalPathIcon}" HorizontalAlignment="Center"
+                                                      Data="{StaticResource ChoosePicture}"
+                                                      Opacity="0.8"/>
+                                    </Grid>
+                                </Grid>
+
+                                <!--ImageEx identity picture-->
+                                <Grid Width="300"
+                                      Height="140"
+                                      Margin="0 40 0 0">
+                                    <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                                        <Rectangle Width="300"
+                                                   Height="140"
+                                                   Style="{StaticResource NormalCard}">
+
+                                        </Rectangle>
+                                    </cont:DropShadowPanel>
+
+                                    <Image HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource PersonalIdentity}"
+                                           Stretch="Fill"
+                                           Width="124"
+                                           Height="124"/>
+
+                                    <cont:ImageEx x:Name="imgExPersIdentity"
+                                                  Stretch="Fill"
+                                                  CornerRadius="{StaticResource SmallCornerRadius}"
+                                           Width="300"
+                                           Height="140"/>
+
+                                    <Grid x:Name="btnChoPicPersIdentity"
+                                            Width="40"
+                                            Height="40"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Bottom"
+                                            Margin="20,0,0,-20"
+                                            CornerRadius="24"
+                                            ext:FrameworkElementExtensions.Cursor="Hand">
+                                        <Grid.Background>
+                                            <SolidColorBrush Color="Gray" Opacity="0.2"/>
+                                        </Grid.Background>
+
+                                        <PathIcon Style="{StaticResource NormalPathIcon}" HorizontalAlignment="Center"
+                                                      Data="{StaticResource ChoosePicture}"
+                                                      Opacity="0.8"/>
+                                    </Grid>
+                                </Grid>
+
+                                <!--Button Continue to main view-->
+                                <Button x:Name="btnChPicContinue"
+                                        HorizontalAlignment="Right"
+                                        Width="100"
+                                        Height="40"
+                                        Style="{StaticResource NormalButton}"
+                                         Margin="0 40 5 29">
+
+                                    <Button.Content>
+                                        <TextBlock x:Name="txtChPicContinueCont" Text="Continue"
+                                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                                    </Button.Content>
+
+                                    <Button.Flyout>
+                                        <Flyout Placement="Top" x:Name="flyoutContinue">
+                                            <StackPanel>
+                                                <TextBlock x:Name="flyoutContinueHeader" Text="Befor we finish" Style="{StaticResource BodyTextBlockStyle}" FontWeight="Bold"/>
+                                                <TextBlock x:Name="flyoutContinueContent" Text="Do you want to be always sign in when get to you app?" Margin="0 4 0 0" Style="{StaticResource BodyTextBlockStyle}"/>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+
+                                                    <!--No Button to Continue to main view-->
+                                                    <Button x:Name="btnChPicNoContinue" 
+                                                            Width="60"
+                                                            Height="32"
+                                                            Style="{StaticResource MicrosoftFacebookButton}"
+                                                            Margin="0 0 16 0">
+                                                        <Button.Content>
+                                                            <TextBlock x:Name="txtChPicNoContinueCont" Text="No" Margin="0 -2 0 0"
+                                                                       HorizontalAlignment="Center"
+                                                                       Style="{StaticResource BodyTextBlockStyle}"
+                                                                       Foreground="{ThemeResource NormalTextBlockForegroundBrush}"/>
+                                                        </Button.Content>
+                                                    </Button>
+                                                    
+                                                    <!--Yes Button to Continue to main view-->
+                                                    <Button x:Name="btnChPicYesContinue" 
+                                                            Width="60"
+                                                            Height="32"
+                                                            Style="{StaticResource NormalButton}">
+                                                        <Button.Content>
+                                                            <TextBlock x:Name="txtChPicYesContinueCont" Text="Yes" HorizontalAlignment="Center" 
+                                                                       Style="{StaticResource BodyTextBlockStyle}"
+                                                                       Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                                                        </Button.Content>
+                                                    </Button>
+
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Flyout>
+                                    </Button.Flyout>
+                                </Button>
+                                
+                            </StackPanel>
+
+                           
+                        </Grid>
+                    </PivotItem>
+                    <!--#endregion-->
+
+                </Pivot>
+
+                <!--Error Toast Notifcation-->
+                <cont:InAppNotification x:Name="errorToastNotification"
+                                    Style="{StaticResource ErrorInAppNotificationStyle}"
+                                    Margin="0 0 0 8"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom">
+                    <cont:InAppNotification.Content>
+                        <StackPanel VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    Orientation="Horizontal">
+
+                            <PathIcon x:Name="errorToastNotificationIcon"
+                                      Data="{StaticResource ToastNotification}"
+                                      Style="{StaticResource ErrorToastNotificationPathIcon}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                            <TextBlock x:Name="errorToastNotificationMessage"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="8 0 0 0"
+                                       Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"/>
+                        </StackPanel>
+                    </cont:InAppNotification.Content>
+                </cont:InAppNotification>
+
+                <!--Toast Notifcation-->
+                <cont:InAppNotification x:Name="fixedToastNotification"
+                                    Style="{StaticResource FixedInAppNotificationStyle}"
+                                    Margin="0 0 0 8"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom">
+                    <cont:InAppNotification.Content>
+                        <StackPanel VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    Orientation="Horizontal">
+
+                            <PathIcon x:Name="fixedToastNotificationIcon"
+                                      Data="{StaticResource ToastNotification}"
+                                      Style="{StaticResource FixedToastNotificationPathIcon}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                            <TextBlock x:Name="fixedToastNotificationMessage"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="8 0 0 0"
+                                       Foreground="{ThemeResource FixedTextBlockForegroundBrush}"/>
+                        </StackPanel>
+                    </cont:InAppNotification.Content>
+                </cont:InAppNotification>
+
+            </Grid>
+
+        </Grid>
+
+        <!--card view for asking the user if he ensure to close app-->
+        <mat:CardView Style="{StaticResource CardViewStyle}" 
+                      x:Name="exitAppCardView" 
+                      Header="Exit"
+                      Grid.Column="2"
+                      IsOpen="False"
+                      ContentHeight="180"
+                      ContentWidth="400">
+            <mat:CardView.Content>
+                <StackPanel>
+                    <TextBlock x:Name="exitAppCardViewMessage" Margin="0 0 0 0" TextWrapping="Wrap"
+                               Text="Are you sure that you want to exit from your app?"/>
+                </StackPanel>
+            </mat:CardView.Content>
+
+            <mat:CardView.Footer>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                            Margin="8">
+
+                    <Button x:Name="btnCaViAppCancel"
+                            Style="{StaticResource MicrosoftFacebookButton}"
+                            Height="40"
+                            Width="90"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Name="txtCaViExiAppCancel" Text="Cancel"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+
+                    <Button x:Name="btnCaViAppOk"
+                            Style="{StaticResource NormalButton}"
+                            Height="40"
+                            Width="90"
+                            Margin="16 0 0 0"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Name="txtCaViExiAppOk" Text="OK"
+                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                    
+                    
+                </StackPanel>
+            </mat:CardView.Footer>
+
+        </mat:CardView>
+
+    </Grid>
+</Page>

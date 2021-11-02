@@ -1,0 +1,46 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="InAppNotificationBackgroundColorLight">#FFFFFF</Color>
+    <Color x:Key="InAppNotificationBackgroundColorDark">#4E4E4E</Color>
+
+    <Color x:Key="ErrorInAppNotificationBorderColorLight">#E4663F</Color>
+    <Color x:Key="ErrorInAppNotificationBorderColorDark">#FC9E81</Color>
+
+    <Color x:Key="FixedInAppNotificationBorderColorLight">#25CF12</Color>
+    <Color x:Key="FixedInAppNotificationBorderColorDark">#90FF82</Color>
+
+    <Color x:Key="NormalInAppNotificationBorderColorLight">#2B62AB</Color>
+    <Color x:Key="NormalInAppNotificationBorderColorDark">#B9D5FC</Color>
+
+    <ResourceDictionary.ThemeDictionaries>
+        <!-- Default is a fallback if a more precise theme isn't called
+            out below -->
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="SystemControlMSEdgeNotificationPointerOverChromeBrush" Color="Transparent" />
+            <SolidColorBrush x:Key="SystemControlMSEdgeNotificationPointerOverForegroundBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="SystemControlMSEdgeNotificationButtonBorderBrush" Color="Transparent" />
+
+            <SolidColorBrush x:Key="InAppNotificationBackgroundBrush" Color="{StaticResource InAppNotificationBackgroundColorLight}"/>
+            <SolidColorBrush x:Key="ErrorInAppNotificationBorderBrush" Color="{StaticResource ErrorInAppNotificationBorderColorLight}"/>
+            <SolidColorBrush x:Key="FixedInAppNotificationBorderBrush" Color="{StaticResource FixedInAppNotificationBorderColorLight}"/>
+            <SolidColorBrush x:Key="NormalInAppNotificationBorderBrush" Color="{StaticResource FixedInAppNotificationBorderColorLight}"/>
+        </ResourceDictionary>
+
+        <!-- HighContrast is used in all high contrast themes -->
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="SystemControlMSEdgeNotificationPointerOverChromeBrush" Color="Transparent" />
+            <SolidColorBrush x:Key="SystemControlMSEdgeNotificationPointerOverForegroundBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="SystemControlMSEdgeNotificationButtonBorderBrush" Color="Transparent" />
+
+            <SolidColorBrush x:Key="InAppNotificationBackgroundBrush" Color="{StaticResource InAppNotificationBackgroundColorDark}"/>
+            <SolidColorBrush x:Key="ErrorInAppNotificationBorderBrush" Color="{StaticResource ErrorInAppNotificationBorderColorDark}"/>
+            <SolidColorBrush x:Key="FixedInAppNotificationBorderBrush" Color="{StaticResource FixedInAppNotificationBorderColorDark}"/>
+            <SolidColorBrush x:Key="NormalInAppNotificationBorderBrush" Color="{StaticResource FixedInAppNotificationBorderColorDark}"/>
+
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+
+</ResourceDictionary>

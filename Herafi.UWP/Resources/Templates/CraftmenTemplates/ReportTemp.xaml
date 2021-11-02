@@ -1,0 +1,212 @@
+﻿<UserControl
+    x:Class="Herafi.UWP.Resources.Templates.CraftmenTemplates.ReportTemp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Templates.CraftmenTemplates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/CraftmenIcons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Padding="8 8 0 0">
+
+        <!--Number of report-->
+        <Grid Width="40"
+              Height="40"
+              Margin="8 8 0 0"
+              VerticalAlignment="Top">
+
+            <cont:DropShadowPanel Style="{StaticResource NormalButtonShadow}"
+                                  VerticalAlignment="Top">
+                <Ellipse Width="40"
+                         Height="40">
+                    <Ellipse.Fill>
+                        <SolidColorBrush Color="{ThemeResource SystemAccentColor}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </cont:DropShadowPanel>
+
+            <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
+                           Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="4 0 0 0"
+                           Text="{x:Bind Report.Number}"/>
+        </Grid>
+
+        <!--Info about report-->
+        <StackPanel Margin="20 0 0 0">
+
+            <!--User Name-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource UserName}"/>
+
+
+
+                <StackPanel Orientation="Horizontal"
+                              Grid.Column="1">
+                    <TextBlock x:Name="txtRepCardUserName"
+                        Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="User name"/>
+                    <PathIcon Style="{StaticResource SmallPathIcon}"
+                              Data="{StaticResource MoreInfo}"
+                              Margin="8 0 0 4"/>
+
+                </StackPanel>
+
+
+                <TextBlock Grid.Column="1"
+                                Grid.Row="1"
+                                Style="{StaticResource BodyTextBlockStyle}"
+                                Margin="10 0 0 0"
+                                Text="{x:Bind Report.UserName}"/>
+            </Grid>
+
+            <!--Request ID-->
+            <Grid Margin="0 18 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <PathIcon Grid.RowSpan="2"
+                        Style="{StaticResource NormalPathIcon}"
+                        Data="{StaticResource Request}"/>
+
+
+                <StackPanel Orientation="Horizontal"
+                                Grid.Column="1">
+                    <TextBlock x:Name="txtRepCardReqID"
+                        Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Request ID"/>
+                    <PathIcon Style="{StaticResource SmallPathIcon}"
+                              Data="{StaticResource MoreInfo}"
+                              Margin="8 0 0 4"/>
+
+                </StackPanel>
+
+                <TextBlock Grid.Column="1"
+                                Grid.Row="1"
+                                Style="{StaticResource BodyTextBlockStyle}"
+                                Margin="10 0 0 0"
+                                Text="{x:Bind Report.RequestId}"/>
+            </Grid>
+
+        </StackPanel>
+
+        <!--Problems Related to-->
+        <Grid Margin="60 0 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <PathIcon Grid.RowSpan="2"
+                              Style="{StaticResource NormalPathIcon}"
+                              Data="{StaticResource Problems}"
+                          VerticalAlignment="Top"
+                          Margin="0 8 0 0"/>
+
+            <TextBlock  Style="{StaticResource CaptionAltTextBlockStyle}"
+                        x:Name="txtRepCardProbRel"
+                        Grid.Column="1"
+                                Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                Margin="10 0 0 6"
+                                Text="Problems related to"/>
+
+            <ListView Grid.Column="1"
+                      Grid.RowSpan="2"
+                      Grid.Row="1" 
+                      VerticalAlignment="Top"
+                      SelectionMode="None"
+                      Margin="10 0 0 0"
+                      IsItemClickEnabled="False"
+                      ItemsSource="{x:Bind Report.Problems}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Margin" Value="0 -8 0 -8"/>
+                        <Setter Property="Padding" Value="0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   Padding="0"
+                                   Margin="0"
+                                   Text="{x:Bind Mode=OneWay}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <!--Comment-->
+        <Grid Margin="60 0 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Comment}"
+                          VerticalAlignment="Top"
+                          Margin="0 8 0 0"/>
+
+            <TextBlock x:Name="txtRepCardReport"
+                Style="{StaticResource CaptionAltTextBlockStyle}"
+                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                           Margin="10 0 0 6"
+                           Text="User name"
+                           Grid.Column="1"/>
+
+            <TextBlock Grid.Column="1"
+                       Grid.Row="1"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       Margin="10 0 0 0"
+                       Width="460"
+                       Height="90"
+                       Text="{x:Bind Report.Comment}"/>
+        </Grid>
+        
+    </StackPanel>
+    
+</UserControl>

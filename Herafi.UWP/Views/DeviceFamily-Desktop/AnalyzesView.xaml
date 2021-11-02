@@ -1,0 +1,1300 @@
+﻿<Page
+    x:Class="Herafi.UWP.Views.DeviceFamily_Desktop.AnalyzesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Views.DeviceFamily_Desktop"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls" 
+    xmlns:temp="using:Herafi.UWP.Resources.Templates.UsersTemplates" 
+    xmlns:mat="using:MaterialLibs.Controls" 
+    xmlns:telerik="using:Telerik.UI.Xaml.Controls.Chart"
+    d:Height="1500"
+    xmlns:vm="using:Herafi.Core.ViewModels"
+    xmlns:conv="using:Herafi.UWP.Converters"
+    Background="{ThemeResource SurfaceBrush}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/AnalyzesIcons.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/AnalyzesBrushes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:AnalyzesRadConverter x:Key="AnalyzesRadConverter"/>
+            <conv:MonthConverter x:Key="MonthConverter"/>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:AnalyzesViewModel x:Name="analyzesViewModel"/>
+    </Page.DataContext>
+
+    <Grid>
+        
+        <!--The content of this page-->
+        <ScrollViewer Padding="12 12 12 0">
+            <StackPanel Orientation="Vertical">
+
+                <!--#region Profit section-->
+
+                <!--Profit Title-->
+                <TextBlock x:Name="txtProfitsTitle"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Text="Profits"/>
+
+                <!--profit chart and month and year combo boxes and calculations-->
+                <Grid Margin="20 0 0 0" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Year and month combo boxes-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                                Margin="0 12 0 0">
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="profitsYear"
+                                       VerticalAlignment="Center"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Text="Year:"/>
+                            <ComboBox x:Name="comBoxProfitsYear" ItemsSource="{Binding ProfitsYears, Mode=OneWay}" PlaceholderText="{Binding ItemsSource[0], RelativeSource={RelativeSource Mode=Self}}"
+                                      Margin="4 0 28 0" CornerRadius="{StaticResource SmallCornerRadius}" 
+                                      Background="Transparent" BorderBrush="Transparent"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="profitsMonth"
+                                       VerticalAlignment="Center"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Text="Month:"/>
+                            <ComboBox  ItemsSource="{Binding ProfitsMonths, Mode=OneWay, Converter={StaticResource MonthConverter}}"
+                                      PlaceholderText="{Binding ItemsSource[0], RelativeSource={RelativeSource Mode=Self}}"
+                                       x:Name="comBoxProfitsMonth"
+                                       Margin="4 0 0 0" CornerRadius="{StaticResource SmallCornerRadius}"
+                                       Background="Transparent" BorderBrush="Transparent"/>
+
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!--The profits chart-->
+                    <telerik:RadCartesianChart x:Name="radProfitsChart" 
+                                    HorizontalAlignment="Left"
+                                    Margin="0 24 0 0"
+                                    Width="958"
+                                    Grid.Row="1"
+                                    Height="245">
+                        <telerik:RadCartesianChart.HorizontalAxis>
+                            <telerik:CategoricalAxis/>
+                        </telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:RadCartesianChart.VerticalAxis>
+                            <telerik:LinearAxis/>
+                        </telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:RadCartesianChart.Grid>
+                            <telerik:CartesianChartGrid MajorLinesVisibility="XY"/>
+                        </telerik:RadCartesianChart.Grid>
+
+                        <telerik:SplineSeries Stroke="{ThemeResource ProfitsColorBrush}"
+                            ItemsSource="{Binding ProfitsRadDetails.ProfitsRad, Mode=OneWay, Converter={StaticResource AnalyzesRadConverter}, ConverterParameter=Profits}"
+                            CombineMode="Stack">    
+                            <telerik:SplineSeries.ValueBinding>
+                                <telerik:PropertyNameDataPointBinding PropertyName="Paids"/>
+                            </telerik:SplineSeries.ValueBinding>
+                            <telerik:SplineSeries.CategoryBinding>
+                                <telerik:PropertyNameDataPointBinding PropertyName="Day"/>
+                            </telerik:SplineSeries.CategoryBinding>
+                            <telerik:SplineSeries.PointTemplate>
+                                <DataTemplate>
+                                    <Rectangle Width="8" Height="8" RadiusX="8" RadiusY="8" Fill="{ThemeResource ProfitsColorBrush}"/>
+                                </DataTemplate>
+                            </telerik:SplineSeries.PointTemplate>
+                        </telerik:SplineSeries>
+                    </telerik:RadCartesianChart>
+
+                    <!--Profits calculations-->
+                    <Grid HorizontalAlignment="Stretch"
+                          Margin="40 48 0 0"
+                          Grid.Row="2"> 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Calculations-->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--profits title calculation-->
+                            <StackPanel Orientation="Horizontal"
+                                Grid.Row="1"
+                                Margin="0 9 0 0"
+                                VerticalAlignment="Bottom">
+                                <PathIcon Data="{StaticResource Profits}"
+                                          Foreground="{ThemeResource NormalPathIconForegroundBrush}"
+                                          Style="{StaticResource SmallPathIcon}"/>
+                                <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                            Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                            VerticalAlignment="Center"
+                                            Text="Profits"
+                                            x:Name="txtProfitsCalcTitle"
+                                            Margin="4 0 0 0"/>      
+                            </StackPanel>
+
+
+                            <!--Per Year-->
+                            <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                               Grid.Column="1"
+                               Text="Per Year"
+                               x:Name="txtProfitsCalcPerYear"
+                               Margin="24 0 0 0"/>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding ProfitsRadDetails.PerYear}"
+                               Margin="24 12 0 0"/>
+
+                            <!--Per Month-->
+                            <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                               Grid.Column="2"
+                               Text="Per Month"
+                               x:Name="txtProfitsCalcPerMonth"
+                               Margin="24 0 0 0"/>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Grid.Column="2"
+                               Grid.Row="1"
+                               Text="{Binding ProfitsRadDetails.PerMonth}"
+                               Margin="24 12 0 0"/>
+
+                            <!--Per day-->
+                            <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                               Grid.Column="3"
+                               Text="Per day"
+                               x:Name="txtProfitsCalcPerDay"
+                               Margin="24 0 0 0"/>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Grid.Column="3"
+                               Grid.Row="1"
+                               Text="{Binding ProfitsRadDetails.PerDay}"
+                               Margin="24 12 0 0"/>
+
+                            <!--Per hour-->
+                            <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                               Grid.Column="4"
+                               Text="Per hour"
+                               x:Name="txtProfitsCalcPerHour"
+                               Margin="34 0 0 0"/>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Grid.Column="4"
+                               Grid.Row="1"
+                               Text="{Binding ProfitsRadDetails.PerHour}"
+                               Margin="34 12 0 0"/>
+
+                            <!--Total-->
+                            <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                               Grid.Column="5"
+                               Text="Total"
+                               x:Name="txtProfitsCalcTotal"
+                               Margin="34 0 0 0"/>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Grid.Column="5"
+                               Grid.Row="1"
+                               Text="{Binding ProfitsRadDetails.Total}"
+                               Margin="34 12 0 0"/>
+                        </Grid>
+
+                        <!--Profit mark-->
+                        <StackPanel Orientation="Horizontal"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                                Margin="0 0 44 0">
+
+                            <cont:DropShadowPanel Style="{StaticResource AcceptButtonShadow}"
+                                                  Color="{ThemeResource ProfitsColor}"
+                                                  BlurRadius="12"
+                                                  ShadowOpacity="0.9"
+                                                  OffsetX="0"
+                                                  OffsetY="0"
+                                                  VerticalAlignment="Center">
+                                <Ellipse Width="10" Height="10"
+                                         Fill="{ThemeResource ProfitsColorBrush}"/>
+                            </cont:DropShadowPanel>
+                            
+
+                            <TextBlock x:Name="profitsMark"
+                                Style="{StaticResource CaptionTextBlockStyle}"
+                               Text="Profits"
+                               VerticalAlignment="Center"
+                               Margin="8 0 0 0"/>
+
+                        </StackPanel>
+                    </Grid>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Users & Craftmen section-->
+
+                <!--Craftmen and Users Title-->
+                <TextBlock x:Name="txtUsersCraftmenTitle"
+                       Margin="0 80 0 0"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Text="Users and Craftmen"/>
+
+                <!--Craftmen and Users Pivot-->
+                <Pivot x:Name="craftmenUsersPivot"
+                       SelectedIndex="0">
+
+                    <!--Craftmen-->
+                    <PivotItem x:Name="craftmenPivot"
+                           Margin="0 -20 0  0">
+
+                        <PivotItem.Header>
+                            <TextBlock x:Name="txtCraftmenHeader"
+                                   Text="Craftmen"
+                                   Style="{StaticResource SubtitleAltTextBlockStyle}"/>
+                        </PivotItem.Header>
+
+                        <!--Craftmen chart and month and year combo boxes and calculations-->
+                        <Grid Margin="20 0 0 0" HorizontalAlignment="Left">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Year and month combo boxes-->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                                    Margin="0 12 0 0">
+
+                                <StackPanel Orientation="Horizontal" Margin="0 0 28 0">
+                                    <TextBlock x:Name="craftmenYear"
+                                               VerticalAlignment="Center"
+                                               Style="{StaticResource CaptionAltTextBlockStyle}"
+                                               Text="Year:"/>
+                                    <ComboBox ItemsSource="{Binding CraftmenYears, Mode=OneWay}" Margin="4 0 0 0" CornerRadius="{StaticResource SmallCornerRadius}"
+                                              x:Name="comBoxCraftmenYear" Background="Transparent" BorderBrush="Transparent" PlaceholderText="{Binding ItemsSource[0], Mode=OneWay, RelativeSource={RelativeSource Mode=Self}}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="craftmenMonth"
+                                               VerticalAlignment="Center"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Text="Month:"/>
+                                    <ComboBox ItemsSource="{Binding CraftmenMonths, Mode=OneWay, Converter={StaticResource MonthConverter}}" 
+                                              x:Name="comBoxCraftmenMonth" Margin="4 0 0 0" CornerRadius="{StaticResource SmallCornerRadius}" 
+                                              Background="Transparent" BorderBrush="Transparent" PlaceholderText="{Binding ItemsSource[0], Mode=OneWay, RelativeSource={RelativeSource Mode=Self}}"/>
+
+                                </StackPanel>
+                                
+                            </StackPanel>
+
+                            <!--The Craftmen chart-->
+                            <telerik:RadCartesianChart x:Name="radCraftmenChart" 
+                                    HorizontalAlignment="Left"
+                                    Margin="0 24 0 0"
+                                    Width="958"
+                                    Grid.Row="1"
+                                    Height="245">
+                                <telerik:RadCartesianChart.HorizontalAxis>
+                                    <telerik:CategoricalAxis/>
+                                </telerik:RadCartesianChart.HorizontalAxis>
+                                <telerik:RadCartesianChart.VerticalAxis>
+                                    <telerik:LinearAxis/>
+                                </telerik:RadCartesianChart.VerticalAxis>
+                                <telerik:RadCartesianChart.Grid>
+                                    <telerik:CartesianChartGrid MajorLinesVisibility="XY"/>
+                                </telerik:RadCartesianChart.Grid>
+
+                                <telerik:SplineSeries Stroke="{ThemeResource CraftmenColorBrush}"
+                            ItemsSource="{Binding CraftmenRadDetails.CraftmenRad, Mode=OneWay, Converter={StaticResource AnalyzesRadConverter}, ConverterParameter=Craftmen}"
+                            CombineMode="Stack">
+                                    <telerik:SplineSeries.ValueBinding>
+                                        <telerik:PropertyNameDataPointBinding PropertyName="CraftmenNumber"/>
+                                    </telerik:SplineSeries.ValueBinding>
+                                    <telerik:SplineSeries.CategoryBinding>
+                                        <telerik:PropertyNameDataPointBinding PropertyName="Day"/>
+                                    </telerik:SplineSeries.CategoryBinding>
+                                    <telerik:SplineSeries.PointTemplate>
+                                        <DataTemplate>
+                                            <Rectangle Width="8" Height="8" RadiusX="8" RadiusY="8" Fill="{ThemeResource CraftmenColorBrush}"/>
+                                        </DataTemplate>
+                                    </telerik:SplineSeries.PointTemplate>
+                                </telerik:SplineSeries>
+                            </telerik:RadCartesianChart>
+
+                            <!--Craftmen calculations-->
+                            <Grid HorizontalAlignment="Stretch"
+                              Margin="40 48 0 0"
+                              Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Calculations-->
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--Craftmen title calculation-->
+                                    <StackPanel Orientation="Horizontal"
+                                            Grid.Row="1"
+                                            Margin="0 9 0 0"
+                                            VerticalAlignment="Bottom">
+                                        <PathIcon Data="{StaticResource Craftmen}"
+                                              Foreground="{ThemeResource NormalPathIconForegroundBrush}"
+                                              Style="{StaticResource SmallPathIcon}"/>
+                                        <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                                Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                                VerticalAlignment="Center"
+                                                Text="Craftmen"
+                                                x:Name="txtCraftmenCalcTitle"
+                                                Margin="4 0 0 0"/>
+                                    </StackPanel>
+
+
+                                    <!--Per Year-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="1"
+                                           Text="Per day"
+                                           x:Name="txtCraftmenCalcPerYear"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Text="{Binding CraftmenRadDetails.PerYear}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per Month-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="2"
+                                           Text="Per day"
+                                           x:Name="txtCraftmenCalcPerMonth"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="2"
+                                           Grid.Row="1"
+                                           Text="{Binding CraftmenRadDetails.PerMonth}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per day-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="3"
+                                           Text="Per day"
+                                           x:Name="txtCraftmenCalcPerDay"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="3"
+                                           Grid.Row="1"
+                                           Text="{Binding CraftmenRadDetails.PerDay}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per hour-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="4"
+                                           Text="Per hour"
+                                           x:Name="txtCraftmenCalcPerHour"
+                                           Margin="34 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="4"
+                                           Grid.Row="1"
+                                           Text="{Binding CraftmenRadDetails.PerHour}"
+                                           Margin="34 12 0 0"/>
+
+                                    <!--Total-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="5"
+                                           Text="Total"
+                                           x:Name="txtCraftmenCalcTotal"
+                                           Margin="34 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="5"
+                                           Grid.Row="1"
+                                           Text="{Binding CraftmenRadDetails.Total}"
+                                           Margin="34 12 0 0"/>
+                                </Grid>
+
+                                <!--Craftmen mark-->
+                                <StackPanel Orientation="Horizontal"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        Margin="0 0 44 0">
+
+                                    <cont:DropShadowPanel Style="{StaticResource AcceptButtonShadow}"
+                                                  Color="{ThemeResource CraftmenColor}"
+                                                  BlurRadius="12"
+                                                  ShadowOpacity="0.9"
+                                                  OffsetX="0"
+                                                  OffsetY="0"
+                                                  VerticalAlignment="Center">
+                                        <Ellipse Width="10" Height="10"
+                                                 Fill="{ThemeResource CraftmenColorBrush}"/>
+                                    </cont:DropShadowPanel>
+
+                                    <TextBlock x:Name="craftmenMark"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Text="Craftmen"
+                                           VerticalAlignment="Center"
+                                           Margin="4 0 0 0"/>
+
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+
+                    </PivotItem>
+
+                    <!--Users-->
+                    <PivotItem x:Name="usersPivot"
+                            Margin="0 -20 0  0">
+
+                        <!--users header-->
+                        <PivotItem.Header>
+                            <TextBlock x:Name="txtUsersHeader"
+                                   Text="Users"
+                                   Style="{StaticResource SubtitleAltTextBlockStyle}"/>
+                        </PivotItem.Header>
+
+                        <!--Users chart and month and year combo boxes and calculations-->
+                        <Grid Margin="20 0 0 0" HorizontalAlignment="Left">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Year and month combo boxes-->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                                    Margin="0 12 0 0">
+                                
+                                <!--Year and month combo boxes-->
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                                    Margin="0 12 0 0">
+
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 28 0">
+                                        <TextBlock x:Name="usersYear"
+                                                   VerticalAlignment="Center"
+                                                   Style="{StaticResource CaptionAltTextBlockStyle}"
+                                                   Text="Year:"/>   
+                                        <ComboBox ItemsSource="{Binding UsersYears, Mode=OneWay}" Margin="4 0 0 0" CornerRadius="{StaticResource SmallCornerRadius}" 
+                                                  x:Name="comBoxUsersYear" Background="Transparent" BorderBrush="Transparent" PlaceholderText="{Binding ItemsSource[0], Mode=OneWay, RelativeSource={RelativeSource Mode=Self}}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock x:Name="usersMonth"
+                                                   VerticalAlignment="Center"
+                                                   Style="{StaticResource CaptionAltTextBlockStyle}"
+                                                   Text="Month:"/>
+                                        <ComboBox ItemsSource="{Binding UsersMonths, Mode=OneWay, Converter={StaticResource MonthConverter}}"  
+                                                  x:Name="comBoxUsersMonth" Margin="4 0 0 0" CornerRadius="{StaticResource SmallCornerRadius}" 
+                                                  Background="Transparent" BorderBrush="Transparent" PlaceholderText="{Binding ItemsSource[0], Mode=OneWay, RelativeSource={RelativeSource Mode=Self}}"/>
+                                    </StackPanel>
+                                    
+                                </StackPanel>
+                                
+                            </StackPanel>
+
+                            <!--The Users chart-->
+                            <telerik:RadCartesianChart x:Name="radUsersChart" 
+                                            HorizontalAlignment="Left"
+                                            Margin="0 24 0 0"
+                                            Width="958"
+                                            Grid.Row="1"
+                                            Height="245">
+                                <telerik:RadCartesianChart.HorizontalAxis>
+                                    <telerik:CategoricalAxis/>
+                                </telerik:RadCartesianChart.HorizontalAxis>
+                                <telerik:RadCartesianChart.VerticalAxis>
+                                    <telerik:LinearAxis/>
+                                </telerik:RadCartesianChart.VerticalAxis>
+                                <telerik:RadCartesianChart.Grid>
+                                    <telerik:CartesianChartGrid MajorLinesVisibility="XY"/>
+                                </telerik:RadCartesianChart.Grid>
+
+                                <telerik:SplineSeries Stroke="{ThemeResource UsersColorBrush}"
+                                                ItemsSource="{Binding UsersRadDetails.UsersRad, Mode=OneWay, Converter={StaticResource AnalyzesRadConverter}, ConverterParameter=Users}"
+                                                CombineMode="Stack">
+                                    <telerik:SplineSeries.ValueBinding>
+                                        <telerik:PropertyNameDataPointBinding PropertyName="UsersNumber"/>
+                                    </telerik:SplineSeries.ValueBinding>
+                                    <telerik:SplineSeries.CategoryBinding>
+                                        <telerik:PropertyNameDataPointBinding PropertyName="Day"/>
+                                    </telerik:SplineSeries.CategoryBinding>
+                                    <telerik:SplineSeries.PointTemplate>
+                                        <DataTemplate>
+                                            <Rectangle Width="8" Height="8" RadiusX="8" RadiusY="8" Fill="{ThemeResource UsersColorBrush}"/>
+                                        </DataTemplate>
+                                    </telerik:SplineSeries.PointTemplate>
+                                </telerik:SplineSeries>
+                            </telerik:RadCartesianChart>
+
+                            <!--Users calculations-->
+                            <Grid HorizontalAlignment="Stretch"
+                                Margin="40 48 0 0"
+                                Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Calculations-->
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--profits title calculation-->
+                                    <StackPanel Orientation="Horizontal"
+                                            Grid.Row="1"
+                                            Margin="0 9 0 0"
+                                            VerticalAlignment="Bottom">
+                                        <PathIcon Data="{StaticResource Users}"
+                                              Foreground="{ThemeResource NormalPathIconForegroundBrush}"
+                                              Style="{StaticResource SmallPathIcon}"/>
+                                        <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                               VerticalAlignment="Center"
+                                               Text="Users"
+                                               x:Name="txtUsersCalcTitle"
+                                               Margin="4 0 0 0"/>
+                                    </StackPanel>
+
+
+                                    <!--Per Year-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="1"
+                                           Text="Per day"
+                                           x:Name="txtUsersCalcPerYear"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Text="{Binding UsersRadDetails.PerYear}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per Month-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="2"
+                                           Text="Per day"
+                                           x:Name="txtUsersCalcPerMonth"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="2"
+                                           Grid.Row="1"
+                                           Text="{Binding UsersRadDetails.PerMonth}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per day-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="3"
+                                           Text="Per day"
+                                           x:Name="txtUsersCalcPerDay"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="3"
+                                           Grid.Row="1"
+                                           Text="{Binding UsersRadDetails.PerDay}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per hour-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="4"
+                                           Text="Per hour"
+                                           x:Name="txtUsersCalcPerHour"
+                                           Margin="34 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="4"
+                                           Grid.Row="1"
+                                           Text="{Binding UsersRadDetails.PerHour}"
+                                           Margin="34 12 0 0"/>
+
+                                    <!--Total-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="5"
+                                           Text="Total"
+                                           x:Name="txtUsersCalcTotal"
+                                           Margin="34 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="5"
+                                           Grid.Row="1"
+                                           Text="{Binding UsersRadDetails.Total}"
+                                           Margin="34 12 0 0"/>
+                                </Grid>
+
+                                <!--Profit mark-->
+                                <StackPanel Orientation="Horizontal"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        Margin="0 0 44 0">
+
+                                    <cont:DropShadowPanel Style="{StaticResource AcceptButtonShadow}"
+                                                  Color="{ThemeResource UsersColor}"
+                                                  BlurRadius="12"
+                                                  ShadowOpacity="0.9"
+                                                  OffsetX="0"
+                                                  OffsetY="0"
+                                                  VerticalAlignment="Center">
+                                        <Ellipse Width="10" Height="10"
+                                                 Fill="{ThemeResource UsersColorBrush}"/>
+                                    </cont:DropShadowPanel>
+
+                                    <TextBlock x:Name="usersMark"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Text="Users"
+                                           VerticalAlignment="Center"
+                                           Margin="4 0 0 0"/>
+
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+
+                    </PivotItem>
+                    
+                </Pivot>
+
+                <!--#endregion-->
+
+                <!--#region Requests & Reports section-->
+
+                <!--Requests and Reports Title-->
+                <TextBlock x:Name="txtRequestsReportsTitle"
+                       Margin="0 80 0 0"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Text="Requests and Reports"/>
+
+                <!--Requests and Reports Pivot-->
+                <Pivot Margin="0 0 0 100"
+                       x:Name="requestsReportsPivot" 
+                       SelectedIndex="0">
+
+                    <!--Requests-->
+                    <PivotItem x:Name="requestsPivot"
+                           Margin="0 -20 0  0">
+
+                        <!--Requests Header-->
+                        <PivotItem.Header>
+                            <TextBlock x:Name="txtRequestsHeader"
+                                   Text="Requests"
+                                   Style="{StaticResource SubtitleAltTextBlockStyle}"/>
+                        </PivotItem.Header>
+
+                        <!--Requests chart and month and year combo boxes and calculations-->
+                        <Grid Margin="20 0 0 0" HorizontalAlignment="Left">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Year and month combo boxes-->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                                    Margin="0 12 0 0">
+
+                                <StackPanel Orientation="Horizontal" Margin="0 0 28 0">
+                                    <TextBlock x:Name="requestsYear"
+                                               VerticalAlignment="Center"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Text="Year:"/>
+                                    <ComboBox ItemsSource="{Binding RequestsYears, Mode=OneWay}" Margin="4 0 0 0" CornerRadius="{StaticResource SmallCornerRadius}" 
+                                              x:Name="comBoxRequestsYear" Background="Transparent" BorderBrush="Transparent" 
+                                              PlaceholderText="{Binding ItemsSource[0], Mode=OneWay,RelativeSource={RelativeSource Mode=Self}}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="requestsMonth"
+                                               VerticalAlignment="Center"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Text="Month:"/>
+                                    <ComboBox ItemsSource="{Binding RequestsMonths, Mode=OneWay, Converter={StaticResource MonthConverter}}"  
+                                              x:Name="comBoxRequestsMonth" Margin="4 0 0 0" CornerRadius="{StaticResource SmallCornerRadius}"
+                                              Background="Transparent" BorderBrush="Transparent" PlaceholderText="{Binding ItemsSource[0], Mode=OneWay,RelativeSource={RelativeSource Mode=Self}}"/>
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                            <!--The Requests chart-->
+                            <telerik:RadCartesianChart x:Name="radRequestsChart" 
+                                    HorizontalAlignment="Left"
+                                    Margin="0 24 0 0"
+                                    Width="958"
+                                    Grid.Row="1"
+                                    Height="245">
+                                <telerik:RadCartesianChart.HorizontalAxis>
+                                    <telerik:CategoricalAxis/>
+                                </telerik:RadCartesianChart.HorizontalAxis>
+                                <telerik:RadCartesianChart.VerticalAxis>
+                                    <telerik:LinearAxis/>
+                                </telerik:RadCartesianChart.VerticalAxis>
+                                <telerik:RadCartesianChart.Grid>
+                                    <telerik:CartesianChartGrid MajorLinesVisibility="XY"/>
+                                </telerik:RadCartesianChart.Grid>
+
+                                <telerik:SplineSeries Stroke="{ThemeResource RequestsColorBrush}"
+                                        ItemsSource="{Binding RequestsRadDetails.RequestsRad, Mode=OneWay, Converter={StaticResource AnalyzesRadConverter}, ConverterParameter=Requests}"
+                                        CombineMode="Stack">    
+                                    <telerik:SplineSeries.ValueBinding>
+                                        <telerik:PropertyNameDataPointBinding PropertyName="RequestsNumber"/>
+                                    </telerik:SplineSeries.ValueBinding>
+                                    <telerik:SplineSeries.CategoryBinding>
+                                        <telerik:PropertyNameDataPointBinding PropertyName="Day"/>
+                                    </telerik:SplineSeries.CategoryBinding>
+                                    <telerik:SplineSeries.PointTemplate>
+                                        <DataTemplate>
+                                            <Rectangle Width="8" Height="8" RadiusX="8" RadiusY="8" Fill="{ThemeResource RequestsColorBrush}"/>
+                                        </DataTemplate>
+                                    </telerik:SplineSeries.PointTemplate>
+                                </telerik:SplineSeries>
+                            </telerik:RadCartesianChart>
+
+                            <!--Requests calculations-->
+                            <Grid HorizontalAlignment="Stretch"
+                              Margin="40 48 0 0"
+                              Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Calculations-->
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--Requests title calculation-->
+                                    <StackPanel Orientation="Horizontal"
+                                            Grid.Row="1"
+                                            Margin="0 9 0 0"
+                                            VerticalAlignment="Bottom">
+                                        <PathIcon Data="{StaticResource Requests}"
+                                              Foreground="{ThemeResource NormalPathIconForegroundBrush}"
+                                              Style="{StaticResource SmallPathIcon}"/>
+                                        <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                                Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                                VerticalAlignment="Center"
+                                                Text="Requests"
+                                                x:Name="txtRequestsCalcTitle"
+                                                Margin="4 0 0 0"/>
+                                    </StackPanel>
+
+
+                                    <!--Per Year-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="1"
+                                           Text="Per day"
+                                           x:Name="txtRequestsCalcPerYear"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Text="{Binding RequestsRadDetails.PerYear}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per Month-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="2"
+                                           Text="Per day"
+                                           x:Name="txtRequestsCalcPerMonth"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="2"
+                                           Grid.Row="1"
+                                           Text="{Binding RequestsRadDetails.PerMonth}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per day-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="3"
+                                           Text="Per day"
+                                           x:Name="txtRequestsCalcPerDay"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="3"
+                                           Grid.Row="1"
+                                           Text="{Binding RequestsRadDetails.PerDay}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per hour-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="4"
+                                           Text="Per hour"
+                                           x:Name="txtRequestsCalcPerHour"
+                                           Margin="34 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="4"
+                                           Grid.Row="1"
+                                           Text="{Binding RequestsRadDetails.PerHour}"
+                                           Margin="34 12 0 0"/>
+
+                                    <!--Total-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="5"
+                                           Text="Total"
+                                           x:Name="txtRequestsCalcTotal"
+                                           Margin="34 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="5"
+                                           Grid.Row="1"
+                                           Text="{Binding RequestsRadDetails.Total}"
+                                           Margin="34 12 0 0"/>
+                                </Grid>
+
+                                <!--Requests mark-->
+                                <StackPanel Orientation="Horizontal"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        Margin="0 0 44 0">
+
+                                    <cont:DropShadowPanel Style="{StaticResource AcceptButtonShadow}"
+                                                  Color="{ThemeResource RequestsColor}"
+                                                  BlurRadius="12"
+                                                  ShadowOpacity="0.9"
+                                                  OffsetX="0"
+                                                  OffsetY="0"
+                                                  VerticalAlignment="Center">
+                                        <Ellipse Width="10" Height="10"
+                                                 Fill="{ThemeResource RequestsColorBrush}"/>
+                                    </cont:DropShadowPanel>
+
+                                    <TextBlock x:Name="requestsMark"
+                                            Style="{StaticResource CaptionTextBlockStyle}"
+                                           Text="Requests"
+                                           VerticalAlignment="Center"
+                                           Margin="4 0 0 0"/>
+
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+
+                    </PivotItem>
+
+                    <!--Reports-->
+                    <PivotItem x:Name="reportsPivot"
+                            Margin="0 -20 0  0">
+
+                        <!--Reports Header-->
+                        <PivotItem.Header>
+                            <TextBlock x:Name="txtReportsHeader"
+                                   Text="Reports"
+                                   Style="{StaticResource SubtitleAltTextBlockStyle}"/>
+                        </PivotItem.Header>
+
+                        <!--Reports chart and month and year combo boxes and calculations-->
+                        <Grid Margin="20 0 0 0" HorizontalAlignment="Left">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Year and month combo boxes-->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                                    Margin="0 12 0 0">
+
+                                <StackPanel Orientation="Horizontal" Margin="0 0 28 0">
+                                    <TextBlock x:Name="reportsYear"
+                                               VerticalAlignment="Center"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Text="Year:"/>
+                                    <ComboBox ItemsSource="{Binding ReportsYears, Mode=OneWay}" Margin="4 0 0 0" CornerRadius="{StaticResource SmallCornerRadius}" 
+                                              x:Name="comBoxReportsYear" Background="Transparent" BorderBrush="Transparent"
+                                              PlaceholderText="{Binding ItemsSource[0], Mode=OneWay,RelativeSource={RelativeSource Mode=Self}}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="reportsMonth"
+                                               VerticalAlignment="Center"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Text="Month:"/>
+                                    <ComboBox ItemsSource="{Binding ReportsMonths, Mode=OneWay, Converter={StaticResource MonthConverter}}"
+                                              x:Name="comBoxReportsMonth" Margin="4 0 0 0" CornerRadius="{StaticResource SmallCornerRadius}" 
+                                              Background="Transparent" BorderBrush="Transparent" PlaceholderText="{Binding ItemsSource[0], Mode=OneWay,RelativeSource={RelativeSource Mode=Self}}"/>
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                            <!--The Reports chart-->
+                            <telerik:RadCartesianChart x:Name="radReportsChart" 
+                                            HorizontalAlignment="Left"
+                                            Margin="0 24 0 0"
+                                            Width="958"
+                                            Grid.Row="1"
+                                            Height="245">
+                                <telerik:RadCartesianChart.HorizontalAxis>
+                                    <telerik:CategoricalAxis/>
+                                </telerik:RadCartesianChart.HorizontalAxis>
+                                <telerik:RadCartesianChart.VerticalAxis>
+                                    <telerik:LinearAxis/>
+                                </telerik:RadCartesianChart.VerticalAxis>
+                                <telerik:RadCartesianChart.Grid>
+                                    <telerik:CartesianChartGrid MajorLinesVisibility="XY"/>
+                                </telerik:RadCartesianChart.Grid>
+
+                                <telerik:SplineSeries Stroke="{ThemeResource ReportsColorBrush}"
+                                                ItemsSource="{Binding ReportsRadDetails.ReportsRad, Mode=OneWay, Converter={StaticResource AnalyzesRadConverter}, ConverterParameter=Reports}"
+                                                CombineMode="Stack">
+                                    <telerik:SplineSeries.ValueBinding>
+                                        <telerik:PropertyNameDataPointBinding PropertyName="ReportsNumber"/>
+                                    </telerik:SplineSeries.ValueBinding>
+                                    <telerik:SplineSeries.CategoryBinding>
+                                        <telerik:PropertyNameDataPointBinding PropertyName="Day"/>
+                                    </telerik:SplineSeries.CategoryBinding>
+                                    <telerik:SplineSeries.PointTemplate>
+                                        <DataTemplate>
+                                            <Rectangle Width="8" Height="8" RadiusX="8" RadiusY="8" Fill="{ThemeResource ReportsColorBrush}"/>
+                                        </DataTemplate>
+                                    </telerik:SplineSeries.PointTemplate>
+                                </telerik:SplineSeries>
+                            </telerik:RadCartesianChart>
+
+                            <!--Reports calculations-->
+                            <Grid HorizontalAlignment="Stretch"
+                                Margin="40 48 0 0"
+                                Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Calculations-->
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--Reports title calculation-->
+                                    <StackPanel Orientation="Horizontal"
+                                            Grid.Row="1"
+                                            Margin="0 9 0 0"
+                                            VerticalAlignment="Bottom">
+                                        <PathIcon Data="{StaticResource Reports}"
+                                              Foreground="{ThemeResource NormalPathIconForegroundBrush}"
+                                              Style="{StaticResource SmallPathIcon}"/>
+                                        <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                               VerticalAlignment="Center"
+                                               Text="Reports"
+                                               x:Name="txtReportsCalcTitle"
+                                               Margin="4 0 0 0"/>
+                                    </StackPanel>
+
+
+                                    <!--Per Year-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="1"
+                                           Text="Per day"
+                                           x:Name="txtReportsCalcPerYear"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Text="{Binding ReportsRadDetails.PerYear}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per Month-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="2"
+                                           Text="Per day"
+                                           x:Name="txtReportsCalcPerMonth"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="2"
+                                           Grid.Row="1"
+                                           Text="{Binding ReportsRadDetails.PerMonth}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per day-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="3"
+                                           Text="Per day"
+                                           x:Name="txtReportsCalcPerDay"
+                                           Margin="24 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="3"
+                                           Grid.Row="1"
+                                           Text="{Binding ReportsRadDetails.PerDay}"
+                                           Margin="24 12 0 0"/>
+
+                                    <!--Per hour-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="4"
+                                           Text="Per hour"
+                                           x:Name="txtReportsCalcPerHour"
+                                           Margin="34 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="4"
+                                           Grid.Row="1"
+                                           Text="{Binding ReportsRadDetails.PerHour}"
+                                           Margin="34 12 0 0"/>
+
+                                    <!--Total-->
+                                    <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                           Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                           Grid.Column="5"
+                                           Text="Total"
+                                           x:Name="txtReportsCalcTotal"
+                                           Margin="34 0 0 0"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Grid.Column="5"
+                                           Grid.Row="1"
+                                           Text="{Binding ReportsRadDetails.Total}"
+                                           Margin="34 12 0 0"/>
+                                </Grid>
+
+                                <!--Reports mark-->
+                                <StackPanel Orientation="Horizontal"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        Margin="0 0 44 0">
+
+                                    <cont:DropShadowPanel Style="{StaticResource AcceptButtonShadow}"
+                                                  Color="{ThemeResource ReportsColor}"
+                                                  BlurRadius="12"
+                                                  ShadowOpacity="0.9"
+                                                  OffsetX="0"
+                                                  OffsetY="0"
+                                                  VerticalAlignment="Center">
+                                        <Ellipse Width="10" Height="10"
+                                                 Fill="{ThemeResource ReportsColorBrush}"/>
+                                    </cont:DropShadowPanel>
+
+                                    <TextBlock x:Name="reportsMark"
+                                            Style="{StaticResource CaptionTextBlockStyle}"
+                                           Text="Reports"
+                                           VerticalAlignment="Center"
+                                           Margin="4 0 0 0"/>
+
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+
+                    </PivotItem>
+
+                </Pivot>
+
+                <!--#endregion-->
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!--Displaying a content that you aren't connected to internet-->
+        <Grid HorizontalAlignment="Stretch"
+              x:Name="NoWifiAnalyzes"
+              Visibility="Collapsed"
+              VerticalAlignment="Stretch"
+              Background="{ThemeResource SurfaceBrush}">
+
+            <StackPanel 
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+                <Image Stretch="Fill"
+                    Width="240"
+                    Height="240"
+                    Source="{ThemeResource WifiOff}"/>
+
+                <TextBlock x:Name="txtNoWifiAnalyzes"
+                        Style="{StaticResource SubtitleAltTextBlockStyle}"
+                        Text="You aren't connected to internet"
+                        Margin="0 40 0 0"
+                        HorizontalAlignment="Center"/>
+
+                <Button x:Name="btnNoWifiAnalyzes"
+                    Style="{StaticResource MicrosoftFacebookButton}"
+                    Margin="0 20 0 0"
+                    Height="40"
+                    Width="100"
+                    HorizontalAlignment="Center">
+                    <Button.Content>
+                        <TextBlock x:Name="txtBtnNoWifiAnalyzes"
+                                Text="Retry again"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource BodyTextBlockStyle}"/>
+                    </Button.Content>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+
+        <!--Loading progress-->
+        <cont:Loading x:Name="loadingData"
+                      Style="{StaticResource LoadingDataStyle}"/>
+
+        <!--Toast Notifcation-->
+        <cont:InAppNotification x:Name="fixedToastNotification"
+                                Style="{StaticResource FixedInAppNotificationStyle}"
+                                Margin="0 0 0 20"
+                                Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+            <cont:InAppNotification.Content>
+                <StackPanel VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    Orientation="Horizontal">
+
+                    <PathIcon x:Name="fixedToastNotificationIcon"
+                               Data="{StaticResource ToastNotification}"       
+                              Style="{StaticResource FixedToastNotificationPathIcon}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                    <TextBlock x:Name="fixedToastNotificationMessage"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="8 0 0 0"
+                                       Foreground="{ThemeResource FixedTextBlockForegroundBrush}"/>
+                </StackPanel>
+            </cont:InAppNotification.Content>
+        </cont:InAppNotification>
+
+        <!--Error Toast Notifcation-->
+        <cont:InAppNotification x:Name="errorToastNotification"
+                                Style="{StaticResource ErrorInAppNotificationStyle}"
+                                Margin="0 0 0 20"
+                                Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+            <cont:InAppNotification.Content>
+                <StackPanel VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    Orientation="Horizontal">
+
+                    <PathIcon x:Name="errorToastNotificationIcon"
+                              Data="{StaticResource ToastNotification}"
+                                      Style="{StaticResource ErrorToastNotificationPathIcon}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                    <TextBlock x:Name="errorToastNotificationMessage"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="8 0 0 0"
+                                       Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"/>
+                </StackPanel>
+            </cont:InAppNotification.Content>
+        </cont:InAppNotification>
+
+        <!--Card view for displaying errors when something wrong happend-->
+        <mat:CardView Style="{StaticResource CardViewInfoStyle}" 
+                      x:Name="errorDetailsCardView" 
+                      Header="There are some errors !"
+                      IsOpen="False"
+                      ContentHeight="210"
+                      ContentWidth="500">
+            <mat:CardView.Content>
+                <StackPanel>
+                    <TextBlock x:Name="txtProfitsError" Text="You have some error in your backend/frontend process communication"/>
+                    <TextBlock x:Name="txtCraftmenError" Margin="0 8 0 0" Text="You have some error in your backend/frontend process communication"/>
+                    <TextBlock x:Name="txtUsersError" Margin="0 8 0 0" Text="You have some error in your backend/frontend process communication"/>
+                    <TextBlock x:Name="txtRequestsError" Margin="0 8 0 0" Text="You have some error in your backend/frontend process communication"/>
+                    <TextBlock x:Name="txtReportsError" Margin="0 8 0 0" Text="You have some error in your backend/frontend process communication"/>
+                </StackPanel>
+            </mat:CardView.Content>
+
+            <mat:CardView.Footer>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                            Margin="8">
+
+                    <Button x:Name="btnCaViErrCancel"
+                            Style="{StaticResource RefuseButton}"
+                            Height="40"
+                            Width="90"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Name="txtCaViErrCancel" Text="Cancel"
+                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </mat:CardView.Footer>
+
+        </mat:CardView>
+        
+    </Grid>
+    
+</Page>

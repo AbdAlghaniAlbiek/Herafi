@@ -1,0 +1,48 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Brushes">
+
+    <!--Colors of background for Glow button in light theme-->
+    <Color x:Key="MicrosoftFacebookButtonsBackgroundColorLight">#FFFFFF</Color>
+    <Color x:Key="MicrosoftFacebookButtonsBorderColorLight">#383132</Color>
+    <Color x:Key="NormalButtonBackgroundColorLight">#2B62AB</Color>
+    <Color x:Key="AcceptButtonBackgroundColorLight">#25CF12</Color>
+    <Color x:Key="RefuseButtonBackgroundColorLight">#E4663F</Color>
+
+
+    <!--Colors of background for Glow button in dark theme-->
+    <Color x:Key="MicrosoftFacebookButtonsBackgroundColorDark">#4E4E4E</Color>
+    <Color x:Key="MicrosoftFacebookButtonsBorderColorDark">#383132</Color>
+    <Color x:Key="NormalButtonBackgroundColorDark">#B9D5FC</Color>
+    <Color x:Key="AcceptButtonBackgroundColorDark">#90FF82</Color>
+    <Color x:Key="RefuseButtonBackgroundColorDark">#FC9E81</Color>
+
+    
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="NormalButtonBackgroundBrush" Color="{StaticResource NormalButtonBackgroundColorLight}"/>
+            <SolidColorBrush x:Key="AcceptButtonBackgroundBrush" Color="{StaticResource AcceptButtonBackgroundColorLight}"/>
+            <SolidColorBrush x:Key="RefuseButtonBackgroundBrush" Color="{StaticResource RefuseButtonBackgroundColorLight}"/>
+            <SolidColorBrush x:Key="MicrosoftFacebookButtonsBackgroundBrush" Color="{StaticResource MicrosoftFacebookButtonsBackgroundColorLight}"/>
+            <SolidColorBrush x:Key="MicrosoftFacebookButtonsBorderBrush" Color="{StaticResource MicrosoftFacebookButtonsBorderColorLight}"/>
+
+            <Color x:Key="MicrosoftFacebookButtonsBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="MicrosoftFacebookButtonsSelectionColor">#EFEFEF</Color>
+            <Color x:Key="NorAccRefButtonsSelectionColor">#FFFFFF</Color>
+        </ResourceDictionary>
+        
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="NormalButtonBackgroundBrush" Color="{StaticResource NormalButtonBackgroundColorDark}"/>
+            <SolidColorBrush x:Key="AcceptButtonBackgroundBrush" Color="{StaticResource AcceptButtonBackgroundColorDark}"/>
+            <SolidColorBrush x:Key="RefuseButtonBackgroundBrush" Color="{StaticResource RefuseButtonBackgroundColorDark}"/>
+            <SolidColorBrush x:Key="MicrosoftFacebookButtonsBackgroundBrush" Color="{StaticResource MicrosoftFacebookButtonsBackgroundColorDark}"/>
+            <SolidColorBrush x:Key="MicrosoftFacebookButtonsBorderBrush" Color="{StaticResource MicrosoftFacebookButtonsBorderColorDark}"/>
+
+            <Color x:Key="MicrosoftFacebookButtonsBackgroundColor">#4E4E4E</Color>
+            <Color x:Key="MicrosoftFacebookButtonsSelectionColor">#828282</Color>
+            <Color x:Key="NorAccRefButtonsSelectionColor">#000000</Color>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+    
+</ResourceDictionary>

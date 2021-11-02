@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Fonts">
+
+    <!--Regular-->
+    <x:String x:Key="TajawalRegular">ms-appx:///Assets/Fonts/Arabic/Tajawal-Regular.ttf#Tajawal</x:String>
+
+    <!--Light-->
+    <x:String x:Key="TajawalLight">ms-appx:///Assets/Fonts/Arabic/Tajawal-Light.ttf#Tajawal</x:String>
+
+    <!--Bold-->
+    <x:String x:Key="TajawalBold">ms-appx:///Assets/Fonts/Arabic/Tajawal-Bold.ttf#Tajawal</x:String>
+
+</ResourceDictionary>

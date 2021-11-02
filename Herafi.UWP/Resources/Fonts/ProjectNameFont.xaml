@@ -1,0 +1,11 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Fonts">
+
+
+    <!--The path of project name font-->
+    <x:String x:Key="GiddyupStdRegular">ms-appx:///Assets/Fonts/ProjectName/giddyupstd.otf#Giddyup Std</x:String>
+
+
+</ResourceDictionary>

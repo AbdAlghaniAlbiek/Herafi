@@ -1,0 +1,418 @@
+﻿<UserControl
+    x:Class="Herafi.UWP.Resources.Templates.CraftmenTemplates.GeneralProjectTemp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Templates.CraftmenTemplates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d"
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:xb="using:XamlBrewer.Uwp.Controls"
+    xmlns:conv="using:Herafi.UWP.Converters"
+    x:Name="userCon">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/CraftmenIcons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:StringToDoubleConverter x:Key="StringToDoubleConverter"/>
+            <conv:ImageURLConverter x:Key="ImageURLConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <cont:Expander HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Width="980"
+                       Background="Transparent"
+                       Margin="0 0 0 0"
+                       IsExpanded="False"
+                       CornerRadius="{StaticResource SmallCornerRadius}">
+
+            <cont:Expander.HeaderStyle>
+                <Style TargetType="ToggleButton">
+                    <Setter Property="Height" Value="48"/>
+                    <Setter Property="Margin" Value="12 0 0 0"/>
+                    <Setter Property="Padding" Value="0 0 0 0"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalAlignment" Value="Stretch"/>
+                </Style>
+            </cont:Expander.HeaderStyle>
+
+            <!--Header of expander-->
+            <cont:Expander.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <cont:DropShadowPanel Style="{StaticResource CardShadow}" Grid.ColumnSpan="2">
+                        <Rectangle Width="950" Height="40" Style="{StaticResource NormalCard}"/>
+                    </cont:DropShadowPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Margin="16 0 0 0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center">
+                                <Run x:Name="txtGeneralCardID" Text="ID: "/><Run Text="{x:Bind Project.Id}"/>
+                        </TextBlock>
+
+                        <TextBlock 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Margin="180 0 0 0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center">
+                                <Run x:Name="txtGeneralCardName" Text="NAME: "/><Run Text="{x:Bind Project.Name}"/>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <TextBlock x:Name="txtRepCardShMoreInfo"
+                        Text="Show more information"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Grid.Column="1"
+                                   Margin="0 0 40 0"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+
+                    <PathIcon Style="{StaticResource NormalPathIcon}"
+                                  Data="{StaticResource ExpanderArrow}"
+                                   Grid.Column="1"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  Margin="0 0 8 0"/>
+                </Grid>
+            </cont:Expander.Header>
+
+            <!--content of expander-->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Padding="0 12 0 22">
+
+                <!--Every thing beside project image-->
+                <StackPanel>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical"
+                                    HorizontalAlignment="Left"
+                                    Grid.Column="0">
+                            <!--User name-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource UserName}"/>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                                    <TextBlock x:Name="txtGeneralCardUserName"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="User name"/>
+
+                                    <PathIcon Margin="8 -4 0 0"
+                                          Style="{StaticResource SmallPathIcon}"
+                                          Data="{StaticResource MoreInfo}"/>
+                                </StackPanel>
+
+
+                                <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind Project.Username, Mode=OneWay}"/>
+
+                            </Grid>
+
+                            <!--Process-->
+                            <Grid Margin="0 18 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Process}"/>
+
+                                <TextBlock x:Name="txtGeneralCardProc"
+                                    Grid.Column="1"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Process"/>
+
+                                <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind Project.Process, Mode=OneWay}"/>
+
+                            </Grid>
+
+                            <!--Start - End request date-->
+                            <Grid Margin="0 18 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource FromToRequestDate}"/>
+
+                                <TextBlock Grid.Column="1"
+                                           x:Name="txtGeneralCardFrToReq"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="From - To request date"/>
+
+                                <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0">
+                                    <Run Text="{x:Bind Project.StartDate, Mode=OneWay}"/><Run Text=" - "/><Run Text="{x:Bind Project.EndDate, Mode=OneWay}"/>
+                                </TextBlock>
+
+                            </Grid>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    Margin="40 0 0 0">
+                            <!--Cost-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Cost}"/>
+
+                                <TextBlock Grid.Column="1"
+                                           x:Name="txtGeneralCardCost"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Cost"/>
+
+                                <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind Project.Cost, Mode=OneWay}"/>
+
+                            </Grid>
+
+                            <!--Statues-->
+                            <Grid Margin="0 18 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Status}"/>
+
+                                <TextBlock Grid.Column="1"
+                                           x:Name="txtGeneralCardStat"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Statues"/>
+
+                                <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind Project.Status, Mode=OneWay}"/>
+
+                            </Grid>
+
+                            <!--Hours work-->
+                            <Grid Margin="0 18 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource HoursWork}"/>
+
+                                <TextBlock Grid.Column="1"
+                                           x:Name="txtGeneralCardHoursWork"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Hours work"/>
+
+                                <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind Project.HoursWork}"/>
+
+                            </Grid>
+                        </StackPanel>
+
+                        <!--Rating-->
+                        <Grid Grid.Column="2"
+                              HorizontalAlignment="Left"
+                          Margin="40 0 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Rating}"/>
+
+                            <TextBlock Grid.Column="1"
+                                       x:Name="txtGeneraCardlRat"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Rating"/>
+
+                            <RatingControl Grid.Column="1"
+                                       Grid.Row="1"
+                                       MaxRating="5"
+                                       Value="{x:Bind Project.Rating, Mode=OneWay, Converter={StaticResource StringToDoubleConverter}}"
+                                       IsReadOnly="True"
+                                       Margin="10 0 0 0"/>
+
+                        </Grid>
+
+                    </Grid>
+
+                    <!--Comment-->
+                    <Grid Margin="0 18 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Comment}"/>
+
+                        <TextBlock Grid.Column="1"
+                                   x:Name="txtGeneralCardComm"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Comment"/>
+
+                        <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Height="36"
+                                       TextWrapping="Wrap"
+                                       Width="480"
+                                       Text="{x:Bind Project.Comment, Mode=OneWay}"/>
+
+                    </Grid>
+                </StackPanel>
+
+                <!--Project images-->
+                <Grid Width="420"
+                      Height="238"
+                      Margin="12 0 0 0"
+                      VerticalAlignment="Top">
+                    <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                        <Rectangle Width="420"
+                                   Height="238"
+                                   Style="{StaticResource NormalCard}">
+
+                        </Rectangle>
+                    </cont:DropShadowPanel>
+
+                    <Image HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Source="{StaticResource CraftmanProjectImage}"
+                           Stretch="Fill"
+                           Width="160"
+                           Height="160"/>
+
+                    <FlipView CornerRadius="{StaticResource SmallCornerRadius}"
+                              Background="Transparent"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              VerticalContentAlignment="Stretch"
+                              ItemsSource="{x:Bind Project.ProjectImages}">
+                        <FlipView.ItemTemplate>
+                            <DataTemplate>
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           RadiusX="{StaticResource SmallRadius}" RadiusY="{StaticResource SmallRadius}">
+                                    <Rectangle.Fill>
+                                        <ImageBrush Stretch="Fill"
+                                                    ImageSource="{Binding Mode=OneWay, Converter={StaticResource ImageURLConverter}, ConverterParameter=Image-Craftman}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </DataTemplate>
+                        </FlipView.ItemTemplate>
+                    </FlipView>
+                </Grid>
+            </StackPanel>
+        </cont:Expander>
+    </Grid>
+
+</UserControl>

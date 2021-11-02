@@ -1,0 +1,67 @@
+﻿<UserControl
+    x:Class="Herafi.UWP.Resources.Templates.CraftmenTemplates.GeneralCraftmanTemp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Templates.CraftmenTemplates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    xmlns:conv="using:Herafi.UWP.Converters"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries >
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/GridImageBrushes.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/CraftmenIcons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:ImageURLConverter x:Key="ImageURLConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid  Width="128"
+           Height="128">
+
+        <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+            <Rectangle Style="{StaticResource NormalCard}"
+                       Width="128"
+                       Height="128"/>
+        </cont:DropShadowPanel>
+
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+
+            <Grid HorizontalAlignment="Center"
+                  Margin="0 8 0 0">
+                <Ellipse Width="54"
+                         Height="54"
+                         Fill="Transparent"
+                         StrokeThickness="2"
+                         Stroke="{ThemeResource GridImageBorderBrush}"/>
+
+                <PathIcon Data="{StaticResource CraftmanCard}"
+                          Style="{StaticResource NormalPathIcon}"
+                          Width="30"
+                          Height="30"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"/>
+
+                <cont:ImageEx Stretch="Fill"
+                              Source="{x:Bind Craftman.ImagePath, Mode=OneWay, Converter={StaticResource ImageURLConverter}, ConverterParameter=ImageEx-Craftman}"
+                              CornerRadius="40" 
+                              Background="Transparent"
+                              Width="54"
+                              Height="54"/>
+            </Grid>
+
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                       HorizontalAlignment="Center"
+                       Text="{x:Bind Craftman.Name, Mode=OneWay}"
+                       Margin="0 32 0 0"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

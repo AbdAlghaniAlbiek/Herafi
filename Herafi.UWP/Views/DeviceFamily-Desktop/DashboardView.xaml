@@ -1,0 +1,620 @@
+﻿<Page
+    x:Class="Herafi.UWP.Views.DeviceFamily_Desktop.DashboardView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Views.DeviceFamily_Desktop"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:telerik="using:Telerik.UI.Xaml.Controls.Chart"
+    mc:Ignorable="d"
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:vm="using:Herafi.Core.ViewModels"
+    xmlns:conv="using:Herafi.UWP.Converters"
+    xmlns:mat="using:MaterialLibs.Controls"
+    Background="{ThemeResource SurfaceBrush}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/DashboardIcons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:ProfitsConverter x:Key="ProfitsConverter"/>
+            <conv:ProfitsPrecentageConverter x:Name="ProfitsPrecentageConverter"/>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:DashboardViewModel x:Name="dashboardViewModel"/>
+    </Page.DataContext>
+
+    <Grid>
+
+        <!--The content of this page-->
+        <ScrollViewer  Padding="12 0">
+            <StackPanel Orientation="Vertical"
+                   Margin="0 12 0 0">
+
+                <!--Profile Title-->
+                <TextBlock x:Name="txtProfitsTitle"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       Text="Profits"/>
+
+                <!--The profits chart-->
+                <telerik:RadCartesianChart x:Name="radProfitsChart" 
+                                    HorizontalAlignment="Left"
+                                    Margin="20 13 0 0"
+                                    Width="958"
+                                    Height="245">
+                    <telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:CategoricalAxis/>
+                    </telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:LinearAxis/>
+                    </telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:RadCartesianChart.Grid>
+                        <telerik:CartesianChartGrid MajorLinesVisibility="XY"/>
+                    </telerik:RadCartesianChart.Grid>
+
+                    <telerik:SplineSeries Stroke="{Binding ProfitDetails.Profits, Mode=OneWay, Converter={StaticResource ProfitsConverter}, ConverterParameter=Color}"
+                            ItemsSource="{Binding ProfitDetails.Profits, Mode=OneWay, Converter={StaticResource ProfitsConverter}, ConverterParameter=Value}"
+                            CombineMode="Stack">
+                        <telerik:SplineSeries.ValueBinding>
+                            <telerik:PropertyNameDataPointBinding PropertyName="Paids"/>
+                        </telerik:SplineSeries.ValueBinding>
+                        <telerik:SplineSeries.CategoryBinding>
+                            <telerik:PropertyNameDataPointBinding PropertyName="Day"/>
+                        </telerik:SplineSeries.CategoryBinding>
+                        <telerik:SplineSeries.PointTemplate>
+                            <DataTemplate>
+                                <Rectangle Width="8" Height="8" RadiusX="8" RadiusY="8" Fill="{Binding ProfitDetails.Profits, Mode=OneWay, Converter={StaticResource ProfitsConverter}, ConverterParameter=Color}"/>
+                            </DataTemplate>
+                        </telerik:SplineSeries.PointTemplate>
+                    </telerik:SplineSeries>
+                </telerik:RadCartesianChart>
+
+                <!--Some information about profits-->
+                <StackPanel Orientation="Horizontal" Margin="20 50 0 0">
+
+                    <!--Profits precentage from previous day to this day-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Profits precentage and -->
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Style="{StaticResource TitleTextBlockStyle}" 
+                                   Foreground="{Binding ProfitDetails.ProfitsPrecentage, Converter={StaticResource ProfitsPrecentageConverter}, ConverterParameter=Color}">
+                        <Run Text="{Binding ProfitDetails.ProfitsPrecentage}"/><Run Text="%"/>
+                            </TextBlock>
+
+                            <Path x:Name="profitsStatus" HorizontalAlignment="Left" 
+                          Margin="0 0 0 0"
+                          Fill="{Binding ProfitDetails.ProfitsPrecentage, Converter={StaticResource ProfitsPrecentageConverter}, ConverterParameter=Color}"
+                          Data="{Binding ProfitDetails.ProfitsPrecentage, Converter={StaticResource ProfitsPrecentageConverter}, ConverterParameter=Icon}">
+
+                            </Path>
+                        </StackPanel>
+
+
+                        <!--Description what's mean this calcualtion-->
+                        <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                               x:Name="txtProfitsStatusDesc"
+                               Margin="0 10 0 0"
+                               Width="240"
+                               Height="40"
+                               Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               Text="Percentage of profits from pervious day to this day "/>
+
+                    </Grid>
+
+                    <!--Profits calculations-->
+                    <Grid Margin="90 0 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--profits title calculation-->
+                        <StackPanel Orientation="Horizontal"
+                                Grid.Row="1"
+                                Margin="0 9 0 0"
+                                VerticalAlignment="Bottom">
+                            <PathIcon Data="{StaticResource Profits}"
+                                  Foreground="{ThemeResource NormalPathIconForegroundBrush}"
+                                  Style="{StaticResource SmallPathIcon}"/>
+                            <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                                   Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                   VerticalAlignment="Center"
+                                   Text="Profits"
+                                   x:Name="txtProfitsCalcTitle"
+                                   Margin="4 0 0 0"/>
+                        </StackPanel>
+
+                        <!--Per day-->
+                        <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                               Grid.Column="1"
+                               Text="Per day"
+                               x:Name="txtProfitsCalcPerDay"
+                               Margin="24 0 0 0"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding ProfitDetails.PerDay}"
+                               Margin="24 12 0 0"/>
+
+                        <!--Per hour-->
+                        <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                               Grid.Column="2"
+                               Text="Per hour"
+                               x:Name="txtProfitsCalcPerHour"
+                               Margin="34 0 0 0"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Grid.Column="2"
+                               Grid.Row="1"
+                               Text="{Binding ProfitDetails.PerHour}"
+                               Margin="34 12 0 0"/>
+
+                        <!--Total-->
+                        <TextBlock Style="{StaticResource CaptionAltTextBlockStyle}"
+                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                               Grid.Column="3"
+                               Text="Total"
+                               x:Name="txtProfitsCalcTotal"
+                               Margin="34 0 0 0"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                               Grid.Column="3"
+                               Grid.Row="1"
+                               Text="{Binding ProfitDetails.Total}"
+                               Margin="34 12 0 0"/>
+                    </Grid>
+
+
+                    <!--More information about profits => Go to Analyzes page-->
+                    <HyperlinkButton Margin="117 0 0 8" x:Name="hypBtnMoreInfo">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" 
+                               Foreground="{ThemeResource AccentTextBlockForegroundBrush}"
+                               x:Name="txtHypBtnMoreInfo" Text="For more information" />
+                    </HyperlinkButton>
+
+                </StackPanel>
+
+                <!--number of new members of users and craftmane and select the favourit theme-->
+                <StackPanel Orientation="Horizontal" Margin="20 50 0 0">
+
+                    <!--New users-->
+                    <Grid x:Name="gridNewUser">
+                        <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                            <Rectangle Width="207"
+                                   Height="80"
+                                   Style="{StaticResource NormalCard}"/>
+                        </cont:DropShadowPanel>
+
+                        <StackPanel Orientation="Horizontal" extensions:FrameworkElementExtensions.Cursor="Hand">
+
+                            <PathIcon Data="{StaticResource Users}"
+                                  Margin="18 0 0 0"
+                                  Width="48"
+                                  Height="48"
+                                  Style="{StaticResource NormalPathIcon}"/>
+
+                            <StackPanel Orientation="Vertical"  Margin="10 8 0 0">
+
+                                <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                   Style="{StaticResource TitleTextBlockStyle}"
+                                   x:Name="txtNewUsersTitle"
+                                   Text="New Users"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 6 0 0"
+                                   Style="{StaticResource TitleTextBlockStyle}"
+                                   Text="{Binding NewMembers.NewMembersUsersNumber}"/>
+
+                            </StackPanel>
+
+                            <Grid>
+                                <cont:DropShadowPanel Style="{StaticResource NormalButtonShadow}"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Bottom"
+                                                  Margin="-4 0 0 0">
+                                    <Ellipse Width="40" Height="40"
+                                         Fill="{ThemeResource NormalButtonBackgroundBrush}"/>
+                                </cont:DropShadowPanel>
+
+                                <PathIcon Style="{StaticResource InsideButtonPathIcon}"
+                                      Data="{StaticResource GoForward}"
+                                      VerticalAlignment="Bottom" Margin="0 0 1 2"
+                                      Width="36" Height="36"/>
+                            </Grid>
+
+                        </StackPanel>
+                    </Grid>
+
+                    <!--New Craftmen-->
+                    <Grid Margin="96 0 0 0" x:Name="gridNewCraftmen">
+                        <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                            <Rectangle Width="247"
+                                   Height="80"
+                                   Style="{StaticResource NormalCard}"/>
+                        </cont:DropShadowPanel>
+
+                        <StackPanel Orientation="Horizontal" extensions:FrameworkElementExtensions.Cursor="Hand">
+
+                            <PathIcon Data="{StaticResource Craftmen}"
+                                  Margin="18 0 0 0"
+                                  Width="48"
+                                  Height="48"
+                                  Style="{StaticResource NormalPathIcon}"/>
+
+                            <StackPanel Orientation="Vertical"  Margin="10 8 0 0">
+
+                                <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                   Style="{StaticResource TitleTextBlockStyle}"
+                                   x:Name="txtNewCraftmenTitle"
+                                   Text="New Craftmen"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 6 0 0"
+                                   Style="{StaticResource TitleTextBlockStyle}"
+                                   Text="{Binding NewMembers.NewMembersCraftmenNumber}"/>
+
+                            </StackPanel>
+
+                            <Grid>
+                                <cont:DropShadowPanel Style="{StaticResource NormalButtonShadow}"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Bottom"
+                                                  Margin="-4 0 0 0">
+                                    <Ellipse Width="40" Height="40"
+                                         Fill="{ThemeResource NormalButtonBackgroundBrush}"/>
+                                </cont:DropShadowPanel>
+
+                                <PathIcon Style="{StaticResource InsideButtonPathIcon}"
+                                      Data="{StaticResource GoForward}"
+                                      VerticalAlignment="Bottom" Margin="0 0 1 2"
+                                      Width="36" Height="36"/>
+                            </Grid>
+
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Themes-->
+                    <StackPanel Orientation="Vertical"
+                            Margin="88 0 0 0">
+
+                        <TextBlock x:Name="txtThemesTitle"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="Themes"/>
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <!--System-->
+                            <StackPanel Orientation="Horizontal"
+                            x:Name="systemTheme"
+                            Margin="0 14 0 0">
+
+                                <StackPanel.Resources>
+
+                                    <!--Normal state-->
+                                    <Storyboard x:Name="SystemThemeNormal">
+                                        <ColorAnimation Storyboard.TargetName="patIcoSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="txtSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pointer over state-->
+                                    <Storyboard x:Name="SystemThemePointerOver">
+                                        <ColorAnimation Storyboard.TargetName="patIcoSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="txtSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pressed state-->
+                                    <Storyboard x:Name="SystemThemePressed">
+                                        <ColorAnimation Storyboard.TargetName="patIcoSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="txtSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                </StackPanel.Resources>
+
+                                <PathIcon Style="{StaticResource NormalPathIcon}"
+                              Width="24"
+                              Height="24"
+                              x:Name="patIcoSystem"
+                              Data="{StaticResource System}"/>
+                                <TextBlock x:Name="txtSystem"
+                               Style="{StaticResource SubtitleAltTextBlockStyle}"
+                               Margin="8 0 0 0"
+                               Text="System"
+                               VerticalAlignment="Top"
+                               FontSize="17"/>
+                            </StackPanel>
+
+                            <!--Light-->
+                            <StackPanel Orientation="Horizontal"
+                            x:Name="lightTheme"
+                            Margin="26 16 0 0">
+
+                                <StackPanel.Resources>
+
+                                    <!--Normal state-->
+                                    <Storyboard x:Name="LightThemeNormal">
+                                        <ColorAnimation Storyboard.TargetName="patIcoLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="txtLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pointer over state-->
+                                    <Storyboard x:Name="LightThemePointerOver">
+                                        <ColorAnimation Storyboard.TargetName="patIcoLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="txtLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pressed state-->
+                                    <Storyboard x:Name="LightThemePressed">
+                                        <ColorAnimation Storyboard.TargetName="patIcoLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="txtLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                </StackPanel.Resources>
+
+                                <PathIcon Style="{StaticResource NormalPathIcon}"
+                              Width="24"
+                              Height="24"
+                              x:Name="patIcoLight"
+                              Data="{StaticResource Light}"/>
+                                <TextBlock Style="{StaticResource SubtitleAltTextBlockStyle}"
+                               Margin="8 0 0 0"
+                               Text="Light"
+                               x:Name="txtLight"
+                               FontSize="17"
+                               VerticalAlignment="Top"/>
+                            </StackPanel>
+
+                            <!--Dark-->
+                            <StackPanel Orientation="Horizontal"
+                            Margin="26 16 0 0"
+                            x:Name="darkTheme">
+
+                                <StackPanel.Resources>
+                                    <!--Normal state-->
+                                    <Storyboard x:Name="DarkThemeNormal">
+                                        <ColorAnimation Storyboard.TargetName="patIcoDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="txtDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pointer over state-->
+                                    <Storyboard x:Name="DarkThemePointerOver">
+                                        <ColorAnimation Storyboard.TargetName="patIcoDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="txtDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pressed state-->
+                                    <Storyboard x:Name="DarkThemePressed">
+                                        <ColorAnimation Storyboard.TargetName="patIcoDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="txtDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </StackPanel.Resources>
+
+                                <PathIcon Style="{StaticResource NormalPathIcon}"
+                              Width="24"
+                              Height="24"
+                              Data="{StaticResource Dark}"
+                              x:Name="patIcoDark"/>
+                                <TextBlock Style="{StaticResource SubtitleAltTextBlockStyle}"
+                               Margin="8 0 0 0"
+                               Text="Dark"
+                               x:Name="txtDark"
+                               FontSize="17"
+                               VerticalAlignment="Top"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+        
+
+        <!--Displaying a content that you aren't connected to internet-->
+        <Grid HorizontalAlignment="Stretch"
+              x:Name="NoWifiDashboard"
+              Visibility="Collapsed"
+              VerticalAlignment="Stretch"
+              Background="{ThemeResource SurfaceBrush}">
+            
+            <StackPanel 
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+                <Image Stretch="Fill"
+                    Width="240"
+                    Height="240"
+                    Source="{ThemeResource WifiOff}"/>
+
+                <TextBlock x:Name="txtNoWifiDashboard"
+                        Style="{StaticResource SubtitleAltTextBlockStyle}"
+                        Text="You aren't connected to internet"
+                        Margin="0 40 0 0"
+                        HorizontalAlignment="Center"/>
+
+                <Button x:Name="btnNoWifiDashboard"
+                    Style="{StaticResource MicrosoftFacebookButton}"
+                    Margin="0 20 0 0"
+                    Height="40"
+                    Width="100"
+                    HorizontalAlignment="Center">
+                    <Button.Content>
+                        <TextBlock x:Name="txtBtnNoWifiDashboard"
+                                Text="Retry again"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource BodyTextBlockStyle}"/>
+                    </Button.Content>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+        
+        <!--Loading progress-->
+        <cont:Loading x:Name="loadingData"
+                      Style="{StaticResource LoadingDataStyle}"/>
+
+        <!--Error Toast Notifcation-->
+        <cont:InAppNotification x:Name="errorToastNotification"
+                                Style="{StaticResource ErrorInAppNotificationStyle}"
+                                Margin="0 0 0 20"
+                                Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+            <cont:InAppNotification.Content>
+                <StackPanel VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    Orientation="Horizontal">
+
+                    <PathIcon x:Name="errorToastNotificationIcon"
+                              Data="{StaticResource ToastNotification}"
+                                      Style="{StaticResource ErrorToastNotificationPathIcon}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                    <TextBlock x:Name="errorToastNotificationMessage"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="8 0 0 0"
+                                       Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"/>
+                </StackPanel>
+            </cont:InAppNotification.Content>
+        </cont:InAppNotification>
+
+        <!--Toast Notifcation-->
+        <cont:InAppNotification x:Name="fixedToastNotification"
+                                Style="{StaticResource FixedInAppNotificationStyle}"
+                                Margin="0 0 0 20"
+                                Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+            <cont:InAppNotification.Content>
+                <StackPanel VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    Orientation="Horizontal">
+
+                    <PathIcon x:Name="fixedToastNotificationIcon"
+                               Data="{StaticResource ToastNotification}"       
+                              Style="{StaticResource FixedToastNotificationPathIcon}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                    <TextBlock x:Name="fixedToastNotificationMessage"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="8 0 0 0"
+                                       Foreground="{ThemeResource FixedTextBlockForegroundBrush}"/>
+                </StackPanel>
+            </cont:InAppNotification.Content>
+        </cont:InAppNotification>
+
+        <!--Card view for displaying errors when something wrong happend-->
+        <mat:CardView Style="{StaticResource CardViewInfoStyle}" 
+                      x:Name="errorDetailsCardView" 
+                      Header="There are some errors !"
+                      IsOpen="False"
+                      ContentHeight="210"
+                      ContentWidth="500">
+            <mat:CardView.Content>
+                <StackPanel>
+                    <TextBlock x:Name="txtProfDetError" Text="You have some error in your backend/frontend process communication"/>
+                    <TextBlock x:Name="txtNewMemError" Margin="0 8 0 0" Text="You have some error in your backend/frontend process communication"/>
+                </StackPanel>
+            </mat:CardView.Content>
+
+            <mat:CardView.Footer>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                            Margin="8">
+
+                    <Button x:Name="btnCaViErrCancel"
+                            Style="{StaticResource RefuseButton}"
+                            Height="40"
+                            Width="90"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Name="txtCaViErrCancel" Text="Cancel"
+                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </mat:CardView.Footer>
+
+        </mat:CardView>
+       
+    </Grid>
+</Page>

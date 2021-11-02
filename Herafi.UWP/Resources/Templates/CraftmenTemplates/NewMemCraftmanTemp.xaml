@@ -1,0 +1,603 @@
+﻿<UserControl
+    x:Class="Herafi.UWP.Resources.Templates.CraftmenTemplates.NewMemCraftmanTemp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Templates.CraftmenTemplates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:temp="using:Herafi.UWP.Resources.Templates.CraftmenTemplates"
+    xmlns:model="using:Herafi.Core.Models"
+    xmlns:conv="using:Herafi.UWP.Converters"
+    d:Height="2000"
+    x:Name="userCon">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/CraftmenIcons.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/GridImageBrushes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:ImageURLConverter x:Key="ImageURLConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <cont:Expander HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Width="1006"
+                       IsExpanded="False"
+                       Background="Transparent"
+                       CornerRadius="{StaticResource SmallCornerRadius}">
+            
+            <cont:Expander.HeaderStyle>
+                <Style TargetType="ToggleButton">
+                    <Setter Property="Height" Value="66"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalAlignment" Value="Stretch"/>
+                </Style>
+            </cont:Expander.HeaderStyle>
+            
+             <!--Header of expander-->
+            <cont:Expander.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400"/>
+                        <ColumnDefinition Width="600"/>
+                    </Grid.ColumnDefinitions>
+
+                    <cont:DropShadowPanel Style="{StaticResource CardShadow}" Grid.ColumnSpan="2">
+                        <Rectangle Width="1000" Height="58" Style="{StaticResource NormalCard}"/>
+                    </cont:DropShadowPanel>
+
+                    <!--Name & Image-->
+                    <StackPanel Orientation="Horizontal">
+
+                        <!--Image-->
+                        <Grid HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="12 0 0 0">
+                            <Ellipse Width="42"
+                                        Height="42"
+                                        Fill="Transparent"
+                                        StrokeThickness="2"
+                                        Stroke="{ThemeResource GridImageBorderBrush}"/>
+
+                            <PathIcon Data="{StaticResource Craftman}"
+                                          Style="{StaticResource NormalPathIcon}"
+                                          Margin="0 0 0 0"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"/>
+
+                            <cont:ImageEx Stretch="Fill"
+                                              Source="{x:Bind NewMemeberCraftman.Profile.ProfileImage, Mode=OneWay, Converter={StaticResource ImageURLConverter}, ConverterParameter=ImageEx-Craftman}"
+                                              CornerRadius="40" 
+                                              Background="Transparent"
+                                              Width="42"
+                                              Height="42"/>
+                        </Grid>
+
+                        <!--Name-->
+                        <TextBlock
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Margin="12 0 0 0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                Text="{x:Bind NewMemeberCraftman.Profile.Name}"/>
+
+                    </StackPanel>
+
+                    <!--ID-->
+                    <TextBlock  Style="{StaticResource BodyTextBlockStyle}"
+                                Margin="0 0 0 0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                            <Run x:Name="txtNewMemID" Text="ID: "/><Run Text="{x:Bind NewMemeberCraftman.Profile.Id, Mode=OneWay}"/>
+                    </TextBlock>
+
+                    <!--Show more information-->
+                    <TextBlock x:Name="txtNewMemCardShMoreInfo"
+                        Text="Show more information"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Grid.Column="1"
+                                   Margin="0 0 40 0"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+
+                    <PathIcon Style="{StaticResource NormalPathIcon}"
+                                  Data="{StaticResource ExpanderArrow}"
+                                   Grid.Column="1"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  Margin="0 0 8 0"/>
+                </Grid>
+            </cont:Expander.Header>
+
+            <!--Content of expander-->
+            <Grid HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Padding="0 20 0 22">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Profile and crafts section-->
+                <Grid HorizontalAlignment="Center"
+                  VerticalAlignment="Bottom"
+                  Width="1006"
+                  Visibility="Visible">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Profile section-->
+                    <StackPanel Orientation="Vertical" 
+                            Visibility="Visible">
+                        
+                        <!--Profile Title-->
+                        <TextBlock x:Name="txtNewMemProfileTitle"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"
+                                   Text="Profile"/>
+
+                        <!--profile and peronal identity images of craftman-->
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0 18 0 0">
+
+                            <!--Profile image-->
+                            <Grid  HorizontalAlignment="Left"
+                                   Width="208"
+                                   Height="208">
+                                
+                                <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                                    <Ellipse Width="208"
+                                             Height="208"
+                                             Style="{StaticResource NormalRoundedCard}"/>   
+                                </cont:DropShadowPanel>
+
+                                <Image Stretch="Fill"
+                                       Width="120"
+                                       Height="120"
+                                       Source="{StaticResource CraftmanProfileImage}"/>
+
+                                <Ellipse HorizontalAlignment="Stretch"
+                                         VerticalAlignment="Stretch"
+                                         Width="208"
+                                         Height="208">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{x:Bind NewMemeberCraftman.Profile.ProfileImage, Converter={StaticResource ImageURLConverter}, Mode=OneWay, ConverterParameter=Image-Craftman}" Stretch="Fill"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            
+                            </Grid>
+
+                            <!--Peronal identity image-->
+                            <Grid Margin="40 0 0 0"
+                                  HorizontalAlignment="Left"
+                                  Width="407"
+                                  Height="208">
+                                
+                                <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                                    <Rectangle Width="407"
+                           Height="208"
+                           Style="{StaticResource NormalCard}"/>
+                                </cont:DropShadowPanel>
+
+                                <Image Stretch="Fill"
+                                       Width="160"
+                                       Height="160"
+                                       Source="{StaticResource CraftmanProfileImage}"/>
+
+                                <Rectangle HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Stretch"
+                                           Width="407"
+                                           Height="208">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="{x:Bind  NewMemeberCraftman.Profile.PersonalIdentityImage, Converter={StaticResource ImageURLConverter}, ConverterParameter=Image-Craftman, Mode=OneWay}" Stretch="Fill"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                
+                            </Grid>
+
+                        </StackPanel>
+
+                        <!--Craftman profile details-->
+                        <Grid Margin="0 33 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Vertical"
+                                           Grid.Column="0">
+
+                                <!--Name-->
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Name}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               x:Name="txtNewMemName"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Name"/>
+
+                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind NewMemeberCraftman.Profile.Name}"/>
+                                </Grid>
+
+                                <!--Email-->
+                                <Grid Margin="0 18 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Email}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               x:Name="txtNewMemEmail"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Email"/>
+
+                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind NewMemeberCraftman.Profile.Email}"/>
+                                </Grid>
+
+                                <!--Phone number-->
+                                <Grid Margin="0 18 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource PhoneNumber}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               x:Name="txtNewMemPhonNum"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Phone number"/>
+
+                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind NewMemeberCraftman.Profile.PhoneNumber}"/>
+                                </Grid>
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical"
+                                Grid.Column="1"
+                                Margin="80 0 0 0">
+
+                                <!--National number-->
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource NationalNumber}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               x:Name="txtNewMemNatNum"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="National number"/>
+
+                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind NewMemeberCraftman.Profile.NationalNumber}"/>
+                                </Grid>
+
+                                <!--Date join-->
+                                <Grid Margin="0 18 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource DateJoin}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               x:Name="txtNewMemDatJoin"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Date join"/>
+
+                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind NewMemeberCraftman.Profile.DateJoin}"/>
+                                </Grid>
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical"
+                                Grid.Column="2"
+                                Margin="80 0 0 0">
+
+                                <!--City-->
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource City}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               x:Name="txtNewMemCity"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="City"/>
+
+                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{x:Bind NewMemeberCraftman.Profile.City}"/>
+                                </Grid>
+
+                                <!--Lowest and highest cost-->
+                                <Grid Margin="0 18 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Taxi}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               x:Name="txtNewMemTaxi"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Taxi"/>
+
+                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0">
+                                        <Run Text="{x:Bind NewMemeberCraftman.Profile.LowestCost}"/><Run Text=" - "/><Run Text="{x:Bind NewMemeberCraftman.Profile.HighestCost}"/>
+                                    </TextBlock>
+                                </Grid>
+
+                            </StackPanel>
+                        </Grid>
+
+                    </StackPanel>
+
+                    <!--Crafts section-->
+                    <StackPanel Orientation="Vertical"
+                            Margin="34 0 0 0"
+                            Grid.Column="1">
+                        
+                        <TextBlock Style="{StaticResource SubtitleTextBlockStyle}">
+                            <Run x:Name="txtNewMemCraftsTitle" Text="Crafts("/><Run Text="{x:Bind NewMemeberCraftman.Profile.CraftsNum}"/><Run Text=")"/>
+                        </TextBlock>
+
+                        <ListView x:Name="lstViewCrafts"
+                                  Height="394"
+                                  HorizontalAlignment="Left"
+                                  Margin="-12 18 0 0"
+                                  ItemsSource="{x:Bind NewMemeberCraftman.Crafts}"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="False">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="IsFocusEngagementEnabled" Value="True"/>
+                                    <Setter Property="Margin" Value="0 0 0 4"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="model:Craft">
+                                    <temp:GeneralCraftTemp/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+
+                </Grid>
+
+                <!--Certifications section-->
+                <StackPanel HorizontalAlignment="Stretch"
+                            Grid.Row="1"
+                            Margin="0 40 0 0"
+                            Visibility="Visible">
+
+                    <TextBlock Style="{StaticResource SubtitleTextBlockStyle}">
+                             <Run x:Name="txtNewMemCert" Text="Certifications ("/><Run Text="{x:Bind NewMemeberCraftman.Profile.CertificationsNum}"/><Run Text=")"/>
+                    </TextBlock>
+
+                    <ListView x:Name="lstViewCertCraftman"
+                          Margin="0 18 0 0"
+                          HorizontalAlignment="Stretch"
+                          SelectionMode="None"
+                          ItemsSource="{x:Bind NewMemeberCraftman.Certifications, Mode=OneWay}">
+
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsStackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Margin" Value="0 0 16 10"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <temp:NewMemCertificationTemp/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                    
+                </StackPanel>
+
+                <!--Choosing the level of craftman and accept/refuse him in Herafi system-->
+                <StackPanel Orientation="Vertical"
+                            Margin="0 40 0 0"
+                            Grid.Row="2"
+                            HorizontalAlignment="Stretch">
+
+                    <!--Choosing Level of craftman-->
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock x:Name="txtNewMemChoLev"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"
+                                   Text="Choose the level of this craftsman :"
+                                   VerticalAlignment="Center"/>
+                        
+                        <!--Normal-->
+                        <RadioButton x:Name="radBtnNormal"
+                                     Margin="20 0 0 0"
+                                     IsChecked="True">
+                            <RadioButton.Content>
+                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Text="Normal"/>
+                            </RadioButton.Content>
+                        </RadioButton>
+
+                        <!--Medium-->
+                        <RadioButton x:Name="radBtnMedium"
+                                     Margin="0 0 0 0"
+                                     IsEnabled="{x:Bind NewMemeberCraftman.IsThereCertifications}">
+                            <RadioButton.Content>
+                                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                           Text="Medium"/>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        
+                    </StackPanel>
+
+                    <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
+                                Margin="0 34 0 0">
+                              <Run x:Name="txtNewMemAccRefCraf" Text="Do you Admin accept this Craftman ("/><Run Text="{x:Bind NewMemeberCraftman.Profile.Name}"/><Run x:Name="txtNewMemAccRefCraf2" Text=") in Herafi system ?"/>
+                    </TextBlock>
+
+                    <!--Accept & Refuse buttons-->
+                    <Grid Margin="0 50 0 0">
+
+                        <!--Accept buttons-->
+                        <Button x:Name="btnAcceptCraftman"
+                                Style="{StaticResource AcceptButton}"
+                                Margin="0 0 156 0"
+                                HorizontalAlignment="Center"
+                                Width="126"
+                                Height="46">
+                            <Button.Content>
+                                <TextBlock x:Name="txtBtnNewMemAcc"
+                                           Style="{StaticResource SubtitleTextBlockStyle}"
+                                           Text="Accept"
+                                           Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                            </Button.Content>
+                        </Button>
+
+                        <!--Refuse buttons-->
+                        <Button x:Name="btnRefuseCraftman"
+                                Style="{StaticResource RefuseButton}"
+                                HorizontalAlignment="Center"
+                                Margin="156 0 0 0"
+                                Width="126"
+                                Height="46">
+                            <Button.Content>
+                                <TextBlock x:Name="txtBtnNewMemRef"
+                                           Style="{StaticResource SubtitleTextBlockStyle}"
+                                           Text="Refuse"
+                                           Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+
+                </StackPanel>
+
+            </Grid>
+            
+        </cont:Expander>
+    </Grid>
+</UserControl>

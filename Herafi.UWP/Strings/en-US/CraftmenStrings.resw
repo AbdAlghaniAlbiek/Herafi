@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="txtGeneralBlocksText" xml:space="preserve">
+    <value>Blocks</value>
+  </data>
+  <data name="txtGeneralCert" xml:space="preserve">
+    <value>Certifications (</value>
+  </data>
+  <data name="txtGeneralCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="txtGeneralCrafts" xml:space="preserve">
+    <value>Crafts (</value>
+  </data>
+  <data name="txtGeneralDatJoin" xml:space="preserve">
+    <value>Date join</value>
+  </data>
+  <data name="txtGeneralEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="txtGeneralLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="txtGeneralName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="txtGeneralNatNum" xml:space="preserve">
+    <value>National number</value>
+  </data>
+  <data name="txtGeneralPhonNum" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="txtGeneralProfileTitle" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="txtGeneralProj" xml:space="preserve">
+    <value>Projects (</value>
+  </data>
+  <data name="txtGeneralReq" xml:space="preserve">
+    <value>Requests (</value>
+  </data>
+  <data name="txtGeneralStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="txtGeneralTaxi" xml:space="preserve">
+    <value>Taxi</value>
+  </data>
+  <data name="txtGeneralUsersFav" xml:space="preserve">
+    <value>Users favourites</value>
+  </data>
+  <data name="txtGeneralUsersSear" xml:space="preserve">
+    <value>Users Searchs</value>
+  </data>
+  <data name="txtBtnNewMemAcc" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="txtBtnNewMemRef" xml:space="preserve">
+    <value>Refuse</value>
+  </data>
+  <data name="txtBtnRepBlockText" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="txtBtnRepFiringText" xml:space="preserve">
+    <value>Fire</value>
+  </data>
+  <data name="txtGeneraCardlRat" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="txtGeneralCardComm" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="txtGeneralCardFrToReq" xml:space="preserve">
+    <value>Start - End request date</value>
+  </data>
+  <data name="txtGeneralCardID" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="txtGeneralCardName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="txtGeneralCardProc" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="txtGeneralCardShMorInfo" xml:space="preserve">
+    <value>Show more information</value>
+  </data>
+  <data name="txtGeneralCardStat" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="txtGeneralCardUserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="txtGeneralCardCost" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="txtNewMemTaxi" xml:space="preserve">
+    <value>Taxi</value>
+  </data>
+  <data name="txtNewMemAccRefCraf" xml:space="preserve">
+    <value>Do you Admin accept this Craftman (</value>
+  </data>
+  <data name="txtNewMemID" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="txtNewMemCardShMoreInfo" xml:space="preserve">
+    <value>Show more information</value>
+  </data>
+  <data name="txtNewMemCert" xml:space="preserve">
+    <value>Certifications (</value>
+  </data>
+  <data name="txtNewMemChoLev" xml:space="preserve">
+    <value>Choose the level of this craftsman :</value>
+  </data>
+  <data name="txtNewMemCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="txtNewMemCraftsTitle" xml:space="preserve">
+    <value>Crafts (</value>
+  </data>
+  <data name="txtNewMemDatJoin" xml:space="preserve">
+    <value>Date join</value>
+  </data>
+  <data name="txtNewMemEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="txtNewMemName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="txtNewMemNatNum" xml:space="preserve">
+    <value>National number</value>
+  </data>
+  <data name="txtNewMemPhonNum" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="txtNewMemProfileTitle" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="txtRepBlocking" xml:space="preserve">
+    <value>Blocking (</value>
+  </data>
+  <data name="txtRepCardID" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="txtRepCardProbRel" xml:space="preserve">
+    <value>Problems Related to</value>
+  </data>
+  <data name="txtRepCardReport" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="txtRepCardReqID" xml:space="preserve">
+    <value>Reqest ID</value>
+  </data>
+  <data name="txtRepCardShMoreInfo" xml:space="preserve">
+    <value>Show more information</value>
+  </data>
+  <data name="txtRepCardUserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="txtRepFiring" xml:space="preserve">
+    <value>Firing (</value>
+  </data>
+  <data name="radBtnMedium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="radBtnNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="txtNewMemAccRefCraf2" xml:space="preserve">
+    <value>) in Herafi system ?</value>
+  </data>
+  <data name="txtEmptyCraftmen" xml:space="preserve">
+    <value>There isn't any craftman in Herafi system yet</value>
+  </data>
+  <data name="generalItemText" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="reportsItemText" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="txtGoBackCraftmen" xml:space="preserve">
+    <value>Go Back</value>
+  </data>
+  <data name="errorDetailsCardViewHeader" xml:space="preserve">
+    <value>There are some errors !</value>
+  </data>
+  <data name="txtBtnNoWifiGeneral" xml:space="preserve">
+    <value>Retry again</value>
+  </data>
+  <data name="txtBtnNoWifiNewMembers" xml:space="preserve">
+    <value>Retry again</value>
+  </data>
+  <data name="txtBtnNoWifiReportsBlocking" xml:space="preserve">
+    <value>Retry again</value>
+  </data>
+  <data name="txtBtnNoWifiReportsFiring" xml:space="preserve">
+    <value>Retry again</value>
+  </data>
+  <data name="txtCaViErrCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="txtEmpCraftmanProjects" xml:space="preserve">
+    <value>This craftman doesn't have any project yet</value>
+  </data>
+  <data name="txtEmpCraftmanReqests" xml:space="preserve">
+    <value>This craftman doesnt' have any request yet</value>
+  </data>
+  <data name="txtEmptyBlocCraftmen" xml:space="preserve">
+    <value>There isn't any craftman to be blocked</value>
+  </data>
+  <data name="txtEmptyFirCraftmen" xml:space="preserve">
+    <value>There isn't any craftman to be Fired</value>
+  </data>
+  <data name="txtEmptyNewMemCraftmen" xml:space="preserve">
+    <value>There aren't new craftmen memebers in Herafi system yet</value>
+  </data>
+  <data name="txtNoWifiGeneral" xml:space="preserve">
+    <value>You aren't connected to internet</value>
+  </data>
+  <data name="txtNoWifiNewMembers" xml:space="preserve">
+    <value>You aren't connected to internet</value>
+  </data>
+  <data name="txtNoWifiRepBlocking" xml:space="preserve">
+    <value>You aren't connected to internet</value>
+  </data>
+  <data name="txtNoWifiReportsFiring" xml:space="preserve">
+    <value>You aren't connected to internet</value>
+  </data>
+  <data name="newMembersItemText" xml:space="preserve">
+    <value>New Members</value>
+  </data>
+  <data name="txtGeneralCardHoursWork" xml:space="preserve">
+    <value>Hours work</value>
+  </data>
+  <data name="txtToastConnWifi" xml:space="preserve">
+    <value>You connected to internet</value>
+  </data>
+  <data name="txtToastNewMemCraftmanAcc" xml:space="preserve">
+    <value>This Craftman is accepted</value>
+  </data>
+  <data name="txtToastNewMemCraftmanErr" xml:space="preserve">
+    <value>There is error from the server</value>
+  </data>
+  <data name="txtToastNewMemCraftmanRef" xml:space="preserve">
+    <value>This Craftman is Refused</value>
+  </data>
+  <data name="txtToastNoWifi" xml:space="preserve">
+    <value>You aren't connected to internet</value>
+  </data>
+  <data name="txtToastRepBloc" xml:space="preserve">
+    <value>This craftman is blocked</value>
+  </data>
+  <data name="txtToastRepFir" xml:space="preserve">
+    <value>This craftman is Fired</value>
+  </data>
+  <data name="txtGeneralBlocks" xml:space="preserve">
+    <value>Blocks</value>
+  </data>
+  <data name="refuseMessageCardView" xml:space="preserve">
+    <value>Sending an refuse message</value>
+  </data>
+  <data name="txtBoxCaViRefuseMessage" xml:space="preserve">
+    <value>Refuse message</value>
+  </data>
+  <data name="txtCaViRefuseMessageCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="txtCaViRefuseMessageDesc" xml:space="preserve">
+    <value>Sending an email for this craftman tell him why you refused him</value>
+  </data>
+  <data name="txtCaViRefuseMessageErr" xml:space="preserve">
+    <value>Fill this textbox before you click on the button</value>
+  </data>
+  <data name="txtCaViRefuseMessageSend" xml:space="preserve">
+    <value>Send</value>
+  </data>
+</root>

@@ -1,0 +1,104 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Brushes">
+
+    <!--Navigation view item colors in common states (Light theme)-->
+    <Color x:Key="NavViewItemIconNormalForegroundColorLight">#383132</Color>
+    <Color x:Key="NavViewItemIconPointerOverForegroundColorLight">#2B62AB</Color>
+    <Color x:Key="NavViewItemIconPressedForegroundColorLight">#FBFBFB</Color>
+    <Color x:Key="NavViewItemIconCheckedForegroundColorLight">#FBFBFB</Color>
+
+    <Color x:Key="NavViewItemTextNormalForegroundColorLight">#383132</Color>
+    <Color x:Key="NavViewItemTextPointerOverForegroundColorLight">#2B62AB</Color>
+    <Color x:Key="NavViewItemTextPressedForegroundColorLight">#FBFBFB</Color>
+    <Color x:Key="NavViewItemTextCheckedForegroundColorLight">#FBFBFB</Color>
+
+    <Color x:Key="NavViewItemCheckedBackgroundColorLight">#2B62AB</Color>
+
+    <Color x:Key="SelectionColorLight">#FBFBFB</Color>
+    
+        
+    <!--Navigation view item colors in common states (Dark theme)-->
+    <Color x:Key="NavViewItemIconNormalForegroundColorDark">#FBFBFB</Color>
+    <Color x:Key="NavViewItemIconPointerOverForegroundColorDark">#B9D5FC</Color>
+    <Color x:Key="NavViewItemIconPressedForegroundColorDark">#383132</Color>
+    <Color x:Key="NavViewItemIconCheckedForegroundColorDark">#383132</Color>
+
+    <Color x:Key="NavViewItemTextNormalForegroundColorDark">#FBFBFB</Color>
+    <Color x:Key="NavViewItemTextPointerOverForegroundColorDark">#B9D5FC</Color>
+    <Color x:Key="NavViewItemTextPressedForegroundColorDark">#383132</Color>
+    <Color x:Key="NavViewItemTextCheckedForegroundColorDark">#383132</Color>
+
+    <Color x:Key="NavViewItemCheckedBackgroundColorDark">#B9D5FC</Color>
+
+    <Color x:Key="SelectionColorDark">#FBFBFB</Color>
+
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="NavViewItemIconNormalForegroundBrush" Color="{StaticResource NavViewItemIconNormalForegroundColorLight}"/>
+            <SolidColorBrush x:Key="NavViewItemIconPointerOverForegroundBrush" Color="{StaticResource NavViewItemIconPointerOverForegroundColorLight}"/>
+            <SolidColorBrush x:Key="NavViewItemIconPressedForegroundBrush" Color="{StaticResource NavViewItemIconPressedForegroundColorLight}"/>
+            <SolidColorBrush x:Key="NavViewItemIconCheckedForegroundBrush" Color="{StaticResource NavViewItemIconCheckedForegroundColorLight}"/>
+
+            <Color x:Key="NavViewItemIconNormalForegroundColor">#383132</Color>
+            <Color x:Key="NavViewItemIconPointerOverForegroundColor">#2B62AB</Color>
+            <Color x:Key="NavViewItemIconPressedForegroundColor">#FBFBFB</Color>
+            <Color x:Key="NavViewItemIconCheckedForegroundColor">#FBFBFB</Color>
+
+            
+            <SolidColorBrush x:Key="NavViewItemTextNormalForegroundBrush" Color="{StaticResource NavViewItemTextNormalForegroundColorLight}"/>
+            <SolidColorBrush x:Key="NavViewItemTextPointerOverForegroundBrush" Color="{StaticResource NavViewItemTextPointerOverForegroundColorLight}"/>
+            <SolidColorBrush x:Key="NavViewItemTextPressedForegroundBrush" Color="{StaticResource NavViewItemTextPressedForegroundColorLight}"/>
+            <SolidColorBrush x:Key="NavViewItemTextCheckedForegroundBrush" Color="{StaticResource NavViewItemTextCheckedForegroundColorLight}"/>
+
+            <Color x:Key="NavViewItemTextNormalForegroundColor">#383132</Color>
+            <Color x:Key="NavViewItemTextPointerOverForegroundColor">#2B62AB</Color>
+            <Color x:Key="NavViewItemTextPressedForegroundColor">#FBFBFB</Color>
+            <Color x:Key="NavViewItemTextCheckedForegroundColor">#FBFBFB</Color>
+            
+            
+            <SolidColorBrush x:Key="NavViewItemCheckedBackgroundBrush" Color="{StaticResource NavViewItemCheckedBackgroundColorLight}"/>
+
+            <Color x:Key="NavViewItemCheckedBackgroundColor">#2B62AB</Color>
+
+
+            <SolidColorBrush x:Key="SelectionBrush" Color="{StaticResource SelectionColorLight}"/>
+        </ResourceDictionary>
+        
+        
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="NavViewItemIconNormalForegroundBrush" Color="{StaticResource NavViewItemIconNormalForegroundColorDark}"/>
+            <SolidColorBrush x:Key="NavViewItemIconPointerOverForegroundBrush" Color="{StaticResource NavViewItemIconPointerOverForegroundColorDark}"/>
+            <SolidColorBrush x:Key="NavViewItemIconPressedForegroundBrush" Color="{StaticResource NavViewItemIconPressedForegroundColorDark}"/>
+            <SolidColorBrush x:Key="NavViewItemIconCheckedForegroundBrush" Color="{StaticResource NavViewItemIconCheckedForegroundColorDark}"/>
+
+            <Color x:Key="NavViewItemIconNormalForegroundColor">#FBFBFB</Color>
+            <Color x:Key="NavViewItemIconPointerOverForegroundColor">#B9D5FC</Color>
+            <Color x:Key="NavViewItemIconPressedForegroundColor">#383132</Color>
+            <Color x:Key="NavViewItemIconCheckedForegroundColor">#383132</Color>
+
+
+            <SolidColorBrush x:Key="NavViewItemTextNormalForegroundBrush" Color="{StaticResource NavViewItemTextNormalForegroundColorDark}"/>
+            <SolidColorBrush x:Key="NavViewItemTextPointerOverForegroundBrush" Color="{StaticResource NavViewItemTextPointerOverForegroundColorDark}"/>
+            <SolidColorBrush x:Key="NavViewItemTextPressedForegroundBrush" Color="{StaticResource NavViewItemTextPressedForegroundColorDark}"/>
+            <SolidColorBrush x:Key="NavViewItemTextCheckedForegroundBrush" Color="{StaticResource NavViewItemTextCheckedForegroundColorDark}"/>
+
+            <Color x:Key="NavViewItemTextNormalForegroundColor">#FBFBFB</Color>
+            <Color x:Key="NavViewItemTextPointerOverForegroundColor">#B9D5FC</Color>
+            <Color x:Key="NavViewItemTextPressedForegroundColor">#383132</Color>
+            <Color x:Key="NavViewItemTextCheckedForegroundColor">#383132</Color>
+            
+            
+            <SolidColorBrush x:Key="NavViewItemCheckedBackgroundBrush" Color="{StaticResource NavViewItemCheckedBackgroundColorDark}"/>
+
+            <Color x:Key="NavViewItemCheckedBackgroundColor">#B9D5FC</Color>
+
+            
+            <SolidColorBrush x:Key="SelectionBrush" Color="{StaticResource SelectionColorDark}"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+
+</ResourceDictionary>

@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{9EA26900-A65A-4285-8A52-D82B5B1ECCC1}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Herafi.UWP</RootNamespace>
+    <AssemblyName>Herafi.UWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <OutputPath>bin\ARM64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\AnalyzesRadConverter.cs" />
+    <Compile Include="Converters\BlurLayoutConverter.cs" />
+    <Compile Include="Converters\ImageURLConverter.cs" />
+    <Compile Include="Converters\MonthConverter.cs" />
+    <Compile Include="Converters\ProfitsConverter.cs" />
+    <Compile Include="Converters\ProfitsPrecentageConverter.cs" />
+    <Compile Include="Converters\StringToDoubleConverter.cs" />
+    <Compile Include="Converters\StringToIntegerConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Animations\BrushAnimation.cs" />
+    <Compile Include="Resources\Templates\CraftmenTemplates\GeneralCertificationTemp.xaml.cs">
+      <DependentUpon>GeneralCertificationTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\CraftmenTemplates\GeneralCraftmanTemp.xaml.cs">
+      <DependentUpon>GeneralCraftmanTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\CraftmenTemplates\GeneralCraftTemp.xaml.cs">
+      <DependentUpon>GeneralCraftTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\CraftmenTemplates\GeneralProjectTemp.xaml.cs">
+      <DependentUpon>GeneralProjectTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\CraftmenTemplates\GeneralRequestTemp.xaml.cs">
+      <DependentUpon>GeneralRequestTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\CraftmenTemplates\NewMemCertificationTemp.xaml.cs">
+      <DependentUpon>NewMemCertificationTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\CraftmenTemplates\NewMemCraftmanTemp.xaml.cs">
+      <DependentUpon>NewMemCraftmanTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\CraftmenTemplates\ReportCraftmanTemp.xaml.cs">
+      <DependentUpon>ReportCraftmanTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\CraftmenTemplates\ReportTemp.xaml.cs">
+      <DependentUpon>ReportTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\UsersTemplates\GeneralRequestTemp.xaml.cs">
+      <DependentUpon>GeneralRequestTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\UsersTemplates\GeneralUserTemp.xaml.cs">
+      <DependentUpon>GeneralUserTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Templates\UsersTemplates\NewMemUserTemp.xaml.cs">
+      <DependentUpon>NewMemUserTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeviceFamily-Desktop\AnalyzesView.xaml.cs">
+      <DependentUpon>AnalyzesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeviceFamily-Desktop\CraftmenView.xaml.cs">
+      <DependentUpon>CraftmenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeviceFamily-Desktop\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeviceFamily-Desktop\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeviceFamily-Desktop\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeviceFamily-Desktop\SignInView.xaml.cs">
+      <DependentUpon>SignInView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeviceFamily-Desktop\UsersView.xaml.cs">
+      <DependentUpon>UsersView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Images\contrast-standard\drill_174px.png" />
+    <Content Include="Assets\Images\contrast-standard\email_24px.png" />
+    <Content Include="Assets\Images\contrast-standard\facebook_66px.png" />
+    <Content Include="Assets\Images\contrast-standard\hammer_174px.png" />
+    <Content Include="Assets\Images\contrast-standard\info_24px.png" />
+    <Content Include="Assets\Images\contrast-standard\logo_400px.png" />
+    <Content Include="Assets\Images\contrast-standard\logo_48px.png" />
+    <Content Include="Assets\Images\contrast-standard\microsoft_66px.png" />
+    <Content Include="Assets\Images\contrast-standard\no_craftmen_500px.png" />
+    <Content Include="Assets\Images\contrast-standard\no_projects_200px.png" />
+    <Content Include="Assets\Images\contrast-standard\no_requests_200px.png" />
+    <Content Include="Assets\Images\contrast-standard\no_users_500px.png" />
+    <Content Include="Assets\Images\contrast-standard\no_wi-fi_500px.png" />
+    <Content Include="Assets\Images\contrast-standard\screwdriver_174px.png" />
+    <Content Include="Assets\Images\contrast-standard\small_triangles.png" />
+    <Content Include="Assets\Images\contrast-standard\star_16px.png" />
+    <Content Include="Assets\Images\contrast-standard\star_filled_16px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\admin_140px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\certification_300px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\craftman_120px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\craftman_160px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\craftman_200px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\personal_Identity_240px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\project_200px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\user_120px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\user_160px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\user_200px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-dark\wi_fi_off_500px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\admin_140px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\certification_300px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\craftman_120px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\craftman_160px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\craftman_200px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\personal_Identity_240px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\project_200px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\user_120px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\user_160px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\user_200px.png" />
+    <Content Include="Assets\Images\contrast-standard\theme-light\wi_fi_off_500px.png" />
+    <Content Include="Assets\Images\contrast-standard\triangles.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="StaticFiles\Security\PublicKey.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Authentication.Msal">
+      <Version>7.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="MaterialLibs">
+      <Version>0.1.31</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.12</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Connectivity">
+      <Version>7.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
+      <Version>7.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>7.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Media">
+      <Version>7.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
+      <Version>1.0.2.5</Version>
+    </PackageReference>
+    <PackageReference Include="winsdkfb">
+      <Version>0.15.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Arabic\Tajawal-Bold.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Arabic\Tajawal-Light.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\Arabic\Tajawal-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\English\Roboto-Bold.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\English\Roboto-Light.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\English\Roboto-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\ProjectName\giddyupstd.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\Brushes\AnalyzesBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\ButtonBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\CardBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\GridImageBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\InAppNotificationBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\ListGridViewBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\LoadingBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\NavigationViewItemBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\PathIconBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\ShadowBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\ShadowingTextBoxBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\SurfaceBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\TextBlockBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushes\TitleBarColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ConstValues\CornerRadiusValues.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ConstValues\RadiusValues.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ConstValues\ShadowValues.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Fonts\ArabicFonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Fonts\EnglishFonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Fonts\FontsPaths.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Fonts\ProjectNameFont.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons\AnalyzesIcons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons\CraftmenIcons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons\DashboardIcons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons\MainIcons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons\SettingsIcons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons\SignInIcons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons\UsersIcons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\ButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\CardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\CardViewStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\InAppNotificationStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\LoadingStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\NavigationViewItemStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\PathIconStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\ShadowingTextBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\ShadowPanelStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\ShadowStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\TextBlockStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\TextBoxesStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\CraftmenTemplates\GeneralCertificationTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\CraftmenTemplates\GeneralCraftmanTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\CraftmenTemplates\GeneralCraftTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\CraftmenTemplates\GeneralProjectTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\CraftmenTemplates\GeneralRequestTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\CraftmenTemplates\NewMemCertificationTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\CraftmenTemplates\NewMemCraftmanTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\CraftmenTemplates\ReportCraftmanTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\CraftmenTemplates\ReportTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\UsersTemplates\GeneralRequestTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\UsersTemplates\GeneralUserTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Templates\UsersTemplates\NewMemUserTemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DeviceFamily-Desktop\AnalyzesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DeviceFamily-Desktop\CraftmenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DeviceFamily-Desktop\DashboardView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DeviceFamily-Desktop\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DeviceFamily-Desktop\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DeviceFamily-Desktop\SignInView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DeviceFamily-Desktop\UsersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StaticFiles\Security\Public.pem" />
+    <PRIResource Include="Strings\en-US\UsersStrings.resw" />
+    <PRIResource Include="Strings\en-US\SignInStrings.resw" />
+    <PRIResource Include="Strings\en-US\SettingsStrings.resw" />
+    <PRIResource Include="Strings\en-US\MainStrings.resw" />
+    <PRIResource Include="Strings\en-US\DashboardStrings.resw" />
+    <PRIResource Include="Strings\en-US\CraftmenStrings.resw" />
+    <PRIResource Include="Strings\en-US\AnalyzesStrings.resw" />
+    <PRIResource Include="Strings\ar-SY\UsersStrings.resw" />
+    <PRIResource Include="Strings\ar-SY\SignInStrings.resw" />
+    <PRIResource Include="Strings\ar-SY\SettingsStrings.resw" />
+    <PRIResource Include="Strings\ar-SY\MainStrings.resw" />
+    <PRIResource Include="Strings\ar-SY\DashboardStrings.resw" />
+    <PRIResource Include="Strings\ar-SY\CraftmenStrings.resw" />
+    <PRIResource Include="Strings\ar-SY\AnalyzesStrings.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Images\AppIcons\" />
+    <Folder Include="Assets\Images\contrast-black\" />
+    <Folder Include="Assets\Images\contrast-high\" />
+    <Folder Include="Assets\Images\contrast-white\" />
+    <Folder Include="StaticFiles\Databases\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hearfi.Background\Hearfi.Background.csproj">
+      <Project>{bfc83a28-ba46-44d0-b165-b25b5ce6903c}</Project>
+      <Name>Hearfi.Background</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Herafi.Core\Herafi.Core.csproj">
+      <Project>{a70fa77c-375f-4fea-a066-309d65bc3a64}</Project>
+      <Name>Herafi.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

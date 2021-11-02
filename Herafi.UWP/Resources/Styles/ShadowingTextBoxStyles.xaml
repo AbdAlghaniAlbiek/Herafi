@@ -1,0 +1,45 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Styles"
+    xmlns:cont="using:Herafi.UWP.Controls">
+
+    <!--<ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///Resources/Brushes/ShadowingTextBoxBrushes.xaml"/>
+        <ResourceDictionary Source="ms-appx:///Resources/ConstValues/CornerRadiusValues.xaml"/>
+        <ResourceDictionary Source="ms-appx:///Resources/ConstValues/ShadowValues.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="NormalShadowingTextBox" TargetType="cont:ShadowingTextBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource ShadowPanelBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1.6"/>
+        <Setter Property="HeaderVisibility" Value="Collapsed"/>
+        <Setter Property="HeaderForeground" Value="{ThemeResource ShadowingTextBoxHeaderForegroundBrush}"/>
+        <Setter Property="IconForeground" Value="{ThemeResource ShadowingTextBoxIconBrush}"/>
+        <Setter Property="Padding" Value="12 8 12 8"/>
+        <Setter Property="InputScopeNameValues" Value="Text"/>
+        <Setter Property="ShadowColor" Value="{ThemeResource ShadowColor}"/>
+        <Setter Property="ShadowOffset" Value="{StaticResource ShadowingTextBoxShadowOffset}"/>
+        <Setter Property="ShadowBlur" Value="{StaticResource ShadowingTextBoxShadowBlur}"/>
+        <Setter Property="ShadowOpacity" Value="{StaticResource ShadowingTextBoxShadowOpacity}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}"/>
+    </Style>
+
+    <Style x:Key="PasswordShadowingTextBox" TargetType="cont:ShadowingTextBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource ShadowPanelBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1.6"/>
+        <Setter Property="HeaderVisibility" Value="Collapsed"/>
+        <Setter Property="HeaderForeground" Value="{ThemeResource ShadowingTextBoxHeaderForegroundBrush}"/>
+        <Setter Property="IconForeground" Value="{ThemeResource ShadowingTextBoxIconBrush}"/>
+        <Setter Property="Padding" Value="12 8 12 8"/>
+        <Setter Property="InputScopeNameValues" Value="Password"/>
+        <Setter Property="ShadowColor" Value="{ThemeResource ShadowColor}"/>
+        <Setter Property="ShadowOffset" Value="{StaticResource ShadowingTextBoxShadowOffset}"/>
+        <Setter Property="ShadowBlur" Value="{StaticResource ShadowingTextBoxShadowBlur}"/>
+        <Setter Property="ShadowOpacity" Value="{StaticResource ShadowingTextBoxShadowOpacity}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}"/>
+    </Style>-->
+
+</ResourceDictionary>

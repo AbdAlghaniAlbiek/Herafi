@@ -1,0 +1,46 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cont="using:Herafi.UWP.Controls">
+
+    <!--<ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///Resources/ConstValues/ShadowValues.xaml"/>
+        <ResourceDictionary Source="ms-appx:///Resources/Brushes/ShadowPanelBrushes.xaml"/>
+        <ResourceDictionary Source="ms-appx:///Resources/ConstValues/CornerRadiusValues.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <Style x:Key="NormalShadowPanel" TargetType="cont:ShadowPanel">
+        <Setter Property="Background" Value="{ThemeResource ShadowPanelBackgroundBrush}"/>
+        <Setter Property="ShadowOffset" Value="{StaticResource CardShadowOffset}"/>
+        <Setter Property="ShadowOpacity" Value="{StaticResource CardShadowOpacity}"/>
+        <Setter Property="ShadowBlur" Value="{StaticResource CardShadowBlur}"/>
+        <Setter Property="ShadowColor" Value="{ThemeResource ShadowColor}"/>
+        <Setter Property="BorderThickness" Value="0.2"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource ShadowPanelBorderBrush}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}"/>
+    </Style>
+
+    <Style x:Key="SignInMainCardShadowPanel" TargetType="cont:ShadowPanel">
+        <Setter Property="Background" Value="{ThemeResource ShadowPanelBackgroundBrush}"/>
+        <Setter Property="ShadowOffset" Value="{StaticResource SignInMainCardShadowOffset}"/>
+        <Setter Property="ShadowOpacity" Value="{StaticResource SignInMainCardShadowOpacity}"/>
+        <Setter Property="ShadowBlur" Value="{StaticResource SignInMainCardShadowBlur}"/>
+        <Setter Property="ShadowColor" Value="{ThemeResource ShadowColor}"/>
+        <Setter Property="BorderThickness" Value="0.2"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource ShadowPanelBorderBrush}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}"/>
+    </Style>
+
+    <Style x:Key="NavigationViewShadowPanel" TargetType="cont:ShadowPanel">
+        <Setter Property="Background" Value="{ThemeResource ShadowPanelBackgroundBrush}"/>
+        <Setter Property="ShadowOffset" Value="{StaticResource NavigationViewItemShadowOffset}"/>
+        <Setter Property="ShadowOpacity" Value="{StaticResource NavigationViewShadowOpacity}"/>
+        <Setter Property="ShadowBlur" Value="{StaticResource NavigationViewShadowBlur}"/> 
+        <Setter Property="ShadowColor" Value="{ThemeResource ShadowColor}"/>
+        <Setter Property="BorderThickness" Value="0.2"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource ShadowPanelBorderBrush}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}"/>
+    </Style>-->
+
+</ResourceDictionary>

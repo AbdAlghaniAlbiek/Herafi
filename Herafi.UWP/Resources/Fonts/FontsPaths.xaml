@@ -1,0 +1,22 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Fonts">
+    
+    <!--I used this way to have the full control in font family textblock to change it to another font when user select 
+        another language if he want-->
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <x:String x:Key="FontRegular">ms-appx:///Assets/Fonts/English/Roboto-Regular.ttf#Roboto</x:String>
+            <x:String x:Key="FontLight">ms-appx:///Assets/Fonts/English/Roboto-Light.ttf#Roboto</x:String>
+            <x:String x:Key="FontBold">ms-appx:///Assets/Fonts/English/Roboto-Bold.ttf#Roboto</x:String>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <x:String x:Key="FontRegular">ms-appx:///Assets/Fonts/English/Roboto-Regular.ttf#Roboto</x:String>
+            <x:String x:Key="FontLight">ms-appx:///Assets/Fonts/English/Roboto-Light.ttf#Roboto</x:String>
+            <x:String x:Key="FontBold">ms-appx:///Assets/Fonts/English/Roboto-Bold.ttf#Roboto</x:String>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+</ResourceDictionary>

@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="chBoxSignInKeepMeSig" xml:space="preserve">
+    <value>Keep me sign in</value>
+  </data>
+  <data name="compProcCardViewHeader" xml:space="preserve">
+    <value>Complete sign up process</value>
+  </data>
+  <data name="compProcCardViewMessage" xml:space="preserve">
+    <value>Do you want to be always sign in when get to your app?</value>
+  </data>
+  <data name="exitAppCardViewHeader" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="exitAppCardViewMessage" xml:space="preserve">
+    <value>Are you sure that you want to exit from your app?</value>
+  </data>
+  <data name="notifErroEmailPassword" xml:space="preserve">
+    <value>Your email or password isn't correct</value>
+  </data>
+  <data name="notifFillTextboxes" xml:space="preserve">
+    <value>Fill all textboxes to be able to continue</value>
+  </data>
+  <data name="notifIncorrCode" xml:space="preserve">
+    <value>The Inserted code isn't correct</value>
+  </data>
+  <data name="notifNoInternet" xml:space="preserve">
+    <value>You aren't connected to internet</value>
+  </data>
+  <data name="txtBoxFbEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="txtBoxFbName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="txtBoxFbNatNum" xml:space="preserve">
+    <value>National number</value>
+  </data>
+  <data name="txtBoxFbPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="txtBoxFbPhonNum" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="txtBoxMicEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="txtBoxMicName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="txtBoxMicNatNum" xml:space="preserve">
+    <value>National number</value>
+  </data>
+  <data name="txtBoxMicPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="txtBoxMicPhonNum" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="txtBoxSignInEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="txtBoxSignInPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="txtBoxSignUpEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="txtBoxSignUpName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="txtBoxSignUpNatNum" xml:space="preserve">
+    <value>National number</value>
+  </data>
+  <data name="txtBoxSignUpPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="txtBoxSignUpPhonNum" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="txtBoxVerifyCode" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="txtCaViCompProcNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="txtCaViCompProcOk" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="txtCaViExiAppCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="txtCaViExiAppOk" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="txtChoPicDesc" xml:space="preserve">
+    <value>Choose a picture for you and a picture for your personal identity</value>
+  </data>
+  <data name="txtChoPicTitle" xml:space="preserve">
+    <value>Choose Your Photos</value>
+  </data>
+  <data name="txtChPicContinueCont" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="txtFbDescription" xml:space="preserve">
+    <value>We have got only your Facebook's Identifier, please fill all these text boxes to get into Herafi system</value>
+  </data>
+  <data name="txtFbEmailErr" xml:space="preserve">
+    <value>Incorrect Email format (eg: example@gmail.com)</value>
+  </data>
+  <data name="txtFbNameErr" xml:space="preserve">
+    <value>Incorrect Name format (Only Characters eg: Ahmad Alsaid)</value>
+  </data>
+  <data name="txtFbNatNumErr" xml:space="preserve">
+    <value>Incorrect National number format (only numbers eg: 02060589756)</value>
+  </data>
+  <data name="txtFbPhonNumErr" xml:space="preserve">
+    <value>Incorrect Phone Number format (eg: +945 0996563512)</value>
+  </data>
+  <data name="txtFbSubmCont" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="txtMicDescription" xml:space="preserve">
+    <value>We have got only your Microsoft's Identifier, please fill all these text boxes to get into Herafi system</value>
+  </data>
+  <data name="txtMicEmailErr" xml:space="preserve">
+    <value>Incorrect Email format (eg: example@gmail.com)</value>
+  </data>
+  <data name="txtMicNameErr" xml:space="preserve">
+    <value>Incorrect Name format (Only Characters eg: Ahmad Alsaid)</value>
+  </data>
+  <data name="txtMicNatNumErr" xml:space="preserve">
+    <value>Incorrect National number format (only numbers eg: 02060589756)</value>
+  </data>
+  <data name="txtMicPhonNumErr" xml:space="preserve">
+    <value>Incorrect Phone Number format (eg: +945 0996563512)</value>
+  </data>
+  <data name="txtMicSubmCont" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="txtSignInChargeToMicFbDesc2" xml:space="preserve">
+    <value>OR you can use your Facebook or Microsoft accounts</value>
+  </data>
+  <data name="txtSignInChargeToSignUpDesc" xml:space="preserve">
+    <value>If you don't have an account you can here</value>
+  </data>
+  <data name="txtSignInChargeToSignUpDescrLink" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="txtSignInDesc" xml:space="preserve">
+    <value>Enter your information to access to Herafi system</value>
+  </data>
+  <data name="txtSignInDescForgPass" xml:space="preserve">
+    <value>Do you forget your password?</value>
+  </data>
+  <data name="txtSignInEmailErr" xml:space="preserve">
+    <value>Incorrect Email format (eg: example@gmail.com)</value>
+  </data>
+  <data name="txtSignInFbCont" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="txtSignInMicCont" xml:space="preserve">
+    <value>Microsoft</value>
+  </data>
+  <data name="txtSignInSubmCont" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="txtSignInTitle" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="txtSignUpDesc" xml:space="preserve">
+    <value>You don't have an account!  please submit your 
+account to access to Herafi system</value>
+  </data>
+  <data name="txtSignUpEmailErr" xml:space="preserve">
+    <value>Incorrect Email format (eg: example@gmail.com)</value>
+  </data>
+  <data name="txtSignUpNameErr" xml:space="preserve">
+    <value>Incorrect Name format (Only Characters eg: Ahmad Alsaid)</value>
+  </data>
+  <data name="txtSignUpNatNumErr" xml:space="preserve">
+    <value>Incorrect National number format (only numbers eg: 02060589756)</value>
+  </data>
+  <data name="txtSignUpPhonNumErr" xml:space="preserve">
+    <value>Incorrect Phone Number format (eg: 0996563512)</value>
+  </data>
+  <data name="txtSignUpSubmCont" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="txtSignUpTitle" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="txtToastConnWifi" xml:space="preserve">
+    <value>You connected to internet</value>
+  </data>
+  <data name="txtToastFillTextBoxesErr" xml:space="preserve">
+    <value>Fill all textboxes before continue</value>
+  </data>
+  <data name="txtToastNoWifi" xml:space="preserve">
+    <value>You aren't connected to internet</value>
+  </data>
+  <data name="txtToastPickPicErr" xml:space="preserve">
+    <value>Picks up a picture for your profile and picture for your personal identity</value>
+  </data>
+  <data name="txtVerifyDesc" xml:space="preserve">
+    <value>We send an email to you it has a code, please enter
+it inside text box</value>
+  </data>
+  <data name="txtVerifySendCont" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="txtVerifyTitle" xml:space="preserve">
+    <value>Verify Account</value>
+  </data>
+</root>

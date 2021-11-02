@@ -1,0 +1,49 @@
+﻿<UserControl
+    x:Class="Herafi.UWP.Resources.Templates.CraftmenTemplates.NewMemCertificationTemp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Templates.CraftmenTemplates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:conv="using:Herafi.UWP.Converters">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/CraftmenIcons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:ImageURLConverter x:Key="ImageURLConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Width="494"
+          Height="298">
+
+        <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+            <Rectangle Width="494"
+                       Height="298"
+                       Style="{StaticResource NormalCard}">
+            </Rectangle>
+        </cont:DropShadowPanel>
+
+        <Image HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Source="{StaticResource CertificationImage}"
+                   Stretch="Fill"
+                   Width="240"
+                   Height="240"/>
+
+        <Rectangle
+                   Width="494"
+                   Height="298"
+                   RadiusX="{StaticResource SmallRadius}"
+                   RadiusY="{StaticResource SmallRadius}">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="{x:Bind ImagePath, Mode=OneWay, Converter={StaticResource ImageURLConverter}, ConverterParameter=Image-Craftman}" Stretch="Fill" />
+            </Rectangle.Fill>
+        </Rectangle>
+    </Grid>
+</UserControl>

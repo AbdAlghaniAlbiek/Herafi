@@ -1,0 +1,437 @@
+﻿<UserControl
+    x:Class="Herafi.UWP.Resources.Templates.UsersTemplates.NewMemUserTemp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Templates.UsersTemplates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" 
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:temp="using:Herafi.UWP.Resources.Templates.CraftmenTemplates"
+    xmlns:model="using:Herafi.Core.Models"
+    xmlns:conv="using:Herafi.UWP.Converters"
+    x:Name="userCon">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/UsersIcons.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/GridImageBrushes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:ImageURLConverter x:Key="ImageURLConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <cont:Expander HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Width="1006"
+                       Background="Transparent"
+                       IsExpanded="False"
+                       CornerRadius="{StaticResource SmallCornerRadius}">
+
+            <cont:Expander.HeaderStyle>
+                <Style TargetType="ToggleButton">
+                    <Setter Property="Height" Value="66"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalAlignment" Value="Stretch"/>
+                </Style>
+            </cont:Expander.HeaderStyle>
+
+            <!--Header of expander-->
+            <cont:Expander.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400"/>
+                        <ColumnDefinition Width="600"/>
+                    </Grid.ColumnDefinitions>
+
+                    <cont:DropShadowPanel Style="{StaticResource CardShadow}" Grid.ColumnSpan="2">
+                        <Rectangle Width="1000" Height="58" Style="{StaticResource NormalCard}"/>
+                    </cont:DropShadowPanel>
+
+                    <!--Name & Image-->
+                    <StackPanel Orientation="Horizontal">
+
+                        <!--Image-->
+                        <Grid HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="12 0 0 0">
+                            <Ellipse Width="42"
+                                        Height="42"
+                                        Fill="Transparent"
+                                        StrokeThickness="2"
+                                        Stroke="{ThemeResource GridImageBorderBrush}"/>
+
+                            <PathIcon Data="{StaticResource User}"
+                                          Style="{StaticResource NormalPathIcon}"
+                                          Margin="0 0 0 0"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"/>
+
+                            <cont:ImageEx Stretch="Fill"
+                                              Source="{x:Bind ProfileUser.ProfileImage, Mode=OneWay, Converter={StaticResource ImageURLConverter}, ConverterParameter=ImageEx-User}"
+                                              CornerRadius="40" 
+                                              Background="Transparent"
+                                              Width="42"
+                                              Height="42"/>
+                        </Grid>
+
+                        <!--Name-->
+                        <TextBlock 
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Margin="12 0 0 0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                Text="{x:Bind ProfileUser.Name}"/>
+
+                    </StackPanel>
+
+                    <!--ID-->
+                    <TextBlock  Style="{StaticResource BodyTextBlockStyle}"
+                                HorizontalAlignment="Left"
+                                Grid.Column="1"
+                                VerticalAlignment="Center">
+                            <Run x:Name="txtNewMemCardID" Text="ID: "/><Run Text="{x:Bind ProfileUser.Id, Mode=OneWay}"/>
+                    </TextBlock>
+
+                    <!--Show more information-->
+                    <TextBlock x:Name="txtNewMemCardShMoreInfo"
+                        Text="Show more information"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   Grid.Column="1"
+                                   Margin="0 0 40 0"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+
+                    <PathIcon Style="{StaticResource NormalPathIcon}"
+                            Data="{StaticResource ExpanderArrow}"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="0 0 8 0"/>
+                </Grid>
+            </cont:Expander.Header>
+
+            <!--Content of expander-->
+            <StackPanel Margin="0 20 0 20"
+                        Height="392">
+
+                <!--profile and personal identity images and more info-->
+                <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+
+                    <!--Profile image-->
+                    <Grid HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="208"
+                            Height="208">
+                        <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                            <Ellipse Width="208"
+                                        Height="208"
+                                        Style="{StaticResource NormalRoundedCard}"/>
+                        </cont:DropShadowPanel>
+
+                        <Image Stretch="Fill"
+                                Width="120"
+                                Height="120"
+                                Source="{StaticResource UserProfileImage}"/>
+
+                        <Ellipse HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Width="208"
+                                        Height="208">
+                            <Ellipse.Fill>
+                                <ImageBrush Stretch="Fill" ImageSource="{x:Bind ProfileUser.ProfileImage, Mode=OneWay, Converter={StaticResource ImageURLConverter}, ConverterParameter=Image-User}"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Grid>
+
+                    <!--Peronal identity image-->
+                    <Grid Margin="40 0 0 0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="407"
+                            Height="208">
+                        <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                            <Rectangle Width="407"
+                                        Height="208"
+                                        Style="{StaticResource NormalCard}"/>
+                        </cont:DropShadowPanel>
+
+                        <Image Stretch="Fill"
+                                Width="160"
+                                Height="160"
+                                Source="{StaticResource UserProfileImage}"/>
+
+                        <Rectangle HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        RadiusX="{StaticResource SmallRadius}"
+                                        RadiusY="{StaticResource SmallRadius}"
+                                        Width="407"
+                                        Height="208">
+                            <Rectangle.Fill>
+                                <ImageBrush Stretch="Fill" ImageSource="{x:Bind ProfileUser.ProfileImage, Mode=OneWay, Converter={StaticResource ImageURLConverter}, ConverterParameter=Image-User}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                    </Grid>
+
+                    <!--Profile more info-->
+                    <StackPanel Margin="36 0 0 0">
+
+                        <!--Name-->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <PathIcon Grid.RowSpan="2"
+                                    Style="{StaticResource NormalPathIcon}"
+                                    Data="{StaticResource Name}"/>
+
+                            <TextBlock x:Name="txtNewMemCardName"
+                                    Grid.Column="1"
+                                    Style="{StaticResource CaptionAltTextBlockStyle}"
+                                    Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                    Margin="10 0 0 6"
+                                    Text="Name"/>
+
+                            <TextBlock Grid.Column="1"
+                                    Grid.Row="1"
+                                    Style="{StaticResource BodyTextBlockStyle}"
+                                    Margin="10 0 0 0"
+                                    Text="{x:Bind ProfileUser.Name}"/>
+                        </Grid>
+
+                        <!--Email-->
+                        <Grid Margin="0 18 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <PathIcon Grid.RowSpan="2"
+                                    Style="{StaticResource NormalPathIcon}"
+                                    Data="{StaticResource Email}"/>
+
+                            <TextBlock x:Name="txtNewMemCardEmail"
+                                Grid.Column="1"
+                                    Style="{StaticResource CaptionAltTextBlockStyle}"
+                                    Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                    Margin="10 0 0 6"
+                                    Text="Email"/>
+
+                            <TextBlock Grid.Column="1"
+                                    Grid.Row="1"
+                                    Style="{StaticResource BodyTextBlockStyle}"
+                                    Margin="10 0 0 0"
+                                    Text="{x:Bind ProfileUser.Email}"/>
+                        </Grid>
+
+                        <!--More info-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Vertical">
+
+                                <!--Phone number-->
+                                <Grid Margin="0 18 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                    Style="{StaticResource NormalPathIcon}"
+                                    Data="{StaticResource PhoneNumber}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                                x:Name="txtNewMemCardPhonNum"
+                                    Style="{StaticResource CaptionAltTextBlockStyle}"
+                                    Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                    Margin="10 0 0 6"
+                                    Text="Phone number"/>
+
+                                    <TextBlock Grid.Column="1"
+                                    Grid.Row="1"
+                                    Style="{StaticResource BodyTextBlockStyle}"
+                                    Margin="10 0 0 0"
+                                    Text="{x:Bind ProfileUser.PhoneNumber}"/>
+                                </Grid>
+
+                                <!--National number-->
+                                <Grid Margin="0 18 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                    Style="{StaticResource NormalPathIcon}"
+                                    Data="{StaticResource NationalNumber}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                                x:Name="txtNewMemCardNatNum"
+                                    Style="{StaticResource CaptionAltTextBlockStyle}"
+                                    Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                    Margin="10 0 0 6"
+                                    Text="National number"/>
+
+                                    <TextBlock Grid.Column="1"
+                                    Grid.Row="1"
+                                    Style="{StaticResource BodyTextBlockStyle}"
+                                    Margin="10 0 0 0"
+                                    Text="{x:Bind ProfileUser.NationalNumber}"/>
+                                </Grid>
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical"
+                                Grid.Column="1"
+                                Margin="44 0 0 0">
+
+                                <!--Date join-->
+                                <Grid Margin="0 18 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                    Style="{StaticResource NormalPathIcon}"
+                                    Data="{StaticResource DateJoin}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                                x:Name="txtNewMemCardDatJoin"
+                                    Style="{StaticResource CaptionAltTextBlockStyle}"
+                                    Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                    Margin="10 0 0 6"
+                                    Text="Date join"/>
+
+                                    <TextBlock Grid.Column="1"
+                                    Grid.Row="1"
+                                    Style="{StaticResource BodyTextBlockStyle}"
+                                    Margin="10 0 0 0"
+                                    Text="{x:Bind ProfileUser.DateJoin}"/>
+                                </Grid>
+
+                                <!--City-->
+                                <Grid Margin="0 18 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                    Style="{StaticResource NormalPathIcon}"
+                                    Data="{StaticResource City}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                                x:Name="txtNewMemCardCity"
+                                    Style="{StaticResource CaptionAltTextBlockStyle}"
+                                    Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                    Margin="10 0 0 6"
+                                    Text="City"/>
+
+                                    <TextBlock Grid.Column="1"
+                                    Grid.Row="1"
+                                    Style="{StaticResource BodyTextBlockStyle}"
+                                    Margin="10 0 0 0"
+                                    Text="{x:Bind ProfileUser.City}"/>
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <!--Choosing the level of craftman and accept/refuse him in Herafi system-->
+                <StackPanel Orientation="Vertical"
+                        Margin="0 48 0 0"
+                        Grid.Row="2"
+                        HorizontalAlignment="Stretch">
+
+                    <!--a message to admin to acceptance or refuse this user-->
+                    <TextBlock Style="{StaticResource SubtitleTextBlockStyle}">
+                            <Run x:Name="txtNewMemCardAccRefUser" Text="Do you Admin accept this User ("/><Run Text="{x:Bind ProfileUser.Name}"/><Run x:Name="txtNewMemCardAccRefUser2" Text=") in Herafi system ?"/>
+                    </TextBlock>
+
+                    <!--Accept & Refuse buttons-->
+                    <Grid Margin="0 50 0 0"
+                            HorizontalAlignment="Center">
+
+                        <!--Accept buttons-->
+                        <Button x:Name="btnAcceptUser"
+                            Style="{StaticResource AcceptButton}"
+                            Margin="0 0 156 0"
+                            HorizontalAlignment="Center"
+                            Width="126"
+                            Height="46">
+                            <Button.Content>
+                                <TextBlock x:Name="txtNewMemAcc"
+                                        Style="{StaticResource SubtitleTextBlockStyle}"
+                                        Text="Accept"
+                                        Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                            </Button.Content>
+                        </Button>
+
+                        <!--Refuse buttons-->
+                        <Button  x:Name="btnRefuseUser"
+                            Style="{StaticResource RefuseButton}"
+                            HorizontalAlignment="Center"
+                            Margin="156 0 0 0"
+                            Width="126"
+                            Height="46">
+                            <Button.Content>
+                                <TextBlock x:Name="txtNewMemRef"
+                                        Style="{StaticResource SubtitleTextBlockStyle}"
+                                        Text="Refuse"
+                                        Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </cont:Expander>
+    </Grid>
+</UserControl>

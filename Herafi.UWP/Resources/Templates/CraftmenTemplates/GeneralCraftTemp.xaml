@@ -1,0 +1,96 @@
+﻿<UserControl
+    x:Class="Herafi.UWP.Resources.Templates.CraftmenTemplates.GeneralCraftTemp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Templates.CraftmenTemplates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+    xmlns:model="using:Herafi.Core.Models"
+    x:Name="userCon">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/CraftmenIcons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <cont:Expander HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Width="291"
+                       IsExpanded="False"
+                       Background="Transparent"
+                       CornerRadius="{StaticResource SmallCornerRadius}">
+            
+            <cont:Expander.HeaderStyle>
+                <Style TargetType="ToggleButton">
+                    <Setter Property="Height" Value="46"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalAlignment" Value="Stretch"/>
+                </Style>
+            </cont:Expander.HeaderStyle>
+
+            <!--Header of expander-->
+            <cont:Expander.Header>
+                <Grid>
+                    <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                        <Rectangle Width="285" Height="38" Style="{StaticResource NormalCard}"/>
+                    </cont:DropShadowPanel>
+
+                    <TextBlock Text="{x:Bind  Craft.Name, Mode=OneWay}"
+                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                   Margin="16 0 0 0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"/>
+
+                    <PathIcon Style="{StaticResource NormalPathIcon}"
+                                  Data="{StaticResource ExpanderArrow}"
+                                   Grid.Column="1"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  Margin="0 0 8 0"/>
+                </Grid>
+            </cont:Expander.Header>
+
+            <!--content of expander-->
+            <Grid  Width="291">
+                <ListView HorizontalAlignment="Left"
+                      VerticalAlignment="Stretch"
+                      Background="Transparent"
+                      SelectionMode="None"
+                      IsItemClickEnabled="False"
+                      Margin="14 12 0 8"
+                      ItemsSource="{x:Bind Craft.Skills, Mode=OneWay}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="0"/>
+
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Mode=OneWay}"
+                                   Style="{StaticResource BodyTextBlockStyle}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </Grid>
+           
+                
+            </cont:Expander>
+
+    </Grid>
+</UserControl>

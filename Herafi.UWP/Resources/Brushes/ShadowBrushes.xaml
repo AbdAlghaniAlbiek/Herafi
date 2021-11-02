@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <Color x:Key="NormalShadowColor">#000000</Color>
+            <Color x:Key="NavigationViewItemShadowColor">#2B62AB</Color>
+            <Color x:Key="TabViewItemShadowColor">#2B62AB</Color>
+            <Color x:Key="NormalButtonShadowColor">#2B62AB</Color>
+            <Color x:Key="AcceptButtonShadowColor">#25CF12</Color>
+            <Color x:Key="RefuseButtonShadowColor">#E4663F</Color>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <Color x:Key="NormalShadowColor">#000000</Color>
+            <Color x:Key="NavigationViewItemShadowColor">#B9D5FC</Color>
+            <Color x:Key="TabViewItemShadowColor">#B9D5FC</Color>
+            <Color x:Key="NormalButtonShadowColor">#B9D5FC</Color>
+            <Color x:Key="AcceptButtonShadowColor">#90FF82</Color>
+            <Color x:Key="RefuseButtonShadowColor">#FC9E81</Color>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+    
+    
+    
+</ResourceDictionary>

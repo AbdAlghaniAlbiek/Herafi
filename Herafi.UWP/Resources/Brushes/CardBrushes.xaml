@@ -1,0 +1,41 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Brushes">
+
+    <Color x:Key="CardBackgroundLight">#FFFFFF</Color>
+    <Color x:Key="CardBackgroundPointerHoverLight">#F8F8F8</Color>
+    <Color x:Key="CardBackgroundPointerPressedLight">#EFEFEF</Color>
+
+    <Color x:Key="CardBackgroundlDark">#4E4E4E</Color>
+    <Color x:Key="CardBackgroundPointerHoverDark">#6B6B6B</Color>
+    <Color x:Key="CardBackgroundPointerPressedDark">#828282</Color>
+
+    <Color x:Key="CardBorderColor">#383132</Color>
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource CardBackgroundLight}"/>
+            <SolidColorBrush x:Key="CardBackgroundPointerHoverBrush" Color="{StaticResource CardBackgroundPointerHoverLight}"/>
+            <SolidColorBrush x:Key="CardBackgroundPressedBrush" Color="{StaticResource CardBackgroundPointerPressedLight}"/>
+
+            <Color x:Key="CardBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="CardBackgroundPointerHoverColor">#F8F8F8</Color>
+            <Color x:Key="CardBackgroundPointerPressedColor">#EFEFEF</Color>
+
+            <SolidColorBrush x:Key="CardBorderBrush" Color="{StaticResource CardBorderColor}"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource CardBackgroundlDark}"/>
+            <SolidColorBrush x:Key="CardBackgroundPointerHoverBrush" Color="{StaticResource CardBackgroundPointerHoverDark}"/>
+            <SolidColorBrush x:Key="CardBackgroundPressedBrush" Color="{StaticResource CardBackgroundPointerPressedDark}"/>
+
+            <Color x:Key="CardBackgroundColor">#4E4E4E</Color>
+            <Color x:Key="CardBackgroundPointerHoverColor">#6B6B6B</Color>
+            <Color x:Key="CardBackgroundPointerPressedColor">#828282</Color>
+
+            <SolidColorBrush x:Key="CardBorderBrush" Color="{StaticResource CardBorderColor}"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+</ResourceDictionary>

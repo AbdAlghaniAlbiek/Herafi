@@ -1,0 +1,1065 @@
+﻿<Page
+    x:Class="Herafi.UWP.Views.DeviceFamily_Desktop.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Views.DeviceFamily_Desktop"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource SurfaceBrush}"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:vm="using:Herafi.Core.ViewModels"
+    xmlns:conv="using:Herafi.UWP.Converters"
+    xmlns:mat="using:MaterialLibs.Controls">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/SettingsIcons.xaml"/>
+
+                <ResourceDictionary Source="ms-appx:///Resources/Fonts/ArabicFonts.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Fonts/EnglishFonts.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Fonts/FontsPaths.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:ImageURLConverter x:Key="ImageURLConverter"/>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:SettingsViewModel x:Name="settingsViewModel"/>
+    </Page.DataContext>
+
+    <Grid>
+
+        <!--Profile, About, languages, sound, signed with, themes-->
+        <ScrollViewer  Padding="12 0">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Profile section and about-->
+                <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Top">
+
+                    <!--Profile title-->
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="txtProfileTitle"
+                               Style="{StaticResource SubtitleTextBlockStyle}"
+                               Text="Profile"
+                               Margin="0 8 0 0"
+                               VerticalAlignment="Center"/>
+
+                        <!--Button modify-->
+                        <Button Style="{StaticResource MicrosoftFacebookButton}"
+                            Width="108"
+                            Height="40"
+                            Margin="20 12 0 0"
+                            x:Name="btnModify">
+
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <PathIcon Data="{StaticResource Modify}"
+                                          VerticalAlignment="Center"
+                                          Style="{StaticResource NormalPathIcon}">
+                                        <PathIcon.Foreground>
+                                            <SolidColorBrush Color="{ThemeResource SystemAccentColor}"/>
+                                        </PathIcon.Foreground>
+                                    </PathIcon>
+
+                                    <TextBlock
+                                            Style="{StaticResource BodyTextBlockStyle}"
+                                           VerticalAlignment="Center"
+                                           Margin="10 0 0 0"
+                                           Text="Modify"
+                                           FontSize="16"
+                                           x:Name="txtModify"/>
+                                </StackPanel>
+                            </Button.Content>
+
+                        </Button>
+
+                    </StackPanel>
+
+                    <!--Profile images and details-->
+                    <Grid Margin="0 32 0 0">
+
+                        <!--Profile and personal identity images and admin details-->
+                        <StackPanel>
+
+                            <!--Profile and personal identity images-->
+                            <StackPanel Orientation="Horizontal">
+
+                                <!--Profile image-->
+                                <Grid HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Width="208"
+                      Height="208">
+                                    <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                                        <Ellipse Width="208"
+                                 Height="208"
+                                 Style="{StaticResource NormalRoundedCard}"/>
+                                    </cont:DropShadowPanel>
+
+                                    <Image Stretch="Fill"
+                           Width="120"
+                           Height="120"
+                           Source="{StaticResource AdminImage}"/>
+
+                                    <cont:ImageEx HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch"
+                                  CornerRadius="140"
+                                 Stretch="Fill"
+                                 Source="{Binding Admin.ProfileImage, Converter={StaticResource ImageURLConverter}, ConverterParameter=ImageEx-Admin}"/>
+                                </Grid>
+
+                                <!--Peronal identity image-->
+                                <Grid Margin="40 0 0 0"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Width="407"
+                      Height="208">
+                                    <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                                        <Rectangle Width="407"
+                                  Height="208"
+                                  Style="{StaticResource NormalCard}"/>
+                                    </cont:DropShadowPanel>
+
+                                    <Image Stretch="Fill"
+                           Width="160"
+                           Height="160"
+                           Source="{StaticResource AdminImage}"/>
+
+                                    <cont:ImageEx HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Stretch="Fill"
+                                   CornerRadius="{StaticResource SmallCornerRadius}"
+                                   Source="{Binding Admin.PersonalIdentityImage, Converter={StaticResource ImageURLConverter}, ConverterParameter=ImageEx-Admin}"/>
+                                </Grid>
+
+                            </StackPanel>
+
+                            <!--More info about admin-->
+                            <Grid Margin="0 18 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Name-->
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Name}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                           x:Name="txtName"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Name"/>
+
+                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding Admin.Name}"/>
+                                </Grid>
+
+                                <!--Email-->
+                                <Grid Grid.Row="1"
+                      Margin="0 18 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Email}"/>
+
+                                    <TextBlock x:Name="txtEmail"
+                                    Grid.Column="1"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Email"/>
+
+                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding Admin.Email}"/>
+                                </Grid>
+
+                                <!--Phone number-->
+                                <Grid Grid.Column="1"
+                      Margin="60 0 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource PhoneNumber}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                           x:Name="txtPhoneNumber"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Phone number"/>
+
+                                    <TextBlock 
+                                    Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding Admin.PhoneNumber}"/>
+                                </Grid>
+
+                                <!--National number-->
+                                <Grid Grid.Row="1"
+                      Grid.Column="1"
+                      Margin="60 18 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource NationalNumber}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                           x:Name="txtNationalNumber"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="National number"/>
+
+                                    <TextBlock 
+                                    Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding Admin.NationalNumber}"/>
+                                </Grid>
+
+                                <!--Date Join-->
+                                <Grid Grid.Column="2"
+                      Margin="60 0 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource DateJoin}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                           x:Name="txtDateJoin"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Date Join"/>
+
+                                    <TextBlock 
+                                    Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding Admin.DateJoin}"/>
+                                </Grid>
+
+                                <!--City-->
+                                <Grid Grid.Row="1"
+                      Grid.Column="2"
+                      Margin="60 18 0 0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <PathIcon Grid.RowSpan="2"
+                              Style="{StaticResource NormalPathIcon}"
+                              Data="{StaticResource City}"/>
+
+                                    <TextBlock Grid.Column="1"
+                                           x:Name="txtCity"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="City"/>
+
+                                    <TextBlock 
+                                    Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding Admin.City}"/>
+                                </Grid>
+
+                            </Grid>
+
+                        </StackPanel>
+
+                        <!--Displaying a content that you aren't connected to internet-->
+                        <Grid VerticalAlignment="Stretch"
+                          x:Name="NoWifiSettings"
+                          HorizontalAlignment="Stretch"
+                          Visibility="Collapsed"
+                          Background="{ThemeResource SurfaceBrush}">
+
+                            <StackPanel 
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Visibility="Visible">
+
+                                <Image Stretch="Fill"
+                    Width="200"
+                    Height="200"
+                    Source="{ThemeResource WifiOff}"/>
+
+                                <TextBlock x:Name="txtNoWifiSettings"
+                        Style="{StaticResource SubtitleAltTextBlockStyle}"
+                        Text="You aren't connected to internet"
+                        Margin="0 40 0 0"
+                        HorizontalAlignment="Center"/>
+
+                                <Button x:Name="btnNoWifiSettings"
+                    Style="{StaticResource MicrosoftFacebookButton}"
+                    Margin="0 20 0 0"
+                    Height="40"
+                    Width="100"
+                    HorizontalAlignment="Center">
+                                    <Button.Content>
+                                        <TextBlock x:Name="txtBtnNoWifiSettings"
+                                Text="Retry again"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource BodyTextBlockStyle}"/>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+
+                        <!--Loading progress-->
+                        <cont:Loading Style="{StaticResource LoadingDataStyle}" 
+                                  x:Name="loadingData"
+                                  Width="200"
+                                  Height="200"/>
+
+                    </Grid>
+
+                    <!--About section-->
+                    <StackPanel Margin="0 50 0 0">
+
+                        <TextBlock x:Name="txtAboutTitle"
+                        Style="{StaticResource SubtitleTextBlockStyle}"
+                       Text="About"/>
+
+                        <TextBlock  x:Name="txtAboutDesc"
+                        Style="{StaticResource BodyTextBlockStyle}"
+                       HorizontalAlignment="Left"
+                       Width="600"
+                       TextWrapping="Wrap"
+                       Height="54"
+                       Margin="0 12 0 0"
+                       Text="This application only for administrators that accept new users and craftmen that engage in building this ecosystem,  this app give admins overview about what happening inside this system"/>
+
+                        <HyperlinkButton x:Name="hypLinkPrivPolic"
+                       Margin="0 12 0 0"
+                       Padding="0"
+                       NavigateUri="https://www.privacypolicygenerator.info/live.php?token=00QydaXDtfghLAXq2nuV6vvGCZZbB8yy"
+                       Content="Privacy and policy"/>
+
+                        <HyperlinkButton x:Name="hypLinkCondTerm"
+                       Padding="0"
+                       NavigateUri="https://www.termsandconditionsgenerator.com/live.php?token=F07g4TGgbnbTaQCZ7YCIn8IIm5GPvVvW"
+                       Margin="0 6 0 0"
+                       Content="Conditions and terms"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <!--Sound, Themes, Signed with and Languages-->
+                <StackPanel Grid.Column="1"
+                            Margin="74 0 0 0">
+
+                    <!--Themes-->
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock x:Name="txtThemesTitle"
+                            Style="{StaticResource SubtitleTextBlockStyle}"
+                            Text="Themes"/>
+
+                        <!--System-->
+                        <StackPanel Orientation="Horizontal"
+                            x:Name="systemTheme"
+                            Margin="0 14 0 0">
+
+                            <StackPanel.Resources>
+
+                                <!--Normal state-->
+                                <Storyboard x:Name="SystemThemeNormal">
+                                    <ColorAnimation Storyboard.TargetName="patIcoSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetName="txtSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                </Storyboard>
+
+                                <!--Pointer over state-->
+                                <Storyboard x:Name="SystemThemePointerOver">
+                                    <ColorAnimation Storyboard.TargetName="patIcoSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetName="txtSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                </Storyboard>
+
+                                <!--Pressed state-->
+                                <Storyboard x:Name="SystemThemePressed">
+                                    <ColorAnimation Storyboard.TargetName="patIcoSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetName="txtSystem"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                </Storyboard>
+
+                            </StackPanel.Resources>
+
+                            <PathIcon Style="{StaticResource NormalPathIcon}"
+                              Width="24"
+                              Height="24"
+                              x:Name="patIcoSystem"
+                              Data="{StaticResource System}"/>
+                            <TextBlock x:Name="txtSystem"
+                               Style="{StaticResource SubtitleAltTextBlockStyle}"
+                               Margin="8 0 0 0"
+                               Text="System"
+                               VerticalAlignment="Top"
+                               FontSize="17"/>
+                        </StackPanel>
+
+                        <!--Light-->
+                        <StackPanel Orientation="Horizontal"
+                            x:Name="lightTheme"
+                            Margin="0 16 0 0">
+
+                            <StackPanel.Resources>
+
+                                <!--Normal state-->
+                                <Storyboard x:Name="LightThemeNormal">
+                                    <ColorAnimation Storyboard.TargetName="patIcoLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetName="txtLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                </Storyboard>
+
+                                <!--Pointer over state-->
+                                <Storyboard x:Name="LightThemePointerOver">
+                                    <ColorAnimation Storyboard.TargetName="patIcoLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetName="txtLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                </Storyboard>
+
+                                <!--Pressed state-->
+                                <Storyboard x:Name="LightThemePressed">
+                                    <ColorAnimation Storyboard.TargetName="patIcoLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetName="txtLight"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                </Storyboard>
+
+                            </StackPanel.Resources>
+
+                            <PathIcon Style="{StaticResource NormalPathIcon}"
+                              Width="24"
+                              Height="24"
+                              x:Name="patIcoLight"
+                              Data="{StaticResource Light}"/>
+                            <TextBlock Style="{StaticResource SubtitleAltTextBlockStyle}"
+                               Margin="8 0 0 0"
+                               Text="Light"
+                               x:Name="txtLight"
+                               FontSize="17"
+                               VerticalAlignment="Top"/>
+                        </StackPanel>
+
+                        <!--Dark-->
+                        <StackPanel Orientation="Horizontal"
+                            Margin="0 16 0 0"
+                            x:Name="darkTheme">
+
+                            <StackPanel.Resources>
+                                <!--Normal state-->
+                                <Storyboard x:Name="DarkThemeNormal">
+                                    <ColorAnimation Storyboard.TargetName="patIcoDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetName="txtDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                </Storyboard>
+
+                                <!--Pointer over state-->
+                                <Storyboard x:Name="DarkThemePointerOver">
+                                    <ColorAnimation Storyboard.TargetName="patIcoDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetName="txtDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                </Storyboard>
+
+                                <!--Pressed state-->
+                                <Storyboard x:Name="DarkThemePressed">
+                                    <ColorAnimation Storyboard.TargetName="patIcoDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    <ColorAnimation Storyboard.TargetName="txtDark"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                </Storyboard>
+                            </StackPanel.Resources>
+
+                            <PathIcon Style="{StaticResource NormalPathIcon}"
+                              Width="24"
+                              Height="24"
+                              Data="{StaticResource Dark}"
+                              x:Name="patIcoDark"/>
+                            <TextBlock Style="{StaticResource SubtitleAltTextBlockStyle}"
+                               Margin="8 0 0 0"
+                               Text="Dark"
+                               x:Name="txtDark"
+                               FontSize="17"
+                               VerticalAlignment="Top"/>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <!--Sound-->
+                    <StackPanel Orientation="Vertical"
+                            Margin="0 60 0 0">
+
+                        <TextBlock x:Name="txtSoundTitle"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Text="Sound"/>
+
+                        <ToggleSwitch x:Name="togSwiSound"
+                                  Margin="0 14 0 0"/>
+
+                        <CheckBox x:Name="cheBoxSpatialAudio"
+                              Margin="0 16 0 0"
+                              IsEnabled="False"
+                              Content="Spatial Audio"/>
+                    </StackPanel>
+
+                    <!--Signed with-->
+                    <StackPanel Orientation="Vertical"
+                            Margin="0 60 0 0">
+
+                        <!--Title-->
+                        <TextBlock x:Name="txtSignedWithTitle"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Text="Signed with"/>
+
+                        <!--Your Email, Facebook , Microsoft-->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Your Email-->
+                            <Image Width="24"
+                               Height="24"
+                               Stretch="None"
+                               Margin="0 14 0 0"
+                               Source="{StaticResource YourEmail}"/>
+                            <TextBlock x:Name="txtYourEmail"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="8 14 0 0"
+                                   Text="Your email"
+                                   Grid.Column="1"/>
+                            <PathIcon x:Name="patIcoYourEmail"
+                                  extensions:FrameworkElementExtensions.Cursor="Hand"
+                                  Style="{StaticResource NormalPathIcon}"
+                                  Data="{StaticResource Add}"
+                                  Foreground="{ThemeResource NormalPathIconForegroundBrush}"
+                                  Margin="28 14 0 0"
+                                  Grid.Column="2">
+
+                                <PathIcon.Resources>
+
+                                    <!--Normal state-->
+                                    <Storyboard x:Name="PatIcoYourEmailNormal">
+                                        <ColorAnimation Storyboard.TargetName="patIcoYourEmail"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pointer over state-->
+                                    <Storyboard x:Name="PatIcoYourEmailPointerOver">
+                                        <ColorAnimation Storyboard.TargetName="patIcoYourEmail"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pressed state-->
+                                    <Storyboard x:Name="PatIcoYourEmailPressed">
+                                        <ColorAnimation Storyboard.TargetName="patIcoYourEmail"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                </PathIcon.Resources>
+                            </PathIcon>
+
+                            <!--Facebook-->
+                            <Image Width="24"
+                           Height="24"
+                           Stretch="Fill"
+                           Margin="0 16 0 0"
+                               Grid.Row="1"
+                           Source="{StaticResource Facebook}"/>
+                            <TextBlock x:Name="txtFacebook" 
+                                  Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="8 16 0 0"
+                                   Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="Facebook"/>
+                            <PathIcon x:Name="patIcoFacebook"
+                              Style="{StaticResource NormalPathIcon}"
+                              Data="{StaticResource Add}"
+                                  Grid.Row="1"
+                                  Grid.Column="2"
+                              Margin="28 16 0 0"
+                              extensions:FrameworkElementExtensions.Cursor="Hand">
+
+                                <PathIcon.Resources>
+
+                                    <!--Normal state-->
+                                    <Storyboard x:Name="PatIcoFacebookNormal">
+                                        <ColorAnimation Storyboard.TargetName="patIcoFacebook"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pointer over state-->
+                                    <Storyboard x:Name="PatIcoFacebookPointerOver">
+                                        <ColorAnimation Storyboard.TargetName="patIcoFacebook"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pressed state-->
+                                    <Storyboard x:Name="PatIcoFacebookPressed">
+                                        <ColorAnimation Storyboard.TargetName="patIcoFacebook"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                </PathIcon.Resources>
+
+                            </PathIcon>
+
+                            <!--Microsoft-->
+                            <Image Width="24"
+                           Height="24"
+                           Stretch="Fill"
+                           Margin="0 16 0 0"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           Source="{StaticResource Microsoft}"/>
+                            <TextBlock x:Name="txtMicrosoft"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   VerticalAlignment="Center"
+                                   Margin="8 16 0 0"
+                                   Text="Microsoft"
+                                    Grid.Row="2"
+                                    Grid.Column="1"/>
+                            <PathIcon x:Name="patIcoMicrosoft"
+                                  Style="{StaticResource NormalPathIcon}"
+                                  Data="{StaticResource Add}"
+                                  Grid.Row="2"
+                                  Grid.Column="2"
+                                  Margin="28 16 0 0"
+                                  extensions:FrameworkElementExtensions.Cursor="Hand">
+
+                                <PathIcon.Resources>
+
+                                    <!--Normal state-->
+                                    <Storyboard x:Name="PatIcoMicrosoftNormal">
+                                        <ColorAnimation Storyboard.TargetName="patIcoMicrosoft"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pointer over state-->
+                                    <Storyboard x:Name="PatIcoMicrosoftPointerOver">
+                                        <ColorAnimation Storyboard.TargetName="patIcoMicrosoft"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                    <!--Pressed state-->
+                                    <Storyboard x:Name="PatIcoMicrosoftPressed">
+                                        <ColorAnimation Storyboard.TargetName="patIcoMicrosoft"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                    </Storyboard>
+
+                                </PathIcon.Resources>
+
+                            </PathIcon>
+
+                        </Grid>
+
+                    </StackPanel>
+
+                    <!--Sign out-->
+                    <StackPanel Orientation="Horizontal"
+                            Margin="0 60 0 0">
+
+                        <Button Style="{StaticResource MicrosoftFacebookButton}"
+                            x:Name="btnSignOut" Width="144">
+                            <StackPanel Orientation="Horizontal">
+                                <PathIcon Style="{StaticResource NormalPathIcon}"
+                              Foreground="{ThemeResource ErrorPathIconForegroundBrush}"
+                              Data="{StaticResource SignOut}"/>
+
+                                <TextBlock x:Name="txtSignOut"
+                                Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"
+                               Text="Sign out"
+                                       FontSize="17"
+                               VerticalAlignment="Center"
+                               Margin="12 0 0 0"/>
+
+                            </StackPanel>
+                        </Button>
+
+
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <!--Languages section-->
+                <StackPanel Orientation="Vertical"
+                    Grid.Column="2">
+                    <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
+                           Text="Languages"/>
+
+                    <!--English-->
+                    <StackPanel Orientation="Horizontal"
+                            x:Name="englishLanguage"
+                            Margin="0 14 0 0">
+
+                        <StackPanel.Resources>
+
+                            <!--Normal state-->
+                            <Storyboard x:Name="EnglishThemeNormal">
+                                <ColorAnimation Storyboard.TargetName="patIcoEnglish"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                <ColorAnimation Storyboard.TargetName="txtEnglish"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                            </Storyboard>
+
+                            <!--Pointer over state-->
+                            <Storyboard x:Name="EnglishThemePointerOver">
+                                <ColorAnimation Storyboard.TargetName="patIcoEnglish"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                <ColorAnimation Storyboard.TargetName="txtEnglish"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                            </Storyboard>
+
+                            <!--Pressed state-->
+                            <Storyboard x:Name="EnglishThemePressed">
+                                <ColorAnimation Storyboard.TargetName="patIcoEnglish"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                <ColorAnimation Storyboard.TargetName="txtEnglish"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                            </Storyboard>
+
+                        </StackPanel.Resources>
+
+                        <PathIcon Style="{StaticResource NormalPathIcon}"
+                              Width="22"
+                              Height="22"
+                              x:Name="patIcoEnglish"
+                              Data="{StaticResource EnglishToArabic}"/>
+                        <TextBlock Style="{StaticResource SubtitleAltTextBlockStyle}"
+                               Margin="8 0 0 0"
+                               Text="English"
+                               FontSize="17"
+                               VerticalAlignment="Center"
+                               x:Name="txtEnglish"/>
+                    </StackPanel>
+
+                    <!--Arabic-->
+                    <StackPanel Orientation="Horizontal"
+                            x:Name="arabicLanguage"
+                            Margin="0 14 0 0">
+
+                        <StackPanel.Resources>
+
+                            <!--Normal state-->
+                            <Storyboard x:Name="ArabicThemeNormal">
+                                <ColorAnimation Storyboard.TargetName="patIcoArabic"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                <ColorAnimation Storyboard.TargetName="txtArabic"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                            </Storyboard>
+
+                            <!--Pointer over state-->
+                            <Storyboard x:Name="ArabicThemePointerOver">
+                                <ColorAnimation Storyboard.TargetName="patIcoArabic"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                <ColorAnimation Storyboard.TargetName="txtArabic"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource NormalPointerOverTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                            </Storyboard>
+
+                            <!--Pressed state-->
+                            <Storyboard x:Name="ArabicThemePressed">
+                                <ColorAnimation Storyboard.TargetName="patIcoArabic"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentPathIconForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                                <ColorAnimation Storyboard.TargetName="txtArabic"
+                                                    Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                    To="{ThemeResource AccentTextBlockForegroundColor}"
+                                                    Duration="0:0:0.1"/>
+                            </Storyboard>
+
+                        </StackPanel.Resources>
+
+                        <PathIcon Style="{StaticResource NormalPathIcon}"
+                              Width="22"
+                              Height="22"
+                              x:Name="patIcoArabic"
+                              Data="{StaticResource EnglishToArabic}"/>
+                        <TextBlock Style="{StaticResource SubtitleAltTextBlockStyle}"
+                               Margin="8 0 0 0"
+                               Text="Arabic"
+                           FontSize="17"
+                               VerticalAlignment="Center"
+                               x:Name="txtArabic"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Grid>
+        </ScrollViewer>
+        
+        <!--Error Toast Notifcation-->
+        <cont:InAppNotification x:Name="errorToastNotification"
+                                Style="{StaticResource ErrorInAppNotificationStyle}"
+                                Margin="0 0 0 20"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+            <cont:InAppNotification.Content>
+                <StackPanel VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    Orientation="Horizontal">
+
+                    <PathIcon x:Name="errorToastNotificationIcon"
+                              Data="{StaticResource ToastNotification}"
+                                      Style="{StaticResource ErrorToastNotificationPathIcon}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                    <TextBlock x:Name="errorToastNotificationMessage"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="8 0 0 0"
+                                       Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"/>
+                </StackPanel>
+            </cont:InAppNotification.Content>
+        </cont:InAppNotification>
+
+        <!--Toast Notifcation-->
+        <cont:InAppNotification x:Name="fixedToastNotification"
+                                Style="{StaticResource FixedInAppNotificationStyle}"
+                                Margin="0 0 0 20"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+            <cont:InAppNotification.Content>
+                <StackPanel VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    Orientation="Horizontal">
+
+                    <PathIcon x:Name="fixedToastNotificationIcon"
+                               Data="{StaticResource ToastNotification}"
+                                      Style="{StaticResource FixedToastNotificationPathIcon}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                    <TextBlock x:Name="fixedToastNotificationMessage"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="8 0 0 0"
+                                       Foreground="{ThemeResource FixedTextBlockForegroundBrush}"/>
+                </StackPanel>
+            </cont:InAppNotification.Content>
+        </cont:InAppNotification>
+
+        <!--card view for asking to be sure to sign out -->
+        <mat:CardView Style="{StaticResource CardViewInfoStyle}" 
+                      x:Name="sigOutCardView" 
+                      Header="Sign out" 
+                      IsOpen="False"
+                      ContentHeight="180"
+                      ContentWidth="500">
+            <mat:CardView.Content>
+                <TextBlock x:Name="txtSigOutDesc" Text="Are you sure that you want to sign out from your current account?"/>
+            </mat:CardView.Content>
+
+            <mat:CardView.Footer>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                            Margin="8">
+                    <Button x:Name="btnCaViSignOutCancel"
+                            Style="{StaticResource MicrosoftFacebookButton}"
+                            HorizontalAlignment="Right"
+                            Height="40"
+                            Width="90"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Name="txtCaViSignOutCancel"
+                                   Text="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+
+                    <Button x:Name="btnCaViSignOutOk"
+                            Style="{StaticResource RefuseButton}"
+                            Height="40"
+                            Margin="16 0 0 0"
+                            Width="90"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Name="txtCaViSignOutOk" Text="OK"
+                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </mat:CardView.Footer>
+
+        </mat:CardView>
+
+    </Grid>
+</Page>

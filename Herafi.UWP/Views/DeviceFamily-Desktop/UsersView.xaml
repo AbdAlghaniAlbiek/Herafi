@@ -1,0 +1,900 @@
+﻿<Page
+    x:Class="Herafi.UWP.Views.DeviceFamily_Desktop.UsersView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Views.DeviceFamily_Desktop"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:mat="using:MaterialLibs.Controls" 
+    mc:Ignorable="d"
+    Background="{ThemeResource SurfaceBrush}"
+    xmlns:vm="using:Herafi.Core.ViewModels"
+    xmlns:temp="using:Herafi.UWP.Resources.Templates.UsersTemplates"
+    xmlns:conv="using:Herafi.UWP.Converters"
+    xmlns:model="using:Herafi.Core.Models">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/UsersIcons.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/NavigationViewItemBrushes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:ImageURLConverter x:Key="ImageURLConverter"/>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <vm:UsersViewModel x:Name="usersViewModel"/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Tab view items and go back from user details button -->
+        <Grid Margin="0 12 0 0"
+               Padding="12 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="tabViewItems"
+                    Margin="0 0 0 0"
+                 Orientation="Horizontal">
+
+                <!--General tab view item-->
+                <Grid Background="Transparent"
+                  x:Name="tabViewItemGeneral">
+
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <Storyboard x:Key="tabViewItemGeneralNormal">
+                                <DoubleAnimation Storyboard.TargetName="generalItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0"
+                                                Duration="0:0:0"/>
+                                <ColorAnimation Storyboard.TargetName="generalItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                            </Storyboard>
+
+                            <Storyboard x:Key="tabViewItemGeneralPointerOver">
+                                <ColorAnimation Storyboard.TargetName="generalItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                            </Storyboard>
+
+                            <Storyboard x:Key="tabViewItemGeneralPressed">
+                                <DoubleAnimation Storyboard.TargetName="generalItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="1"
+                                                Duration="0:0:0"/>
+                                <ColorAnimation Storyboard.TargetName="generalItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </ResourceDictionary>
+                    </Grid.Resources>
+
+                    <cont:DropShadowPanel x:Name="generalItemShadowLayer" 
+                                      Style="{StaticResource NavigationViewItemShadow}">
+                        <Rectangle x:Name="generalItemBackground" 
+                                   Width="100"
+                                   Height="40"
+                                   RadiusX="{StaticResource MediumRadius}"
+                                   RadiusY="{StaticResource MediumRadius}"
+                                   Opacity="0">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{ThemeResource NavViewItemCheckedBackgroundColor}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </cont:DropShadowPanel>
+
+                    <TextBlock x:Name="generalItemText"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="General" 
+                           Foreground="{ThemeResource NavViewItemTextNormalForegroundBrush}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"/>
+
+                </Grid>
+
+                <!--New members tab view item-->
+                <Grid Background="Transparent"
+                  Margin="12 0 0 0" 
+                  x:Name="tabViewItemNewMembers">
+
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <Storyboard x:Key="tabViewItemNewMembersNormal">
+                                <DoubleAnimation Storyboard.TargetName="newMembersItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0"
+                                                Duration="0:0:0"/>
+                                <ColorAnimation Storyboard.TargetName="newMembersItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                            </Storyboard>
+
+                            <Storyboard x:Key="tabViewItemNewMembersPointerOver">
+                                <ColorAnimation Storyboard.TargetName="newMembersItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                            </Storyboard>
+
+                            <Storyboard x:Key="tabViewItemNewMembersPressed">
+                                <DoubleAnimation Storyboard.TargetName="newMembersItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="1"
+                                                Duration="0:0:0"/>
+                                <ColorAnimation Storyboard.TargetName="newMembersItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </ResourceDictionary>
+                    </Grid.Resources>
+
+                    <cont:DropShadowPanel x:Name="newMembersItemShadowLayer" 
+                                      Style="{StaticResource NavigationViewItemShadow}">
+                        <Rectangle x:Name="newMembersItemBackground" 
+                                   Width="161"
+                                   Height="40"
+                                   RadiusX="{StaticResource MediumRadius}"
+                                   RadiusY="{StaticResource MediumRadius}"
+                                   Opacity="0">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{ThemeResource NavViewItemCheckedBackgroundColor}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </cont:DropShadowPanel>
+
+                    <TextBlock x:Name="newMembersItemText"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="New Members" 
+                           Foreground="{ThemeResource NavViewItemTextNormalForegroundBrush}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"/>
+
+                </Grid>
+
+            </StackPanel>
+
+            <!--button for go back from user details to master view-->
+            <Button x:Name="btnDetailsGoBack"
+                    Style="{StaticResource NormalButton}"
+                    HorizontalAlignment="Right"
+                    Grid.Column="1"
+                    Height="40"
+                    Width="100"
+                    Visibility="Collapsed">
+                <Button.Content>
+                    <TextBlock x:Name="btnGoBackUsers"  Style="{StaticResource BodyTextBlockStyle}"
+                               Text="Go back"
+                               Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"/>
+                </Button.Content>
+                
+            </Button>
+
+        </Grid>
+        
+        <!--contains on General and new members sections-->
+        <Pivot x:Name="mainUsersPivot"
+                Grid.Row="1"
+               Padding="0" Margin="0"
+               HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch">
+
+            <!--#region General-->
+            <PivotItem Margin="0 -48 0 0"
+                       Padding="0 0 0 20"
+                       x:Name="generalPivot">
+                <Grid>
+                    <!--User details-->
+                    <ScrollViewer HorizontalScrollMode="Auto"
+                                  VerticalScrollMode="Auto" 
+                                   Padding="12 0"
+                                  Margin="0 20 0 0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Profile section-->
+                            <StackPanel Orientation="Vertical">
+                                
+                                <!--Profile title-->
+                                <TextBlock x:Name="txtGeneralProfileTitle"
+                                           Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                           Text="Profile"/>
+
+                                <!--profile and personal identity images and more info-->
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0 18 0 0">
+
+                                    <!--Profile image-->
+                                    <Grid HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          Width="208"
+                                          Height="208">
+                                        <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                                            <Ellipse Width="208"
+                                                 Height="208"
+                                                 Style="{StaticResource NormalRoundedCard}"/>
+                                        </cont:DropShadowPanel>
+
+                                        <Image Stretch="Fill"
+                                               Width="120"
+                                               Height="120"
+                                               Source="{StaticResource UserProfileImage}"/>
+
+                                        <cont:ImageEx HorizontalAlignment="Stretch"
+                                                      VerticalAlignment="Stretch"
+                                                      CornerRadius="140"
+                                                      Stretch="Fill"
+                                                       Source="{Binding UserDetails.ProfileUser.ProfileImage, Converter={StaticResource ImageURLConverter}, Mode=OneWay, ConverterParameter=ImageEx-User}"/>
+                                    </Grid>
+
+                                    <!--Peronal identity image-->
+                                    <Grid Margin="40 0 0 0"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          Width="407"
+                                          Height="208">
+                                        <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+                                            <Rectangle Width="407"
+                                                     Height="208"
+                                                     Style="{StaticResource NormalCard}"/>
+                                        </cont:DropShadowPanel>
+
+                                        <Image Stretch="Fill"
+                                               Width="160"
+                                               Height="160"
+                                               Source="{StaticResource UserProfileImage}"/>
+
+                                        <cont:ImageEx HorizontalAlignment="Stretch"
+                                                      VerticalAlignment="Stretch"
+                                                      Stretch="Fill"
+                                                      CornerRadius="{StaticResource SmallCornerRadius}"
+                                                      Source="{Binding UserDetails.ProfileUser.PersonalIdentityImage, Converter={StaticResource ImageURLConverter}, ConverterParameter=ImageEx-User}"/>
+                                    </Grid>
+
+                                    <!--Profile more info-->
+                                    <StackPanel Margin="36 0 0 0">
+                                        
+                                        <!--Name-->
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Name}"/>
+
+                                            <TextBlock x:Name="txtGeneralName"
+                                                Grid.Column="1"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Name"/>
+
+                                            <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding UserDetails.ProfileUser.Name}"/>
+                                        </Grid>
+
+                                        <!--Email-->
+                                        <Grid Margin="0 18 0 0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <PathIcon 
+                                                Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Email}"/>
+
+                                            <TextBlock Grid.Column="1"
+                                                       x:Name="txtGeneralEmail"
+                                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                                       Margin="10 0 0 6"
+                                                       Text="Email"/>   
+
+                                            <TextBlock 
+                                                       Grid.Column="1"
+                                                       Grid.Row="1"
+                                                       Style="{StaticResource BodyTextBlockStyle}"
+                                                       Margin="10 0 0 0"
+                                                       Text="{Binding UserDetails.ProfileUser.Email}"/> 
+                                        </Grid>
+                                        
+                                        <!--More info-->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Orientation="Vertical">
+                                                
+                                                <!--Phone number-->
+                                                <Grid Margin="0 18 0 0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource PhoneNumber}"/>
+
+                                                    <TextBlock x:Name="txtGeneralPhonNum"
+                                                        Grid.Column="1"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Phone number"/>
+
+                                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding UserDetails.ProfileUser.PhoneNumber}"/>
+                                                </Grid>
+
+                                                <!--National number-->
+                                                <Grid Margin="0 18 0 0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource NationalNumber}"/>
+
+                                                    <TextBlock x:Name="txtGeneralNatNum"
+                                                        Grid.Column="1"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="National number"/>
+
+                                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding UserDetails.ProfileUser.NationalNumber}"/>
+                                                </Grid>
+
+                                                <!--City-->
+                                                <Grid Margin="0 18 0 0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <PathIcon Grid.RowSpan="2"
+                                                              Style="{StaticResource NormalPathIcon}"
+                                                              Data="{StaticResource City}"/>
+
+                                                    <TextBlock Grid.Column="1"
+                                                               x:Name="txtGeneralCity"
+                                                               Style="{StaticResource CaptionAltTextBlockStyle}"
+                                                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                                               Margin="10 0 0 6"
+                                                               Text="City"/>
+
+                                                    <TextBlock 
+                                                               Grid.Column="1"
+                                                               Grid.Row="1"
+                                                               Style="{StaticResource BodyTextBlockStyle}"
+                                                               Margin="10 0 0 0"
+                                                               Text="{Binding UserDetails.ProfileUser.City}"/> 
+                                                </Grid>
+
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Vertical"
+                                                        Grid.Column="1"
+                                                        Margin="44 0 0 0">
+
+                                                <!--Date join-->
+                                                <Grid Margin="0 18 0 0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <PathIcon Grid.RowSpan="2"
+                                                              Style="{StaticResource NormalPathIcon}"
+                                                              Data="{StaticResource DateJoin}"/>
+
+                                                    <TextBlock Grid.Column="1"
+                                                               x:Name="txtGeneralDatJoin"
+                                                               Style="{StaticResource CaptionAltTextBlockStyle}"
+                                                               Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                                               Margin="10 0 0 6"
+                                                               Text="Date join"/>
+
+                                                    <TextBlock 
+                                                               Grid.Column="1"
+                                                               Grid.Row="1"
+                                                               Style="{StaticResource BodyTextBlockStyle}"
+                                                               Margin="10 0 0 0"
+                                                               Text="{Binding UserDetails.ProfileUser.DateJoin}"/>  
+                                                </Grid>
+
+                                                <!--Favourites-->
+                                                <Grid Margin="0 18 0 0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Favourites}"/>
+
+                                                    <TextBlock Grid.Column="1"
+                                                               x:Name="txtGeneralFav"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="National number"/>
+
+                                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding UserDetails.ProfileUser.Favourites}"/>
+                                                </Grid>
+
+                                                <!--Searchs-->
+                                                <Grid Margin="0 18 0 0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <PathIcon Grid.RowSpan="2"
+                                      Style="{StaticResource NormalPathIcon}"
+                                      Data="{StaticResource Searchs}"/>
+
+                                                    <TextBlock Grid.Column="1"
+                                                               x:Name="txtGeneralSearchs"
+                                       Style="{StaticResource CaptionAltTextBlockStyle}"
+                                       Foreground="{ThemeResource HeaderInfoTextBlockForegroundBrush}"
+                                       Margin="10 0 0 6"
+                                       Text="Searchs"/>
+
+                                                    <TextBlock Grid.Column="1"
+                                       Grid.Row="1"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Margin="10 0 0 0"
+                                       Text="{Binding UserDetails.ProfileUser.Searchs}"/>
+                                                </Grid>
+
+                                            </StackPanel>
+                                            
+                                        </Grid>
+                                        
+                                    </StackPanel>
+                                    
+                                </StackPanel>
+
+                            </StackPanel>
+                            
+                            <!--Requests section-->
+                            <StackPanel Grid.Row="1"
+                                        Margin="0 40 0 0">
+                                
+                                <!--Request title-->
+                                <TextBlock Style="{StaticResource SubtitleAltTextBlockStyle}">
+                                    <Run x:Name="txtGeneralReq" Text="Requests ("/><Run Text="15"/><Run Text=")"/>
+                                </TextBlock>
+
+                                <!--list of requests of this user-->
+                                <ListView x:Name="lstViewReqUser"
+                                              Height="457"
+                                              Margin="-12 18 0 0"
+                                               HorizontalAlignment="Left"
+                                              SelectionMode="None"
+                                              IsItemClickEnabled="False"
+                                              ItemsSource="{Binding UserDetails.RequestsUser, Mode=OneWay}">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            <Setter Property="IsFocusEngagementEnabled" Value="True"/>
+                                            <Setter Property="Margin" Value="0 0 0 4"/>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate x:DataType="model:RequestUser">
+                                            <temp:GeneralRequestTemp/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+
+                                <!--Displaying a content that craftman doesn't have any request yet-->
+                                <StackPanel x:Name="EmptyUserRequests"
+                                                    Orientation="Vertical"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Grid.Row="1"
+                                                    Visibility="Collapsed">
+
+                                    <Image Stretch="Fill"
+                                            Width="200"
+                                            Height="200"
+                                            Source="{ThemeResource NoRequests}"/>   
+
+                                    <TextBlock x:Name="txtEmpCraftmanReqests"
+                                                Style="{StaticResource BodyTextBlockStyle}"
+                                                Text="This craftman doesnt' have any request yet"
+                                                HorizontalAlignment="Center"
+                                                Margin="0 36 0 0"/>  
+
+                                </StackPanel>
+
+                            </StackPanel>
+                            
+                        </Grid>
+                        
+                    </ScrollViewer>
+
+                    <!--Loading progress-->
+                    <cont:Loading x:Name="loadingGeneralUsersData"
+                                  Style="{StaticResource LoadingDataStyle}"/>
+
+                    <!--the users grid view-->
+                    <mat:SwipeBackView x:Name="swipBackGeneralUsers"
+                           Margin="0 20 0 0"
+                           Grid.Row="1"
+                           Background="{ThemeResource SurfaceBrush}"
+                           IsOpen="True">
+
+                        <ScrollViewer x:Name="scrVieGeneralUsers"
+                                      ViewChanged="scrVieGeneralUsers_ViewChanged"
+                                       Padding="12 0">
+                            <GridView x:Name="grdViewUsers"
+                                  Grid.Row="1"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  ItemsSource="{Binding Users}">
+
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <ItemsWrapGrid Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+
+                                <GridView.ItemContainerStyle>
+                                    <Style TargetType="GridViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                        <Setter Property="Margin" Value="0 0 8 12"/>
+                                    </Style>
+                                </GridView.ItemContainerStyle>
+
+                                <GridView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:User">
+                                        <temp:GeneralUserTemp/>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+
+                                <GridView.Footer>
+                                    <ProgressRing x:Name="progGeneralUsers" Width="40" Height="40" HorizontalAlignment="Center" Margin="0 20 0 0"/>
+                                </GridView.Footer>
+                            </GridView>
+                        </ScrollViewer>
+                        
+                    </mat:SwipeBackView>
+
+                    <!--Displaying a content that there isn't any user in Herafi system yet-->
+                    <StackPanel x:Name="EmptyUsersContent"
+                                Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Grid.Row="1"
+                                Visibility="Collapsed">
+
+                        <Image Stretch="Fill"
+                               Width="280"
+                               Height="280"
+                               Source="{StaticResource EmptyUsers}"/>
+
+                        <TextBlock x:Name="txtEmptyUsers"
+                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                   Text="There isn't any User in Herafi system yet"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!--Displaying a content that you aren't connected to internet-->
+                    <StackPanel x:Name="NoWifiGeneralUsers"
+                                Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Grid.Row="1"
+                                Visibility="Collapsed">
+
+                        <Image Stretch="Fill"
+                               Width="240"
+                               Height="240"
+                               Source="{ThemeResource WifiOff}"/>
+
+                        <TextBlock x:Name="txtNoWifiGenUsers"
+                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                   Text="You aren't connected to internet"
+                                   Margin="0 40 0 0"
+                                   HorizontalAlignment="Center"/>
+
+                        <Button x:Name="btnNoWifiGeneralUsers"
+                                Style="{StaticResource MicrosoftFacebookButton}"
+                                Margin="0 20 0 0"
+                                Height="40"
+                                Width="100"
+                                HorizontalAlignment="Center">
+                            <Button.Content>
+                                <TextBlock x:Name="txtBtnNoWifiUsers"
+                                           Text="Retry again"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"/>
+                            </Button.Content>
+                        </Button>
+
+                    </StackPanel>
+
+                </Grid>
+            </PivotItem>
+            <!--endregion-->
+
+            <!--#region New Members-->
+            <PivotItem Margin="0 -48 0 0"
+                       Padding="0 0 0 20"
+                       x:Name="newMembPivot">
+                <Grid>
+                    
+                    <!--list of new users-->
+                    <ScrollViewer x:Name="scrVieNewMemUsers"
+                                  ViewChanged="scrVieNewMemUsers_ViewChanged"
+                                  Padding="12 0">
+                        <ListView x:Name="lstViewNewMemUser"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Stretch"
+                                  Margin="0 20 0 0"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="False"
+                                  ItemsSource="{Binding NewMembersUsers, Mode=OneWay}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="IsFocusEngagementEnabled" Value="True"/>
+                                    <Setter Property="Margin" Value="0 0 0 4"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="model:ProfileUser">
+                                    <temp:NewMemUserTemp AcceptUserEvent="NewMemUserTemp_AcceptUserEvent" RefuseUserEvent="NewMemUserTemp_RefuseUserEvent"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.Footer>
+                                <ProgressRing x:Name="progNewMemUsers" Width="40" Height="40" HorizontalAlignment="Center" Margin="0 20 0 0"/>
+                            </ListView.Footer>
+                        </ListView>
+
+                    </ScrollViewer>
+
+                    <!--Displaying a content that there isn't any user in Herafi system yet-->
+                    <StackPanel x:Name="EmptyNewUsersContent"
+                                Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Grid.Row="1"
+                                Visibility="Collapsed">
+
+                        <Image Stretch="Fill"
+                               Width="280"
+                               Height="280"
+                               Source="{StaticResource EmptyUsers}"/>
+
+                        <TextBlock x:Name="txtEmptyNewUsers"
+                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                   Text="There aren't new Users in Herafi system until now"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!--Displaying a content that you aren't connected to internet-->
+                    <StackPanel x:Name="NoWifiNewMemebersUsers"
+                                Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Grid.Row="1"
+                                Visibility="Collapsed">
+
+                        <Image Stretch="Fill"
+                               Width="240"
+                               Height="240"
+                               Source="{StaticResource WifiOff}"/>
+
+                        <TextBlock x:Name="txtNoWifiNewMembers"
+                                   Style="{StaticResource SubtitleAltTextBlockStyle}"
+                                   Text="You aren't connected to internet"
+                                   Margin="0 40 0 0"
+                                   HorizontalAlignment="Center"/>
+
+                        <Button x:Name="btnNoWifiNewMemUsers"
+                                Style="{StaticResource MicrosoftFacebookButton}"
+                                Margin="0 20 0 0"
+                                Height="40"
+                                Width="100"
+                                HorizontalAlignment="Center">
+                            <Button.Content>
+                                <TextBlock x:Name="txtNoWifiNewMemUsers"
+                                           Text="Retry again"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"/>
+                            </Button.Content>
+                        </Button>
+                        
+                    </StackPanel>
+
+                </Grid>
+            </PivotItem>
+            <!--endregion-->
+            
+        </Pivot>
+
+        <!--Loading progress-->
+        <cont:Loading x:Name="loadingData"
+                      Style="{StaticResource LoadingDataStyle}" 
+                      Grid.Row="1"/>
+
+        <!--Error Toast Notifcation-->
+        <cont:InAppNotification x:Name="errorToastNotification"
+                                Style="{StaticResource ErrorInAppNotificationStyle}"
+                                Margin="0 0 0 20"
+                                Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+            <cont:InAppNotification.Content>
+                <StackPanel VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    Orientation="Horizontal">
+
+                    <PathIcon x:Name="errorToastNotificationIcon"
+                              Data="{StaticResource ToastNotification}"
+                                      Style="{StaticResource ErrorToastNotificationPathIcon}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                    <TextBlock x:Name="errorToastNotificationMessage"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="8 0 0 0"
+                                       Foreground="{ThemeResource ErrorTextBlockForegroundBrush}"/>
+                </StackPanel>
+            </cont:InAppNotification.Content>
+        </cont:InAppNotification>
+
+        <!--Toast Notifcation-->
+        <cont:InAppNotification x:Name="fixedToastNotification"
+                                Style="{StaticResource FixedInAppNotificationStyle}"
+                                Margin="0 0 0 20"
+                                Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+            <cont:InAppNotification.Content>
+                <StackPanel VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    Orientation="Horizontal">
+
+                    <PathIcon x:Name="fixedToastNotificationIcon"
+                               Data="{StaticResource ToastNotification}"       
+                              Style="{StaticResource FixedToastNotificationPathIcon}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"/>
+
+                    <TextBlock x:Name="fixedToastNotificationMessage"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="8 0 0 0"
+                                       Foreground="{ThemeResource FixedTextBlockForegroundBrush}"/>
+                </StackPanel>
+            </cont:InAppNotification.Content>
+        </cont:InAppNotification>
+
+        <!--Card view for displaying errors when select on Genreal user and something wrong happend-->
+        <mat:CardView Style="{StaticResource CardViewInfoStyle}" 
+                      x:Name="errorDetailsCardView" 
+                      Header="There are some errors !"
+                      Grid.RowSpan="2"
+                      IsOpen="False"
+                      ContentHeight="210"
+                      ContentWidth="500">
+            <mat:CardView.Content>
+                <StackPanel>
+                    <TextBlock x:Name="txtDetProfError" Text="You have some error in your backend/frontend process communication"/>
+                    <TextBlock x:Name="txtDetReqError" Margin="0 8 0 0" Text="You have some error in your backend/frontend process communication"/>
+                </StackPanel>
+            </mat:CardView.Content>
+
+            <mat:CardView.Footer>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                            Margin="8">
+
+                    <Button x:Name="btnCaViErrCancel"
+                            Style="{StaticResource RefuseButton}"
+                            Height="40"
+                            Width="90"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Name="txtCaViErrCancel" Text="Cancel"
+                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </mat:CardView.Footer>
+
+        </mat:CardView>
+
+    </Grid>
+    
+</Page>

@@ -1,0 +1,57 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!--Profits-->
+    <Color x:Key="ProfitsColorLight">#25CF12</Color>
+    <Color x:Key="ProfitsColorDark">#90FF82</Color>
+
+    <!--Craftmen-->
+    <Color x:Key="CraftmenColorLight">#AB28F5</Color>
+    <Color x:Key="CraftmenColorDark">#CF8CF9</Color>
+
+    <!--Users-->
+    <Color x:Key="UsersColorLight">#E43FD9</Color>
+    <Color x:Key="UsersColorDark">#ED82E4</Color>
+
+    <!--Requests-->
+    <Color x:Key="RequestsColorLight">#2B62AB</Color>
+    <Color x:Key="RequestsColorDark">#B9D5FC</Color>
+
+    <!--Reports-->
+    <Color x:Key="ReportsColorLight">#E4663F</Color>
+    <Color x:Key="ReportsColorDark">#FC9E81</Color>
+
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="ProfitsColorBrush" Color="{StaticResource ProfitsColorLight}"/>
+            <SolidColorBrush x:Key="CraftmenColorBrush" Color="{StaticResource CraftmenColorLight}"/>
+            <SolidColorBrush x:Key="UsersColorBrush" Color="{StaticResource UsersColorLight}"/>
+            <SolidColorBrush x:Key="RequestsColorBrush" Color="{StaticResource RequestsColorLight}"/>
+            <SolidColorBrush x:Key="ReportsColorBrush" Color="{StaticResource ReportsColorLight}"/>
+
+            <Color x:Key="ProfitsColor">#25CF12</Color>
+            <Color x:Key="CraftmenColor">#AB28F5</Color>
+            <Color x:Key="UsersColor">#E43FD9</Color>
+            <Color x:Key="RequestsColor">#2B62AB</Color>
+            <Color x:Key="ReportsColor">#E4663F</Color>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="ProfitsColorBrush" Color="{StaticResource ProfitsColorDark}"/>
+            <SolidColorBrush x:Key="CraftmenColorBrush" Color="{StaticResource CraftmenColorDark}"/>
+            <SolidColorBrush x:Key="UsersColorBrush" Color="{StaticResource UsersColorDark}"/>
+            <SolidColorBrush x:Key="RequestsColorBrush" Color="{StaticResource RequestsColorDark}"/>
+            <SolidColorBrush x:Key="ReportsColorBrush" Color="{StaticResource ReportsColorDark}"/>
+
+            <Color x:Key="ProfitsColor">#90FF82</Color>
+            <Color x:Key="CraftmenColor">#CF8CF9</Color>
+            <Color x:Key="UsersColor">#ED82E4</Color>
+            <Color x:Key="RequestsColor">#B9D5FC</Color>
+            <Color x:Key="ReportsColor">#FC9E81</Color>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+
+</ResourceDictionary>

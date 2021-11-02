@@ -1,0 +1,66 @@
+﻿<UserControl
+    x:Class="Herafi.UWP.Resources.Templates.UsersTemplates.GeneralUserTemp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Templates.UsersTemplates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:conv="using:Herafi.UWP.Converters"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries >
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/GridImageBrushes.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/UsersIcons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:ImageURLConverter x:Key="ImageURLConverter"/>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Grid  Width="128"
+           Height="128">
+
+        <cont:DropShadowPanel Style="{StaticResource CardShadow}">
+            <Rectangle Style="{StaticResource NormalCard}"
+                       Width="128"
+                       Height="128"/>
+        </cont:DropShadowPanel>
+
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+
+            <Grid HorizontalAlignment="Center"
+                  Margin="0 8 0 0">
+                <Ellipse Width="54"
+                         Height="54"
+                         Fill="Transparent"
+                         StrokeThickness="2"
+                         Stroke="{ThemeResource GridImageBorderBrush}"/>
+
+                <PathIcon Data="{StaticResource UserCard}"
+                          Style="{StaticResource NormalPathIcon}"
+                          Width="30"
+                          Height="30"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"/>
+
+                <cont:ImageEx Stretch="Fill"
+                              Source="{x:Bind User.ImagePath, Mode=OneWay, Converter={StaticResource ImageURLConverter}, ConverterParameter=ImageEx-User}"
+                              CornerRadius="40" 
+                              Background="Transparent"
+                              Width="54"
+                              Height="54"/>
+            </Grid>
+
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                       HorizontalAlignment="Center"
+                       Text="{x:Bind User.Name, Mode=OneWay}"
+                       Margin="0 32 0 0"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

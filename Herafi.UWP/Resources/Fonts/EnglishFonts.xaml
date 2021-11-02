@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Resources.Fonts">
+
+    <!--Regular-->
+    <x:String x:Key="RobotoRegular">ms-appx:///Assets/Fonts/English/Roboto-Regular.ttf#Roboto</x:String>
+
+    <!--Light-->
+    <x:String x:Key="RobotoLight">ms-appx:///Assets/Fonts/English/Roboto-Light.ttf#Roboto</x:String>
+
+    <!--Bold-->
+    <x:String x:Key="RobotoBold">ms-appx:///Assets/Fonts/English/Roboto-Bold.ttf#Roboto</x:String>
+
+</ResourceDictionary>

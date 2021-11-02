@@ -1,0 +1,590 @@
+﻿<Page
+    x:Class="Herafi.UWP.Views.DeviceFamily_Desktop.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Herafi.UWP.Views.DeviceFamily_Desktop"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource SurfaceBrush}"
+    xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls" 
+    xmlns:mat="using:MaterialLibs.Controls">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/MainIcons.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Fonts/ProjectNameFont.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/NavigationViewItemBrushes.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        
+        <!--Navigation view and the frame that contains on all pages-->
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Navigation View-->
+            <Grid x:Name="NavView"
+              Width="296"
+              Height="704"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center"
+              Margin="16 0 0 0">
+
+                <!--Shadowing background-->
+                <cont:DropShadowPanel Style="{StaticResource NavigationViewShadow}">
+
+                    <Rectangle Width="{Binding ElementName=NavView, Path=Width}"
+                           Height="{Binding ElementName=NavView, Path=Height}"
+                           Style="{StaticResource NavigationViewCard}"/>
+                </cont:DropShadowPanel>
+
+                <!--Project Icon-->
+                <Image HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Source="{StaticResource ProjectIcon}"
+                   Margin="10 12 0 0"
+                   Stretch="None"/>
+
+                <!--Project Name-->
+                <TextBlock x:Name="txtProjectName"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       FontFamily="{StaticResource GiddyupStdRegular}"
+                       Text="Hearfi"
+                       Margin="0 12 0 0"
+                       FontSize="40"/>
+
+                <!--Navigation view items-->
+                <StackPanel x:Name="navViewItems"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Stretch"
+                        Height="Auto"
+                        Margin="0 133 0 0">
+
+                    <!--Dashboard Item-->
+                    <Grid Background="Transparent"
+                      Margin="11 0 0 0"
+                      x:Name="navViewItemDashboard">
+
+                        <Grid.Resources>
+                            <ResourceDictionary>
+                                <Storyboard x:Key="navViewItemDashboardNormal">
+                                    <DoubleAnimation Storyboard.TargetName="dashboardItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0"
+                                                Duration="0:0:0"/>
+                                    <ColorAnimation Storyboard.TargetName="dashboardItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="dashboardItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+
+                                <Storyboard x:Key="navViewItemDashboardPointerOver">
+                                    <ColorAnimation Storyboard.TargetName="dashboardItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="dashboardItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+
+                                <Storyboard x:Key="navViewItemDashboardPressed">
+                                    <DoubleAnimation Storyboard.TargetName="dashboardItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="1"
+                                                Duration="0:0:0"/>
+                                    <ColorAnimation Storyboard.TargetName="dashboardItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="dashboardItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </ResourceDictionary>
+                        </Grid.Resources>
+
+                        <cont:DropShadowPanel x:Name="dashboardItemShadowLayer" 
+                                          Style="{StaticResource NavigationViewItemShadow}">
+                            <Rectangle x:Name="dashboardItemBackground" 
+                                   Width="274"
+                                   Height="46"
+                                   RadiusX="{StaticResource SmallRadius}"
+                                   RadiusY="{StaticResource SmallRadius}"
+                                   Opacity="0">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{ThemeResource NavViewItemCheckedBackgroundColor}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </cont:DropShadowPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                Padding="10">
+                            <PathIcon x:Name="dashboardItemIcon" 
+                                  Data="{StaticResource Dashboard}" 
+                                  Foreground="{ThemeResource NavViewItemIconNormalForegroundBrush}"/>
+                            <TextBlock x:Name="dashboardItemText"
+                                   Text="Dashboard" 
+                                   Foreground="{ThemeResource NavViewItemTextNormalForegroundBrush}"
+                                   Margin="20 0 0 0"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Craftmen Item-->
+                    <Grid Background="Transparent"
+                      Margin="11 18 0 0"
+                      x:Name="navViewItemCraftmen">
+
+                        <Grid.Resources>
+                            <ResourceDictionary>
+                                <Storyboard x:Key="navViewItemCraftmenNormal">
+                                    <DoubleAnimation Storyboard.TargetName="craftmenItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0"
+                                                Duration="0:0:0"/>
+                                    <ColorAnimation Storyboard.TargetName="craftmenItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="craftmenItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+
+                                <Storyboard x:Key="navViewItemCraftmenPointerOver">
+                                    <ColorAnimation Storyboard.TargetName="craftmenItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="craftmenItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+
+                                <Storyboard x:Key="navViewItemCraftmenPressed">
+                                    <DoubleAnimation Storyboard.TargetName="craftmenItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="1"
+                                                Duration="0:0:0"/>
+                                    <ColorAnimation Storyboard.TargetName="craftmenItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="craftmenItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </ResourceDictionary>
+                        </Grid.Resources>
+
+                        <cont:DropShadowPanel x:Name="craftmenItemShadowLayer"
+                                          Style="{StaticResource NavigationViewItemShadow}">
+                            <Rectangle x:Name="craftmenItemBackground" 
+                                   Width="274"
+                                   Height="46"
+                                   RadiusX="{StaticResource SmallRadius}"
+                                   RadiusY="{StaticResource SmallRadius}"
+                                   Opacity="0">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{ThemeResource NavViewItemCheckedBackgroundColor}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </cont:DropShadowPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                Padding="10">
+                            <PathIcon x:Name="craftmenItemIcon" 
+                                  Data="{StaticResource Craftmen}" 
+                                  Foreground="{ThemeResource NavViewItemIconNormalForegroundBrush}"/>
+                            <TextBlock x:Name="craftmenItemText"
+                                   Text="Craftmen" 
+                                   Foreground="{ThemeResource NavViewItemTextNormalForegroundBrush}"
+                                   Margin="20 0 0 0"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Users Item-->
+                    <Grid Background="Transparent"
+                      Margin="11 18 0 0"
+                      x:Name="navViewItemUsers">
+
+                        <Grid.Resources>
+                            <ResourceDictionary>
+                                <Storyboard x:Key="navViewItemUsersNormal">
+                                    <DoubleAnimation Storyboard.TargetName="usersItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0"
+                                                Duration="0:0:0"/>
+                                    <ColorAnimation Storyboard.TargetName="usersItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="usersItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+
+                                <Storyboard x:Key="navViewItemUsersPointerOver">
+                                    <ColorAnimation Storyboard.TargetName="usersItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="usersItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+
+                                <Storyboard x:Key="navViewItemUsersPressed">
+                                    <DoubleAnimation Storyboard.TargetName="usersItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="1"
+                                                Duration="0:0:0"/>
+                                    <ColorAnimation Storyboard.TargetName="usersItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="usersItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </ResourceDictionary>
+                        </Grid.Resources>
+
+                        <cont:DropShadowPanel x:Name="usersItemShadowLayer"
+                                          Style="{StaticResource NavigationViewItemShadow}">
+                            <Rectangle x:Name="usersItemBackground" 
+                                   Width="274"
+                                   Height="46"
+                                   RadiusX="{StaticResource SmallRadius}"
+                                   RadiusY="{StaticResource SmallRadius}"
+                                   Opacity="0">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{ThemeResource NavViewItemCheckedBackgroundColor}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </cont:DropShadowPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                Padding="10">
+                            <PathIcon x:Name="usersItemIcon" 
+                                  Data="{StaticResource Users}" 
+                                  Foreground="{ThemeResource NavViewItemIconNormalForegroundBrush}"/>
+                            <TextBlock x:Name="usersItemText"
+                                   Text="Users" 
+                                   Foreground="{ThemeResource NavViewItemTextNormalForegroundBrush}"
+                                   Margin="20 0 0 0"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Analyzes Item-->
+                    <Grid Background="Transparent"
+                      Margin="11 18 0 0"
+                      x:Name="navViewItemAnalyzes">
+
+                        <Grid.Resources>
+                            <ResourceDictionary>
+                                <Storyboard x:Key="navViewItemAnalyzesNormal">
+                                    <DoubleAnimation Storyboard.TargetName="analyzesItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0"
+                                                Duration="0:0:0"/>
+                                    <ColorAnimation Storyboard.TargetName="analyzesItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="analyzesItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+
+                                <Storyboard x:Key="navViewItemAnalyzesPointerOver">
+                                    <ColorAnimation Storyboard.TargetName="analyzesItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="analyzesItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+
+                                <Storyboard x:Key="navViewItemAnalyzesPressed">
+                                    <DoubleAnimation Storyboard.TargetName="analyzesItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="1"
+                                                Duration="0:0:0"/>
+                                    <ColorAnimation Storyboard.TargetName="analyzesItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="analyzesItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </ResourceDictionary>
+                        </Grid.Resources>
+
+                        <cont:DropShadowPanel x:Name="analyzesItemShadowLayer"
+                                          Style="{StaticResource NavigationViewItemShadow}">
+                            <Rectangle x:Name="analyzesItemBackground" 
+                                   Width="274"
+                                   Height="46"
+                                   RadiusX="{StaticResource SmallRadius}"
+                                   RadiusY="{StaticResource SmallRadius}"
+                                   Opacity="0">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{ThemeResource NavViewItemCheckedBackgroundColor}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </cont:DropShadowPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                Padding="10">
+                            <PathIcon x:Name="analyzesItemIcon" 
+                                  Data="{StaticResource Analyzes}" 
+                                  Foreground="{ThemeResource NavViewItemIconNormalForegroundBrush}"/>
+                            <TextBlock x:Name="analyzesItemText"
+                                   Text="Analyzes" 
+                                   Foreground="{ThemeResource NavViewItemTextNormalForegroundBrush}"
+                                   Margin="20 0 0 0"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Settings Item-->
+                    <Grid Background="Transparent"
+                      Margin="11 18 0 0"
+                      x:Name="navViewItemSettings">
+
+                        <Grid.Resources>
+                            <ResourceDictionary>
+                                <Storyboard x:Key="navViewItemSettingsNormal">
+                                    <DoubleAnimation Storyboard.TargetName="settingsItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="0"
+                                                Duration="0:0:0"/>
+                                    <ColorAnimation Storyboard.TargetName="settingsItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="settingsItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextNormalForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+
+                                <Storyboard x:Key="navViewItemSettingsPointerOver">
+                                    <ColorAnimation Storyboard.TargetName="settingsItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="settingsItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextPointerOverForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+
+                                <Storyboard x:Key="navViewItemSettingsPressed">
+                                    <DoubleAnimation Storyboard.TargetName="settingsItemBackground"
+                                                Storyboard.TargetProperty="Opacity"
+                                                To="1"
+                                                Duration="0:0:0"/>
+                                    <ColorAnimation Storyboard.TargetName="settingsItemIcon"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemIconCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="settingsItemText"
+                                                Storyboard.TargetProperty="(UIElement.Foreground).(SolidColorBrush.Color)"
+                                                To="{ThemeResource NavViewItemTextCheckedForegroundColor}"
+                                                Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </ResourceDictionary>
+                        </Grid.Resources>
+
+                        <cont:DropShadowPanel x:Name="settingsItemShadowLayer"
+                                          Style="{StaticResource NavigationViewItemShadow}">
+                            <Rectangle x:Name="settingsItemBackground" 
+                                   Width="274"
+                                   Height="46"
+                                   RadiusX="{StaticResource SmallRadius}"
+                                   RadiusY="{StaticResource SmallRadius}"
+                                   Opacity="0">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{ThemeResource NavViewItemCheckedBackgroundColor}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </cont:DropShadowPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                Padding="10">
+                            <PathIcon x:Name="settingsItemIcon" 
+                                  Data="{StaticResource Settings}" 
+                                  Foreground="{ThemeResource NavViewItemIconNormalForegroundBrush}"/>
+                            <TextBlock x:Name="settingsItemText"
+                                   Text="Settings" 
+                                   Foreground="{ThemeResource NavViewItemTextNormalForegroundBrush}"
+                                   Margin="20 0 0 0"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Go back button-->
+                    <Button x:Name="btnGoBack"
+                        HorizontalAlignment="Center"
+                        Width="104"
+                        Height="48"
+                        Visibility="Collapsed"
+                        Margin="0 104 0 0"
+                        Style="{StaticResource NormalButton}">
+                        <Button.Content>
+                            <PathIcon Data="{StaticResource GoBack}"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                  Style="{StaticResource GoBackButtonPathIcon}"
+                                  Margin="0 -4 0 0"/>
+                        </Button.Content>
+                    </Button>
+                    
+                </StackPanel>
+
+                <!--project name and version-->
+                <TextBlock x:Name="txtAppVersion"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       Text="Herafi version: 1.0.0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Bottom"
+                       Margin="17 0 0 8"
+                       FontFamily="{StaticResource GiddyupStdRegular}"/>
+                
+            </Grid>
+
+            <!--Title and frame that conaint on all the view(pages)-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Title of the view (page)-->
+                <TextBlock Style="{StaticResource HeaderTextBlockStyle}"
+                       FontSize="28"
+                       Text="{x:Bind NavViewItemName, Mode=OneWay}"
+                       Margin="12 32 0 0"/>
+
+                <!--The frame that content all of views(pages)-->
+                <Frame x:Name="contentFrame"
+                   Grid.Row="1"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"/>
+            </Grid>
+
+        </Grid>
+
+        <!--card view for displaying error messages-->
+        <mat:CardView Style="{StaticResource CardViewStyle}" 
+                      x:Name="errorDetailsCardView" 
+                      Header="Some thing wrong happend!"
+                      IsOpen="False"
+                      ContentHeight="180"
+                      ContentWidth="500">
+            <mat:CardView.Content>
+                <StackPanel>
+                    <TextBlock x:Name="errorDetailsCardViewMessage" TextWrapping="Wrap"
+                               Text="You have some error in your backend/frontend process communication"/>
+                </StackPanel>
+            </mat:CardView.Content>
+
+            <mat:CardView.Footer>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                            Margin="8">
+
+                    <Button x:Name="btnCaViErrCancel"
+                            Style="{StaticResource RefuseButton}"
+                            Height="40"
+                            Width="90"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Name="txtCaViErroCancel" Text="Cancel"
+                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </mat:CardView.Footer>
+
+        </mat:CardView>
+
+        <!--card view for asking the user if he ensure to close app-->
+        <mat:CardView Style="{StaticResource CardViewStyle}" 
+                      x:Name="exitAppCardView" 
+                      Header="Exit"
+                      IsOpen="False"
+                      ContentHeight="180"
+                      ContentWidth="400">
+            <mat:CardView.Content>
+                <StackPanel>
+                    <TextBlock x:Name="exitAppCardViewMessage" Margin="0 0 0 0" TextWrapping="Wrap"
+                               Text="Are you sure that you want to exit from your app?"/>
+                </StackPanel>
+            </mat:CardView.Content>
+
+            <mat:CardView.Footer>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                            Margin="8">
+
+                    <Button x:Name="btnCaViAppCancel"
+                            Style="{StaticResource MicrosoftFacebookButton}"
+                            Height="40"
+                            Width="90"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Name="txtCaViAppCancel" Text="Cancel"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+
+                    <Button x:Name="btnCaViAppOk"
+                            Style="{StaticResource NormalButton}"
+                            Height="40"
+                            Width="90"
+                            Margin="16 0 0 0"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" x:Name="txtCaViAppOk" Text="OK"
+                                   Foreground="{ThemeResource InsideBtnTextBlockForegroundBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+
+                </StackPanel>
+
+            </mat:CardView.Footer>
+
+        </mat:CardView>
+
+    </Grid>
+
+</Page>
