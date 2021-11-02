@@ -33,9 +33,9 @@ namespace Herafi.Core.Security
         public static readonly string AES_IV = "jpbwso01$80*&er+";
         public static readonly string SECRET_KEYWORD = "hOgeNoTjge+/g4Khx1MKlQ==";
 
-        public static readonly string MICROSOFT_APP_ID = "a78a813c-e729-4324-a34b-5a3982a4850e";
-        public static readonly string FACEBOOK_APP_ID = "551309499344571";
-        public static readonly string WINDOWS_APP_ID = "s-1-15-2-953024701-3091729567-813251044-943822075-883862142-2989918762-1336157500";
+        public static readonly string MICROSOFT_APP_ID = "";
+        public static readonly string FACEBOOK_APP_ID = "";
+        public static readonly string WINDOWS_APP_ID = "";
 
 
         public static string App_Environment = Choices.ChooseAppEnvironment(AppEnvironment.Development);
