@@ -8,6 +8,10 @@
     <Application.Resources>
         <ResourceDictionary>
 
+            <SolidColorBrush x:Key="ExpanderHeaderBackground" Color="Transparent"/>
+            <SolidColorBrush x:Key="ExpanderHeaderBorderBrush " Color="Transparent"/>
+
+
             <CornerRadius x:Key="OverlayCornerRadius">8</CornerRadius>
             <CornerRadius x:Key="ControlCornerRadius">8</CornerRadius>
 
@@ -21,26 +25,26 @@
             </ResourceDictionary.ThemeDictionaries>
 
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ms-appx:///Resources/Brushes/TitleBarColors.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Brushes/TextBlockBrushes.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Brushes/SurfaceBrushes.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Brushes/CardBrushes.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/TitleBarColors.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/TextBlockBrushes.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/SurfaceBrushes.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Brushes/CardBrushes.xaml" />
 
-                <ResourceDictionary Source="ms-appx:///Resources/Icons/DashboardIcons.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Icons/DashboardIcons.xaml" />
 
-                <ResourceDictionary Source="ms-appx:///Resources/ConstValues/CornerRadiusValues.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/ConstValues/CornerRadiusValues.xaml" />
 
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/TextBlockStyles.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/ShadowStyles.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/PathIconStyles.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/ButtonStyles.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/CardStyles.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/NavigationViewItemStyles.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/ShadowingTextBoxStyles.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/InAppNotificationStyles.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/LoadingStyles.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/CardViewStyles.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Resources/Styles/TextBoxesStyles.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/TextBlockStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/ShadowStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/PathIconStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/CardStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/NavigationViewItemStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/ShadowingTextBoxStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/InAppNotificationStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/LoadingStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/CardViewStyles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles/TextBoxesStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

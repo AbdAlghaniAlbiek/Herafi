@@ -1,15 +1,15 @@
 ﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Herafi.UWP.Resources.ConstValues">
 
-    <!--For all controls in general-->
+    <!--  For all controls in general  -->
     <x:Double x:Key="SmallRadius">8</x:Double>
 
-    <!--For navigation view and main panel-->
+    <!--  For navigation view and main panel  -->
     <x:Double x:Key="MediumRadius">16</x:Double>
 
-    <!--For Dialogs and back button-->
+    <!--  For Dialogs and back button  -->
     <x:Double x:Key="LargeRadius">24</x:Double>
 
 </ResourceDictionary>

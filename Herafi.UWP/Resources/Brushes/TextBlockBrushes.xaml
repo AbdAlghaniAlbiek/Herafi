@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Herafi.UWP.Resources.Brushes">
 
@@ -24,24 +24,24 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
-            <SolidColorBrush x:Key="NormalTextBlockForegroundBrush" Color="{StaticResource NormalTextBlockForegroundColorLight}"/>
-            <SolidColorBrush x:Key="InsideBtnTextBlockForegroundBrush" Color="{StaticResource InsideBtnTextBlockForegroundColorLight}"/>
-            <SolidColorBrush x:Key="AccentTextBlockForegroundBrush" Color="{StaticResource AccentTextBlockForegroundColorLight}"/>
-            <SolidColorBrush x:Key="ErrorTextBlockForegroundBrush" Color="{StaticResource ErrorTextBlockForegroundColorLight}"/>
-            <SolidColorBrush x:Key="FixedTextBlockForegroundBrush" Color="{StaticResource FixedTextBlockForegroundColorLight}"/>
-            <SolidColorBrush x:Key="HeaderInfoTextBlockForegroundBrush" Color="{StaticResource HeaderInfoTextBlockForegroundColorLight}"/>
+            <SolidColorBrush x:Key="NormalTextBlockForegroundBrush" Color="{StaticResource NormalTextBlockForegroundColorLight}" />
+            <SolidColorBrush x:Key="InsideBtnTextBlockForegroundBrush" Color="{StaticResource InsideBtnTextBlockForegroundColorLight}" />
+            <SolidColorBrush x:Key="AccentTextBlockForegroundBrush" Color="{StaticResource AccentTextBlockForegroundColorLight}" />
+            <SolidColorBrush x:Key="ErrorTextBlockForegroundBrush" Color="{StaticResource ErrorTextBlockForegroundColorLight}" />
+            <SolidColorBrush x:Key="FixedTextBlockForegroundBrush" Color="{StaticResource FixedTextBlockForegroundColorLight}" />
+            <SolidColorBrush x:Key="HeaderInfoTextBlockForegroundBrush" Color="{StaticResource HeaderInfoTextBlockForegroundColorLight}" />
 
             <Color x:Key="NormalTextBlockForegroundColor">#383132</Color>
             <Color x:Key="NormalPointerOverTextBlockForegroundColor">#000000</Color>
             <Color x:Key="AccentTextBlockForegroundColor">#2B62AB</Color>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
-            <SolidColorBrush x:Key="NormalTextBlockForegroundBrush" Color="{StaticResource NormalTextBlockForegroundColorDark}"/>
-            <SolidColorBrush x:Key="InsideBtnTextBlockForegroundBrush" Color="{StaticResource InsideBtnTextBlockForegroundColorDark}"/>
-            <SolidColorBrush x:Key="AccentTextBlockForegroundBrush" Color="{StaticResource AccentTextBlockForegroundColorDark}"/>
-            <SolidColorBrush x:Key="ErrorTextBlockForegroundBrush" Color="{StaticResource ErrorTextBlockForegroundColorDark}"/>
-            <SolidColorBrush x:Key="FixedTextBlockForegroundBrush" Color="{StaticResource FixedTextBlockForegroundColorDark}"/>
-            <SolidColorBrush x:Key="HeaderInfoTextBlockForegroundBrush" Color="{StaticResource HeaderInfoTextBlockForegroundColorDark}"/>
+            <SolidColorBrush x:Key="NormalTextBlockForegroundBrush" Color="{StaticResource NormalTextBlockForegroundColorDark}" />
+            <SolidColorBrush x:Key="InsideBtnTextBlockForegroundBrush" Color="{StaticResource InsideBtnTextBlockForegroundColorDark}" />
+            <SolidColorBrush x:Key="AccentTextBlockForegroundBrush" Color="{StaticResource AccentTextBlockForegroundColorDark}" />
+            <SolidColorBrush x:Key="ErrorTextBlockForegroundBrush" Color="{StaticResource ErrorTextBlockForegroundColorDark}" />
+            <SolidColorBrush x:Key="FixedTextBlockForegroundBrush" Color="{StaticResource FixedTextBlockForegroundColorDark}" />
+            <SolidColorBrush x:Key="HeaderInfoTextBlockForegroundBrush" Color="{StaticResource HeaderInfoTextBlockForegroundColorDark}" />
 
             <Color x:Key="NormalTextBlockForegroundColor">#FBFBFB</Color>
             <Color x:Key="NormalPointerOverTextBlockForegroundColor">#FFFFFF</Color>

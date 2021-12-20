@@ -16,7 +16,7 @@
   <Properties>
     <DisplayName>Herafi.UWP</DisplayName>
     <PublisherDisplayName>User</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets\Images\AppIcons\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -33,12 +33,14 @@
       EntryPoint="Herafi.UWP.App">
       <uap:VisualElements
         DisplayName="Herafi.UWP"
-        Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png"
+        Square150x150Logo="Assets\Images\AppIcons\Square150x150Logo.png"
+        Square44x44Logo="Assets\Images\AppIcons\Square44x44Logo.png"
         Description="Herafi.UWP"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\Images\AppIcons\Wide310x150Logo.png" ShortName="Herafi" Square71x71Logo="Assets\Images\AppIcons\SmallTile.png" Square310x310Logo="Assets\Images\AppIcons\LargeTile.png"/>
+        <uap:SplashScreen Image="Assets\Images\AppIcons\SplashScreen.png"  BackgroundColor="white"/>
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
       </uap:VisualElements>
 
       <Extensions>

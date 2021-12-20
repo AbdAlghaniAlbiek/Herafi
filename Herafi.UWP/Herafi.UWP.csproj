@@ -193,12 +193,62 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\AppIcons\LargeTile.scale-100.png" />
+    <Content Include="Assets\Images\AppIcons\LargeTile.scale-125.png" />
+    <Content Include="Assets\Images\AppIcons\LargeTile.scale-150.png" />
+    <Content Include="Assets\Images\AppIcons\LargeTile.scale-200.png" />
+    <Content Include="Assets\Images\AppIcons\LargeTile.scale-400.png" />
+    <Content Include="Assets\Images\AppIcons\SmallTile.scale-100.png" />
+    <Content Include="Assets\Images\AppIcons\SmallTile.scale-125.png" />
+    <Content Include="Assets\Images\AppIcons\SmallTile.scale-150.png" />
+    <Content Include="Assets\Images\AppIcons\SmallTile.scale-200.png" />
+    <Content Include="Assets\Images\AppIcons\SmallTile.scale-400.png" />
+    <Content Include="Assets\Images\AppIcons\SplashScreen.scale-100.png" />
+    <Content Include="Assets\Images\AppIcons\SplashScreen.scale-125.png" />
+    <Content Include="Assets\Images\AppIcons\SplashScreen.scale-150.png" />
+    <Content Include="Assets\Images\AppIcons\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Images\AppIcons\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Images\AppIcons\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Images\AppIcons\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Images\AppIcons\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Images\AppIcons\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Images\AppIcons\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.altform-unplated_targetsize-24.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Images\AppIcons\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\Images\AppIcons\StoreLogo.scale-100.png" />
+    <Content Include="Assets\Images\AppIcons\StoreLogo.scale-125.png" />
+    <Content Include="Assets\Images\AppIcons\StoreLogo.scale-150.png" />
+    <Content Include="Assets\Images\AppIcons\StoreLogo.scale-200.png" />
+    <Content Include="Assets\Images\AppIcons\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Images\AppIcons\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Images\AppIcons\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Images\AppIcons\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Images\AppIcons\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\Images\AppIcons\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\Images\contrast-standard\drill_174px.png" />
     <Content Include="Assets\Images\contrast-standard\email_24px.png" />
     <Content Include="Assets\Images\contrast-standard\facebook_66px.png" />
     <Content Include="Assets\Images\contrast-standard\hammer_174px.png" />
     <Content Include="Assets\Images\contrast-standard\info_24px.png" />
-    <Content Include="Assets\Images\contrast-standard\logo_400px.png" />
+    <Content Include="Assets\logo_400px.png" />
     <Content Include="Assets\Images\contrast-standard\logo_48px.png" />
     <Content Include="Assets\Images\contrast-standard\microsoft_66px.png" />
     <Content Include="Assets\Images\contrast-standard\no_craftmen_500px.png" />
@@ -233,6 +283,15 @@
     <Content Include="Assets\Images\contrast-standard\theme-light\user_200px.png" />
     <Content Include="Assets\Images\contrast-standard\theme-light\wi_fi_off_500px.png" />
     <Content Include="Assets\Images\contrast-standard\triangles.png" />
+    <Content Include="Assets\Screenshots\Analyzes1.png" />
+    <Content Include="Assets\Screenshots\Analyzes2.png" />
+    <Content Include="Assets\Screenshots\Dashboard.png" />
+    <Content Include="Assets\Screenshots\Screenshot %2833%29.png" />
+    <Content Include="Assets\Screenshots\Settings_Dark.png" />
+    <Content Include="Assets\Screenshots\Settings_Light.png" />
+    <Content Include="Assets\Screenshots\SignIn_Dark.jpg" />
+    <Content Include="Assets\Screenshots\SignIn_Light.jpg" />
+    <Content Include="Assets\Screenshots\Users_New_Members.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="StaticFiles\Security\PublicKey.xml" />
   </ItemGroup>
@@ -259,7 +318,7 @@
       <Version>7.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>7.1.1</Version>
+      <Version>7.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Media">
       <Version>7.1.1</Version>
@@ -548,16 +607,15 @@
     <PRIResource Include="Strings\ar-SY\AnalyzesStrings.resw" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Images\AppIcons\" />
     <Folder Include="Assets\Images\contrast-black\" />
     <Folder Include="Assets\Images\contrast-high\" />
     <Folder Include="Assets\Images\contrast-white\" />
     <Folder Include="StaticFiles\Databases\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hearfi.Background\Hearfi.Background.csproj">
-      <Project>{bfc83a28-ba46-44d0-b165-b25b5ce6903c}</Project>
-      <Name>Hearfi.Background</Name>
+    <ProjectReference Include="..\Herafi.Background\Herafi.Background.csproj">
+      <Project>{8d16db24-a885-4ebe-89c2-6ddcbba389a5}</Project>
+      <Name>Herafi.Background</Name>
     </ProjectReference>
     <ProjectReference Include="..\Herafi.Core\Herafi.Core.csproj">
       <Project>{a70fa77c-375f-4fea-a066-309d65bc3a64}</Project>

@@ -1,16 +1,14 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
-    <!--For all controls in general-->
+    <!--  For all controls in general  -->
     <CornerRadius x:Key="SmallCornerRadius">8</CornerRadius>
 
-    <!--For navigation view and main panel-->
+    <!--  For navigation view and main panel  -->
     <CornerRadius x:Key="MediumCornerRadius">16</CornerRadius>
 
-    <!--For Dialogs and back button-->
+    <!--  For Dialogs and back button  -->
     <CornerRadius x:Key="LargeCornerRadius">24</CornerRadius>
 
-    
+
 </ResourceDictionary>

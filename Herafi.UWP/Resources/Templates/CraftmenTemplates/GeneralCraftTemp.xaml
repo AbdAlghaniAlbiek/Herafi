@@ -26,6 +26,12 @@
                        IsExpanded="False"
                        Background="Transparent"
                        CornerRadius="{StaticResource SmallCornerRadius}">
+
+            <cont:Expander.Resources>
+                <ResourceDictionary>
+                    <SolidColorBrush x:Key="ExpanderHeaderBorderBrush" Color="Transparent"/>
+                </ResourceDictionary>
+            </cont:Expander.Resources>
             
             <cont:Expander.HeaderStyle>
                 <Style TargetType="ToggleButton">

@@ -7,9 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using System.IdentityModel.Tokens.Jwt;
 using Herafi.Core.Models;
-using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Herafi.Core.Helpers;
 
@@ -61,39 +59,39 @@ namespace Herafi.Core.Security
         //    //};
         //}
 
-        public async static Task<bool> ValidateToken(string token)
-        {
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+        //public async static Task<bool> ValidateToken(string token)
+        //{
+        //    RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
 
-            RSACryptoServiceProviderExtensions.FromXmlString(rsa, await Common.JWT_PUBLIC_KEY());
+        //    RSACryptoServiceProviderExtensions.FromXmlString(rsa, await Common.JWT_PUBLIC_KEY());
 
-            var validationParameters = new TokenValidationParameters
-            {
-                IssuerSigningKey = new RsaSecurityKey(rsa),
-                CryptoProviderFactory = new CryptoProviderFactory()
-                {
-                    CacheSignatureProviders = false
-                }
-            };
+        //    var validationParameters = new TokenValidationParameters
+        //    {
+        //        IssuerSigningKey = new RsaSecurityKey(rsa),
+        //        CryptoProviderFactory = new CryptoProviderFactory()
+        //        {
+        //            CacheSignatureProviders = false
+        //        }
+        //    };
 
-            try
-            {
-                var handler = new JwtSecurityTokenHandler();
-                ClaimsPrincipal tokenValid = handler.ValidateToken(token, validationParameters, out var validatedSecurityToken);
+        //    try
+        //    {
+        //        var handler = new JwtSecurityTokenHandler();
+        //        ClaimsPrincipal tokenValid = handler.ValidateToken(token, validationParameters, out var validatedSecurityToken);
 
-                if (AESCryptography.Decrypt(tokenValid.Claims.ToList()[1].Value) == 
-                    AESCryptography.Decrypt(Common.SECRET_KEYWORD))
-                {
-                    return true;
-                }
+        //        if (AESCryptography.Decrypt(tokenValid.Claims.ToList()[1].Value) == 
+        //            AESCryptography.Decrypt(Common.SECRET_KEYWORD))
+        //        {
+        //            return true;
+        //        }
 
-                return false;
-            }
-            catch(Exception ex)
-            {
-                return false;
-            }
-        }
+        //        return false;
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
 
 
 

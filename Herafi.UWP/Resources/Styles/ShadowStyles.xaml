@@ -1,96 +1,96 @@
 ﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cont="using:Microsoft.Toolkit.Uwp.UI.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ms-appx:///Resources/ConstValues/ShadowValues.xaml"/>
-        <ResourceDictionary Source="ms-appx:///Resources/Brushes/ShadowBrushes.xaml"/>
+        <ResourceDictionary Source="ms-appx:///Resources/ConstValues/ShadowValues.xaml" />
+        <ResourceDictionary Source="ms-appx:///Resources/Brushes/ShadowBrushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="SignInShadow" TargetType="cont:DropShadowPanel">
-        <Setter Property="Color" Value="{ThemeResource NormalShadowColor}"/>
-        <Setter Property="OffsetX" Value="{StaticResource SignInMainShadowOffsetX}"/>
-        <Setter Property="OffsetY" Value="{StaticResource SignInMainShadowOffsetY}"/>
-        <Setter Property="ShadowOpacity" Value="{StaticResource SignInMainShadowOpacity}"/>
-        <Setter Property="BlurRadius" Value="{StaticResource SignInMainShadowBlurRadius}"/>
+        <Setter Property="Color" Value="{ThemeResource NormalShadowColor}" />
+        <Setter Property="OffsetX" Value="{StaticResource SignInMainShadowOffsetX}" />
+        <Setter Property="OffsetY" Value="{StaticResource SignInMainShadowOffsetY}" />
+        <Setter Property="ShadowOpacity" Value="{StaticResource SignInMainShadowOpacity}" />
+        <Setter Property="BlurRadius" Value="{StaticResource SignInMainShadowBlurRadius}" />
     </Style>
 
     <Style x:Key="NavigationViewShadow" TargetType="cont:DropShadowPanel">
-        <Setter Property="Color" Value="{ThemeResource NormalShadowColor}"/>
-        <Setter Property="OffsetX" Value="{StaticResource NavigationViewShadowOffsetX}"/>
-        <Setter Property="OffsetY" Value="{StaticResource NavigationViewShadowOffsetY}"/>
-        <Setter Property="ShadowOpacity" Value="{StaticResource NavigationViewShadowOpacity}"/>
-        <Setter Property="BlurRadius" Value="{StaticResource NavigationViewShadowBlurRadius}"/>
+        <Setter Property="Color" Value="{ThemeResource NormalShadowColor}" />
+        <Setter Property="OffsetX" Value="{StaticResource NavigationViewShadowOffsetX}" />
+        <Setter Property="OffsetY" Value="{StaticResource NavigationViewShadowOffsetY}" />
+        <Setter Property="ShadowOpacity" Value="{StaticResource NavigationViewShadowOpacity}" />
+        <Setter Property="BlurRadius" Value="{StaticResource NavigationViewShadowBlurRadius}" />
     </Style>
 
     <Style x:Key="CardShadow" TargetType="cont:DropShadowPanel">
-        <Setter Property="Color" Value="{ThemeResource NormalShadowColor}"/>
-        <Setter Property="OffsetX" Value="{StaticResource CardShadowOffsetX}"/>
-        <Setter Property="OffsetY" Value="{StaticResource CardShadowOffsetY}"/>
-        <Setter Property="ShadowOpacity" Value="{StaticResource CardShadowOpacity}"/>
-        <Setter Property="BlurRadius" Value="{StaticResource CardShadowBlurRadius}"/>
-    </Style> 
+        <Setter Property="Color" Value="{ThemeResource NormalShadowColor}" />
+        <Setter Property="OffsetX" Value="{StaticResource CardShadowOffsetX}" />
+        <Setter Property="OffsetY" Value="{StaticResource CardShadowOffsetY}" />
+        <Setter Property="ShadowOpacity" Value="{StaticResource CardShadowOpacity}" />
+        <Setter Property="BlurRadius" Value="{StaticResource CardShadowBlurRadius}" />
+    </Style>
 
-    <!--Navigation view item and Tab view item shadow styles-->
+    <!--  Navigation view item and Tab view item shadow styles  -->
     <Style x:Key="NavigationViewItemShadow" TargetType="cont:DropShadowPanel">
-        <Setter Property="Color" Value="{ThemeResource NavigationViewItemShadowColor}"/>
-        <Setter Property="OffsetX" Value="{StaticResource NavigationViewItemShadowOffsetX}"/>
-        <Setter Property="OffsetY" Value="{StaticResource NavigationViewItemShadowOffsetY}"/>
-        <Setter Property="ShadowOpacity" Value="{StaticResource NavigationViewItemShadowOpacity}"/>
-        <Setter Property="BlurRadius" Value="{StaticResource NavigationViewItemShadowBlurRadius}"/>
+        <Setter Property="Color" Value="{ThemeResource NavigationViewItemShadowColor}" />
+        <Setter Property="OffsetX" Value="{StaticResource NavigationViewItemShadowOffsetX}" />
+        <Setter Property="OffsetY" Value="{StaticResource NavigationViewItemShadowOffsetY}" />
+        <Setter Property="ShadowOpacity" Value="{StaticResource NavigationViewItemShadowOpacity}" />
+        <Setter Property="BlurRadius" Value="{StaticResource NavigationViewItemShadowBlurRadius}" />
     </Style>
 
     <Style x:Key="TabViewItemShadow" TargetType="cont:DropShadowPanel">
-        <Setter Property="Color" Value="{ThemeResource TabViewItemShadowColor}"/>
-        <Setter Property="OffsetX" Value="{StaticResource TabViewItemShadowOffsetX}"/>
-        <Setter Property="OffsetY" Value="{StaticResource TabViewItemShadowOffsetY}"/>
-        <Setter Property="ShadowOpacity" Value="{StaticResource TabViewItemShadowOpacity}"/>
-        <Setter Property="BlurRadius" Value="{StaticResource TabViewItemShadowBlurRadius}"/>
+        <Setter Property="Color" Value="{ThemeResource TabViewItemShadowColor}" />
+        <Setter Property="OffsetX" Value="{StaticResource TabViewItemShadowOffsetX}" />
+        <Setter Property="OffsetY" Value="{StaticResource TabViewItemShadowOffsetY}" />
+        <Setter Property="ShadowOpacity" Value="{StaticResource TabViewItemShadowOpacity}" />
+        <Setter Property="BlurRadius" Value="{StaticResource TabViewItemShadowBlurRadius}" />
     </Style>
 
-    
-    <!--Normal refuse, accept buttons shadow styles-->
+
+    <!--  Normal refuse, accept buttons shadow styles  -->
     <Style x:Key="NormalButtonShadow" TargetType="cont:DropShadowPanel">
-        <Setter Property="Color" Value="{ThemeResource NormalButtonShadowColor}"/>
-        <Setter Property="OffsetX" Value="{StaticResource ButtonShadowOffsetX}"/>
-        <Setter Property="OffsetY" Value="{StaticResource ButtonShadowOffsetY}"/>
-        <Setter Property="ShadowOpacity" Value="{StaticResource ButtonShadowOpacity}"/>
-        <Setter Property="BlurRadius" Value="{StaticResource ButtonShadowBlurRadius}"/>
+        <Setter Property="Color" Value="{ThemeResource NormalButtonShadowColor}" />
+        <Setter Property="OffsetX" Value="{StaticResource ButtonShadowOffsetX}" />
+        <Setter Property="OffsetY" Value="{StaticResource ButtonShadowOffsetY}" />
+        <Setter Property="ShadowOpacity" Value="{StaticResource ButtonShadowOpacity}" />
+        <Setter Property="BlurRadius" Value="{StaticResource ButtonShadowBlurRadius}" />
     </Style>
 
     <Style x:Key="RefuseButtonShadow" TargetType="cont:DropShadowPanel">
-        <Setter Property="Color" Value="{ThemeResource RefuseButtonShadowColor}"/>
-        <Setter Property="OffsetX" Value="{StaticResource ButtonShadowOffsetX}"/>
-        <Setter Property="OffsetY" Value="{StaticResource ButtonShadowOffsetY}"/>
-        <Setter Property="ShadowOpacity" Value="{StaticResource ButtonShadowOpacity}"/>
-        <Setter Property="BlurRadius" Value="{StaticResource ButtonShadowBlurRadius}"/>
+        <Setter Property="Color" Value="{ThemeResource RefuseButtonShadowColor}" />
+        <Setter Property="OffsetX" Value="{StaticResource ButtonShadowOffsetX}" />
+        <Setter Property="OffsetY" Value="{StaticResource ButtonShadowOffsetY}" />
+        <Setter Property="ShadowOpacity" Value="{StaticResource ButtonShadowOpacity}" />
+        <Setter Property="BlurRadius" Value="{StaticResource ButtonShadowBlurRadius}" />
     </Style>
 
     <Style x:Key="AcceptButtonShadow" TargetType="cont:DropShadowPanel">
-        <Setter Property="Color" Value="{ThemeResource AcceptButtonShadowColor}"/>
-        <Setter Property="OffsetX" Value="{StaticResource ButtonShadowOffsetX}"/>
-        <Setter Property="OffsetY" Value="{StaticResource ButtonShadowOffsetY}"/>
-        <Setter Property="ShadowOpacity" Value="{StaticResource ButtonShadowOpacity}"/>
-        <Setter Property="BlurRadius" Value="{StaticResource ButtonShadowBlurRadius}"/>
+        <Setter Property="Color" Value="{ThemeResource AcceptButtonShadowColor}" />
+        <Setter Property="OffsetX" Value="{StaticResource ButtonShadowOffsetX}" />
+        <Setter Property="OffsetY" Value="{StaticResource ButtonShadowOffsetY}" />
+        <Setter Property="ShadowOpacity" Value="{StaticResource ButtonShadowOpacity}" />
+        <Setter Property="BlurRadius" Value="{StaticResource ButtonShadowBlurRadius}" />
     </Style>
 
-    <!--Microsoft and Facebook buttons shadow style-->
+    <!--  Microsoft and Facebook buttons shadow style  -->
     <Style x:Key="MicrosoftFacebookButtonShadow" TargetType="cont:DropShadowPanel">
-        <Setter Property="Color" Value="{ThemeResource NormalShadowColor}"/>
-        <Setter Property="OffsetX" Value="{StaticResource MicrosoftFacbookButtonShadowOffsetX}"/>
-        <Setter Property="OffsetY" Value="{StaticResource MicrosoftFacbookButtonShadowOffsetY}"/>
-        <Setter Property="ShadowOpacity" Value="{StaticResource MicrosoftFacbookButtonShadowOpacity}"/>
-        <Setter Property="BlurRadius" Value="{StaticResource MicrosoftFacbookButtonShadowBlurRadius}"/>
+        <Setter Property="Color" Value="{ThemeResource NormalShadowColor}" />
+        <Setter Property="OffsetX" Value="{StaticResource MicrosoftFacbookButtonShadowOffsetX}" />
+        <Setter Property="OffsetY" Value="{StaticResource MicrosoftFacbookButtonShadowOffsetY}" />
+        <Setter Property="ShadowOpacity" Value="{StaticResource MicrosoftFacbookButtonShadowOpacity}" />
+        <Setter Property="BlurRadius" Value="{StaticResource MicrosoftFacbookButtonShadowBlurRadius}" />
     </Style>
 
-    <!--Shadowing text box sahadow style-->
+    <!--  Shadowing text box sahadow style  -->
     <Style x:Key="ShadowingTextBoxShadow" TargetType="cont:DropShadowPanel">
-        <Setter Property="Color" Value="{ThemeResource NormalShadowColor}"/>
-        <Setter Property="OffsetX" Value="{StaticResource ShadowingTextBoxShadowOffsetX}"/>
-        <Setter Property="OffsetY" Value="{StaticResource ShadowingTextBoxShadowOffsetY}"/>
-        <Setter Property="ShadowOpacity" Value="{StaticResource ShadowingTextBoxShadowOpacity}"/>
-        <Setter Property="BlurRadius" Value="{StaticResource ShadowingTextBoxShadowBlurRadius}"/>
+        <Setter Property="Color" Value="{ThemeResource NormalShadowColor}" />
+        <Setter Property="OffsetX" Value="{StaticResource ShadowingTextBoxShadowOffsetX}" />
+        <Setter Property="OffsetY" Value="{StaticResource ShadowingTextBoxShadowOffsetY}" />
+        <Setter Property="ShadowOpacity" Value="{StaticResource ShadowingTextBoxShadowOpacity}" />
+        <Setter Property="BlurRadius" Value="{StaticResource ShadowingTextBoxShadowBlurRadius}" />
     </Style>
 
 

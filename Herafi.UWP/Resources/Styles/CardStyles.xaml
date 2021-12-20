@@ -1,43 +1,43 @@
 ﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Herafi.UWP.Resources.Styles"
-    xmlns:cont="using:Herafi.UWP.Controls">
+    xmlns:cont="using:Herafi.UWP.Controls"
+    xmlns:local="using:Herafi.UWP.Resources.Styles">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ms-appx:///Resources/Brushes/CardBrushes.xaml"/>
-        <ResourceDictionary Source="ms-appx:///Resources/ConstValues/RadiusValues.xaml"/>
+        <ResourceDictionary Source="ms-appx:///Resources/Brushes/CardBrushes.xaml" />
+        <ResourceDictionary Source="ms-appx:///Resources/ConstValues/RadiusValues.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="NormalCard" TargetType="Rectangle">
-        <Setter Property="Fill" Value="{ThemeResource CardBackgroundBrush}"/>
-        <Setter Property="StrokeThickness" Value="0.2"/>
-        <Setter Property="Stroke" Value="{ThemeResource CardBorderBrush}"/>
-        <Setter Property="RadiusX" Value="{StaticResource SmallRadius}"/>
-        <Setter Property="RadiusY" Value="{StaticResource SmallRadius}"/>
+        <Setter Property="Fill" Value="{ThemeResource CardBackgroundBrush}" />
+        <Setter Property="StrokeThickness" Value="0.2" />
+        <Setter Property="Stroke" Value="{ThemeResource CardBorderBrush}" />
+        <Setter Property="RadiusX" Value="{StaticResource SmallRadius}" />
+        <Setter Property="RadiusY" Value="{StaticResource SmallRadius}" />
     </Style>
 
     <Style x:Key="NormalRoundedCard" TargetType="Ellipse">
-        <Setter Property="Fill" Value="{ThemeResource CardBackgroundBrush}"/>
-        <Setter Property="StrokeThickness" Value="0.2"/>
-        <Setter Property="Stroke" Value="{ThemeResource CardBorderBrush}"/>
+        <Setter Property="Fill" Value="{ThemeResource CardBackgroundBrush}" />
+        <Setter Property="StrokeThickness" Value="0.2" />
+        <Setter Property="Stroke" Value="{ThemeResource CardBorderBrush}" />
     </Style>
 
 
     <Style x:Key="SignInCard" TargetType="Rectangle">
-        <Setter Property="Fill" Value="{ThemeResource CardBackgroundBrush}"/>
-        <Setter Property="StrokeThickness" Value="0.2"/>
-        <Setter Property="Stroke" Value="{ThemeResource CardBorderBrush}"/>
-        <Setter Property="RadiusX" Value="{StaticResource MediumRadius}"/>
-        <Setter Property="RadiusY" Value="{StaticResource MediumRadius}"/>
+        <Setter Property="Fill" Value="{ThemeResource CardBackgroundBrush}" />
+        <Setter Property="StrokeThickness" Value="0.2" />
+        <Setter Property="Stroke" Value="{ThemeResource CardBorderBrush}" />
+        <Setter Property="RadiusX" Value="{StaticResource MediumRadius}" />
+        <Setter Property="RadiusY" Value="{StaticResource MediumRadius}" />
     </Style>
 
     <Style x:Key="NavigationViewCard" TargetType="Rectangle">
-        <Setter Property="Fill" Value="{ThemeResource CardBackgroundBrush}"/>
-        <Setter Property="StrokeThickness" Value="0.2"/>
-        <Setter Property="Stroke" Value="{ThemeResource CardBorderBrush}"/>
-        <Setter Property="RadiusX" Value="{StaticResource MediumRadius}"/>
-        <Setter Property="RadiusY" Value="{StaticResource MediumRadius}"/>
+        <Setter Property="Fill" Value="{ThemeResource CardBackgroundBrush}" />
+        <Setter Property="StrokeThickness" Value="0.2" />
+        <Setter Property="Stroke" Value="{ThemeResource CardBorderBrush}" />
+        <Setter Property="RadiusX" Value="{StaticResource MediumRadius}" />
+        <Setter Property="RadiusY" Value="{StaticResource MediumRadius}" />
     </Style>
 
 </ResourceDictionary>
