@@ -14,13 +14,6 @@
 * [Versions](#versions)
 * [Project Status](#project-status)
 
-## General Info![SignIn_Light](https://user-images.githubusercontent.com/37735487/146849419-fe943f4a-d3b9-41fa-b1bf-d4c488f865fd.jpg)![SignIn_Light](https://user-images.githubusercontent.com/37735487/146849421-75beae02-5485-4852-a8bc-6b4cf62c3bff.jpg)![Dashboard](https://user-images.githubusercontent.com/37735487/146849427-350ce4de-12dd-484e-aed4-97cf7cc98870.png)![Dashboard](https://user-images.githubusercontent.com/37735487/146849425-8d724476-eea0-4e6a-9ee1-1865cb7bef56.png)![Settings_Light](https://user-images.githubusercontent.com/37735487/146849434-015f600c-4d42-4994-a514-c7cc867428c8.png)![Settings_Light](https://user-images.githubusercontent.com/37735487/146849429-5b9f2abe-d221-4ecc-ba1d-ca43751bce69.png)
-
-
-
-
-
-
 * This is my graduation project that I worked on it for 4 months, and It gives `98/100` considered the best graduations projects from
 * It's basically A UWP application for admins of Herafi ecosystem. It gives admins the ability to approve the new users and craftmen that they want to working in this ecosystem , also they can see what is going on in whole this organization (like seeing the number of new memebers of users and craftmen weekly or seeing the average of profits monthly and so on) using Analyzes tab.
 * It's connected to Node.js backend that also I worked on it, you can see it [here.](https://github.com/AbdAlghaniAlbiek/herafi_backend)
