@@ -14,6 +14,7 @@
 * [Versions](#versions)
 * [Project Status](#project-status)
 
+## General
 * This is my graduation project that I worked on it for 4 months, and It gives `98/100` considered the best graduations projects from
 * It's basically A UWP application for admins of Herafi ecosystem. It gives admins the ability to approve the new users and craftmen that they want to working in this ecosystem , also they can see what is going on in whole this organization (like seeing the number of new memebers of users and craftmen weekly or seeing the average of profits monthly and so on) using Analyzes tab.
 * It's connected to Node.js backend that also I worked on it, you can see it [here.](https://github.com/AbdAlghaniAlbiek/herafi_backend)
